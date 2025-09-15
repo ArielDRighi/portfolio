@@ -1,0 +1,20 @@
+# robots.txt para Portfolio Desarrollador Backend
+# https://arielrighi.github.io/portfolio/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://arielrighi.github.io/portfolio/sitemap.xml
+
+# Disallow admin areas (si las hay en el futuro)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow important resources
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Crawl delay (optional)
+Crawl-delay: 1

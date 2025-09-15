@@ -739,17 +739,17 @@
   .github-status {
     margin-right: 0.5rem;
   }
-  
+
   .status-connected span,
   .status-disconnected span {
     display: none;
   }
-  
+
   .modal-content {
     margin: 1rem;
     max-height: calc(100vh - 2rem);
   }
-}
+
   .desktop {
     height: 60vh;
     min-height: 400px;
@@ -782,6 +782,7 @@
   }
 }
 
+/* Small mobile devices */
 @media (max-width: 480px) {
   .desktop__icons {
     grid-template-columns: repeat(auto-fill, 60px);

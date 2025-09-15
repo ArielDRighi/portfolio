@@ -18,7 +18,7 @@ class ExperienceManager {
     if (!this.timelineContainer) return;
 
     try {
-      this.loadExperience();
+      await this.loadExperience(); // ← Añadir await aquí
       this.renderTimeline();
       this.bindEvents();
     } catch (error) {

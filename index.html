@@ -459,166 +459,49 @@
               </p>
 
               <div class="contact__links">
-                <a href="mailto:desarrollador@ejemplo.com" class="contact__link">
+                <a href="mailto:arieldavidrighi@gmail.com" class="contact__link">
                   <span class="contact__icon">📧</span>
                   <div class="contact__text">
                     <span class="contact__label">Email</span>
-                    <span class="contact__value">desarrollador@ejemplo.com</span>
+                    <span class="contact__value">arieldavidrighi@gmail.com</span>
                   </div>
                 </a>
-                <a href="https://linkedin.com/in/desarrollador-backend" target="_blank" class="contact__link">
+                <a href="https://www.linkedin.com/in/ariel-righi-230143237/" target="_blank" class="contact__link">
                   <span class="contact__icon">💼</span>
                   <div class="contact__text">
                     <span class="contact__label">LinkedIn</span>
                     <span class="contact__value">Perfil Profesional</span>
                   </div>
                 </a>
-                <a href="https://github.com/mi-usuario" target="_blank" class="contact__link">
+                <a href="https://github.com/ArielDRighi" target="_blank" class="contact__link">
                   <span class="contact__icon">🐙</span>
                   <div class="contact__text">
                     <span class="contact__label">GitHub</span>
                     <span class="contact__value">Repositorios</span>
                   </div>
                 </a>
+                <a href="tel:+543515598730" class="contact__link">
+                  <span class="contact__icon">📱</span>
+                  <div class="contact__text">
+                    <span class="contact__label">Teléfono</span>
+                    <span class="contact__value">+54 351 559-8730</span>
+                  </div>
+                </a>
                 <div class="contact__link">
                   <span class="contact__icon">📍</span>
                   <div class="contact__text">
                     <span class="contact__label">Ubicación</span>
-                    <span class="contact__value">Disponible Remotamente</span>
+                    <span class="contact__value">Córdoba, Argentina</span>
                   </div>
                 </div>
                 <div class="contact__link">
                   <span class="contact__icon">⏰</span>
                   <div class="contact__text">
                     <span class="contact__label">Disponibilidad</span>
-                    <span class="contact__value">Lun - Vie, 9:00 - 18:00</span>
+                    <span class="contact__value">Full Time</span>
                   </div>
                 </div>
               </div>
-
-              <div class="contact__stats">
-                <div class="contact__stat">
-                  <span class="contact__stat-number" data-target="24">0</span>
-                  <span class="contact__stat-label">Horas Respuesta</span>
-                </div>
-                <div class="contact__stat">
-                  <span class="contact__stat-number" data-target="50">0</span>
-                  <span class="contact__stat-label">Proyectos Entregados</span>
-                </div>
-                <div class="contact__stat">
-                  <span class="contact__stat-number" data-target="100">0</span>
-                  <span class="contact__stat-label">% Satisfacción</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="contact__form">
-              <div class="form__header">
-                <h3 class="form__title">¿Tienes un proyecto en mente?</h3>
-                <p class="form__description">Cuéntame sobre tu idea y veamos cómo puedo ayudarte</p>
-              </div>
-
-              <form class="form" id="contactForm" novalidate>
-                <div class="form__row">
-                  <div class="form__group">
-                    <label for="name" class="form__label">Nombre completo</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      class="form__input"
-                      required
-                      placeholder="Ej: Juan Pérez"
-                      autocomplete="name"
-                    />
-                    <span class="form__error" id="nameError"></span>
-                  </div>
-                  <div class="form__group">
-                    <label for="company" class="form__label">Empresa</label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      class="form__input"
-                      placeholder="Opcional"
-                      autocomplete="organization"
-                    />
-                  </div>
-                </div>
-
-                <div class="form__row">
-                  <div class="form__group">
-                    <label for="email" class="form__label">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      class="form__input"
-                      required
-                      placeholder="tu@email.com"
-                      autocomplete="email"
-                    />
-                    <span class="form__error" id="emailError"></span>
-                  </div>
-                  <div class="form__group">
-                    <label for="budget" class="form__label">Presupuesto estimado</label>
-                    <select id="budget" name="budget" class="form__select">
-                      <option value="">Seleccionar rango</option>
-                      <option value="<5000">Menos de $5,000</option>
-                      <option value="5000-15000">$5,000 - $15,000</option>
-                      <option value="15000-30000">$15,000 - $30,000</option>
-                      <option value=">30000">Más de $30,000</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form__group">
-                  <label for="subject" class="form__label">Tipo de proyecto</label>
-                  <select id="subject" name="subject" class="form__select" required>
-                    <option value="">Seleccionar tipo</option>
-                    <option value="api">API REST/GraphQL</option>
-                    <option value="webapp">Aplicación Web</option>
-                    <option value="microservices">Microservicios</option>
-                    <option value="database">Base de Datos</option>
-                    <option value="integration">Integración de Sistemas</option>
-                    <option value="optimization">Optimización</option>
-                    <option value="other">Otro</option>
-                  </select>
-                  <span class="form__error" id="subjectError"></span>
-                </div>
-
-                <div class="form__group">
-                  <label for="message" class="form__label">Descripción del proyecto</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    class="form__textarea"
-                    rows="6"
-                    required
-                    placeholder="Describe tu proyecto, objetivos y requerimientos técnicos..."
-                    maxlength="1000"
-                  ></textarea>
-                  <div class="form__textarea-footer">
-                    <span class="form__error" id="messageError"></span>
-                    <span class="form__char-count">0/1000</span>
-                  </div>
-                </div>
-
-                <div class="form__actions">
-                  <button type="submit" class="form__button" id="submitBtn">
-                    <span class="form__button-text">Enviar Mensaje</span>
-                    <span class="form__button-loading">Enviando...</span>
-                  </button>
-                  <p class="form__note">Respondo en menos de 24 horas • Consulta inicial gratuita</p>
-                </div>
-
-                <div class="form__notification" id="formNotification">
-                  <div class="notification__content">
-                    <span class="notification__icon"></span>
-                    <span class="notification__message"></span>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>

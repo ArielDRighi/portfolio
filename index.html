@@ -118,7 +118,10 @@
     <header class="header">
       <nav class="nav">
         <div class="nav__logo">
-          <h1>Portfolio</h1>
+          <div class="logo__content">
+            <h1 class="logo__name">Ariel D. Righi</h1>
+            <span class="logo__title">Backend Developer</span>
+          </div>
         </div>
         <ul class="nav__menu">
           <li><a href="#about" class="nav__link">Información</a></li>
@@ -149,9 +152,6 @@
                 alt="Foto de perfil profesional - Ariel D. Righi"
                 class="about__photo"
               />
-              <div class="about__image-overlay">
-                <span class="about__image-text">Cambiar foto</span>
-              </div>
             </div>
             <div class="about__info">
               <h2 class="about__title">Desarrollador Backend</h2>
@@ -203,63 +203,214 @@
           <!-- Skills -->
           <div class="skills">
             <h3 class="skills__title">Stack Tecnológico</h3>
-            <div class="skills__grid">
-              <div class="skills__category" data-category="languages">
-                <div class="skills__category-header">
-                  <span class="skills__category-icon">💻</span>
-                  <h4 class="skills__category-title">Lenguajes de Programación</h4>
-                </div>
-                <div class="skills__list">
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">JavaScript</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">TypeScript</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Node.js</span>
+            <div class="tech-stack">
+              <div class="tech-category">
+                <h4 class="tech-category__title">Backend & APIs</h4>
+                <div class="tech-grid">
+                  <div class="tech-item" data-tech="nestjs">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nestjs.svg"
+                      alt="NestJS"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">NestJS</span>
+                  </div>
+                  <div class="tech-item" data-tech="nodejs">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nodedotjs.svg"
+                      alt="Node.js"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Node.js</span>
+                  </div>
+                  <div class="tech-item" data-tech="express">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/express.svg"
+                      alt="Express.js"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Express</span>
+                  </div>
+                  <div class="tech-item" data-tech="typescript">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/typescript.svg"
+                      alt="TypeScript"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">TypeScript</span>
+                  </div>
+                  <div class="tech-item" data-tech="javascript">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg"
+                      alt="JavaScript"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">JavaScript</span>
+                  </div>
                 </div>
               </div>
-              <div class="skills__category" data-category="frameworks">
-                <div class="skills__category-header">
-                  <span class="skills__category-icon">🚀</span>
-                  <h4 class="skills__category-title">Frameworks & Librerías</h4>
-                </div>
-                <div class="skills__list">
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">NestJS</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Express.js</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">Prisma</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">TypeORM</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">Jest</span>
+
+              <div class="tech-category">
+                <h4 class="tech-category__title">Bases de Datos & ORMs</h4>
+                <div class="tech-grid">
+                  <div class="tech-item" data-tech="postgresql">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/postgresql.svg"
+                      alt="PostgreSQL"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">PostgreSQL</span>
+                  </div>
+                  <div class="tech-item" data-tech="prisma">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/prisma.svg"
+                      alt="Prisma"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Prisma</span>
+                  </div>
+                  <div class="tech-item" data-tech="typeorm">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/typeorm.svg"
+                      alt="TypeORM"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">TypeORM</span>
+                  </div>
+                  <div class="tech-item" data-tech="mongodb">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mongodb.svg"
+                      alt="MongoDB"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">MongoDB</span>
+                  </div>
+                  <div class="tech-item" data-tech="mysql">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mysql.svg"
+                      alt="MySQL"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">MySQL</span>
+                  </div>
                 </div>
               </div>
-              <div class="skills__category" data-category="databases">
-                <div class="skills__category-header">
-                  <span class="skills__category-icon">🗄️</span>
-                  <h4 class="skills__category-title">Bases de Datos</h4>
-                </div>
-                <div class="skills__list">
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">PostgreSQL</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">MongoDB</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">MySQL</span>
+
+              <div class="tech-category">
+                <h4 class="tech-category__title">DevOps & Testing</h4>
+                <div class="tech-grid">
+                  <div class="tech-item" data-tech="docker">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/docker.svg"
+                      alt="Docker"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Docker</span>
+                  </div>
+                  <div class="tech-item" data-tech="git">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/git.svg" alt="Git" class="tech-icon" />
+                    <span class="tech-name">Git</span>
+                  </div>
+                  <div class="tech-item" data-tech="jest">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/jest.svg"
+                      alt="Jest"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Jest</span>
+                  </div>
+                  <div class="tech-item" data-tech="swagger">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/swagger.svg"
+                      alt="Swagger"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Swagger</span>
+                  </div>
+                  <div class="tech-item" data-tech="jwt">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/jsonwebtokens.svg"
+                      alt="JWT"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">JWT</span>
+                  </div>
                 </div>
               </div>
-              <div class="skills__category" data-category="devops">
-                <div class="skills__category-header">
-                  <span class="skills__category-icon">🔧</span>
-                  <h4 class="skills__category-title">Herramientas de Desarrollo</h4>
-                </div>
-                <div class="skills__list">
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Git</span>
-                  <span class="skill-tag skill-tag--intermediate" data-level="intermediate">Docker</span>
+
+              <div class="tech-category">
+                <h4 class="tech-category__title">Servicios & Integraciones</h4>
+                <div class="tech-grid">
+                  <div class="tech-item" data-tech="twilio">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twilio.svg"
+                      alt="Twilio"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Twilio</span>
+                  </div>
+                  <div class="tech-item" data-tech="cloudinary">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/cloudinary.svg"
+                      alt="Cloudinary"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Cloudinary</span>
+                  </div>
+                  <div class="tech-item" data-tech="nodemailer">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nodemailer.svg"
+                      alt="Nodemailer"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Nodemailer</span>
+                  </div>
+                  <div class="tech-item" data-tech="websockets">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/socketdotio.svg"
+                      alt="WebSockets"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">WebSockets</span>
+                  </div>
                 </div>
               </div>
-              <div class="skills__category" data-category="management">
-                <div class="skills__category-header">
-                  <span class="skills__category-icon">📋</span>
-                  <h4 class="skills__category-title">Gestión de Proyectos</h4>
-                </div>
-                <div class="skills__list">
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Jira</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Trello</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Scrum</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">User Stories</span>
-                  <span class="skill-tag skill-tag--advanced" data-level="advanced">Sprint Planning</span>
+
+              <div class="tech-category">
+                <h4 class="tech-category__title">Gestión de Proyectos</h4>
+                <div class="tech-grid">
+                  <div class="tech-item" data-tech="jira">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/jira.svg"
+                      alt="Jira"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Jira</span>
+                  </div>
+                  <div class="tech-item" data-tech="trello">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/trello.svg"
+                      alt="Trello"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Trello</span>
+                  </div>
+                  <div class="tech-item" data-tech="notion">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/notion.svg"
+                      alt="Notion"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">Notion</span>
+                  </div>
+                  <div class="tech-item" data-tech="clickup">
+                    <img
+                      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/clickup.svg"
+                      alt="ClickUp"
+                      class="tech-icon"
+                    />
+                    <span class="tech-name">ClickUp</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,22 +422,6 @@
       <section id="experience" class="section experience">
         <div class="container">
           <h2 class="section__title">Experiencia Laboral</h2>
-          <div class="experience__summary">
-            <div class="experience__stats">
-              <div class="stat-card">
-                <span class="stat-number" id="totalYears">10+</span>
-                <span class="stat-label">Años en videojuegos</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-number" id="totalProjects">20+</span>
-                <span class="stat-label">Proyectos liderados</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-number" id="totalCompanies">3</span>
-                <span class="stat-label">Años como Lead Designer</span>
-              </div>
-            </div>
-          </div>
           <div class="timeline">
             <!-- El contenido será cargado dinámicamente por experience.js -->
             <div class="timeline__loading">

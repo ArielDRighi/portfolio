@@ -1,68 +1,52 @@
 [
   {
     "id": 1,
-    "company": "Empresa Actual S.A.",
-    "position": "Desarrollador Backend Senior",
-    "startDate": "2023-01-15",
+    "company": "Segimed",
+    "position": "Backend Developer (Internship)",
+    "startDate": "2025-06-01",
     "endDate": null,
     "current": true,
-    "description": "Desarrollo y mantenimiento de APIs REST y microservicios para aplicaciones de alto tráfico. Implementación de arquitecturas escalables y optimización de rendimiento de bases de datos.",
+    "description": "Segimed es una plataforma clínica que facilita el seguimiento de pacientes y la relación médico-paciente a distancia, manejo de historiales médicos, alertas en tiempo real, comunicación y agenda médica, con especial énfasis en seguridad, privacidad y disponibilidad. Mi participación contribuyó a estructurar la arquitectura backend para soportar múltiples clientes, integraciones críticas y garantizar el cumplimiento de estándares de seguridad en salud digital.",
     "responsibilities": [
-      "Diseño e implementación de APIs REST con Node.js y Express",
-      "Desarrollo de microservicios con arquitectura hexagonal",
-      "Optimización de consultas SQL y NoSQL",
-      "Implementación de sistemas de cache con Redis",
-      "Configuración de pipelines CI/CD con Docker y Kubernetes"
+      "Desarrollo de sistema multi-tenant para soportar múltiples médicos, pacientes y clínicas con aislamiento y seguridad entre clientes",
+      "Implementación de autenticación por JWT para usuarios diferenciados (médicos, pacientes) asegurando sesiones seguras y roles granulares",
+      "Integración con servicios externos Twilio para notificaciones, mensajes y llamadas en tiempo real",
+      "Integración con Cloudinary para manejo de almacenamiento de archivos médicos (imágenes, estudios médicos)",
+      "Mantenimiento y optimización de base de datos PostgreSQL mediante Prisma como ORM, incluyendo diseño de esquemas y migraciones",
+      "Aseguramiento de buenas prácticas de backend con enfoque en seguridad, escalabilidad y limpieza de código",
+      "Implementación de pruebas y documentación técnica para garantizar mantenibilidad del sistema"
     ],
-    "technologies": ["node", "mongodb", "docker", "aws", "redis"],
+    "technologies": ["nestjs", "typescript", "postgresql", "prisma", "jwt", "twilio", "cloudinary", "websockets"],
     "achievements": [
-      "Reducción del 40% en tiempos de respuesta de APIs críticas",
-      "Implementación de arquitectura de microservicios que mejoró la escalabilidad",
-      "Liderazgo de equipo de 3 desarrolladores backend"
+      "Estructuración exitosa de arquitectura backend multi-tenant para plataforma de salud digital con múltiples clientes",
+      "Implementación de estándares de seguridad críticos cumpliendo regulaciones del sector salud",
+      "Desarrollo de integraciones críticas con servicios externos garantizando comunicación en tiempo real",
+      "Optimización de base de datos para manejo eficiente de historiales médicos sensibles"
     ]
   },
   {
     "id": 2,
-    "company": "TechSolutions Ltda.",
-    "position": "Desarrollador Backend",
-    "startDate": "2021-03-10",
-    "endDate": "2022-12-20",
+    "company": "SwaplyAr",
+    "position": "Backend Developer (Internship)",
+    "startDate": "2025-01-01",
+    "endDate": "2025-06-30",
     "current": false,
-    "description": "Desarrollo de aplicaciones web empresariales y APIs para sistemas de gestión. Colaboración en equipos ágiles y participación en todo el ciclo de vida del software.",
+    "description": "SwaplyAr es una plataforma fintech que facilita transacciones financieras digitales internacionales entre billeteras virtuales y cuentas bancarias, con foco en seguridad, transparencia, eficiencia y usabilidad. Mi participación contribuyó al desarrollo del backend encargado de manejar el registro, inicio de sesión, gestión de usuarios e integración con servicios externos, asegurando que la API sea mantenible y segura.",
     "responsibilities": [
-      "Desarrollo de aplicaciones web con Django y Flask",
-      "Implementación de sistemas de autenticación y autorización",
-      "Integración con servicios externos y APIs de terceros",
-      "Desarrollo de scripts de migración de datos",
-      "Participación en code reviews y mejora de procesos"
+      "Desarrollo y mantenimiento de APIs RESTful usando Node.js y Express.js para transacciones financieras digitales",
+      "Implementación de autenticación segura con JWT y bcrypt para protección de datos financieros sensibles",
+      "Gestión de datos mediante Google Sheets como base de datos para operaciones de la plataforma fintech",
+      "Auto-documentación de endpoints con Swagger para facilitar mantenimiento y escalabilidad de APIs",
+      "Validación de datos con express-validator para asegurar integridad del backend en transacciones financieras",
+      "Participación en organización del backlog y priorización de tareas mediante metodologías ágiles",
+      "Seguimiento de metodología Gitflow para control de versiones y deployments seguros"
     ],
-    "technologies": ["python", "django", "postgresql", "git"],
+    "technologies": ["nodejs", "express", "jwt", "bcrypt", "google-sheets", "swagger", "express-validator", "git"],
     "achievements": [
-      "Migración exitosa de sistema legacy a arquitectura moderna",
-      "Desarrollo de API que maneja +10k requests diarios",
-      "Implementación de sistema de logs y monitoreo"
-    ]
-  },
-  {
-    "id": 3,
-    "company": "StartupTech",
-    "position": "Desarrollador Full Stack Junior",
-    "startDate": "2020-06-01",
-    "endDate": "2021-02-28",
-    "current": false,
-    "description": "Primer rol profesional en desarrollo. Trabajo en startup de tecnología desarrollando MVP y funcionalidades core del producto.",
-    "responsibilities": [
-      "Desarrollo frontend con React y backend con Node.js",
-      "Implementación de funcionalidades de la aplicación principal",
-      "Testing unitario y de integración",
-      "Soporte técnico y resolución de bugs",
-      "Documentación técnica y de usuario"
-    ],
-    "technologies": ["javascript", "react", "node", "mysql"],
-    "achievements": [
-      "Contribución al desarrollo del MVP de la startup",
-      "Implementación de sistema de notificaciones en tiempo real",
-      "Aprendizaje acelerado de tecnologías modernas"
+      "Implementación exitosa de sistema de autenticación robusto para plataforma fintech con transacciones internacionales",
+      "Desarrollo de documentación automatizada con Swagger mejorando mantenibilidad de APIs críticas",
+      "Optimización de flujo de trabajo con metodología Gitflow garantizando deployments seguros",
+      "Gestión eficiente de datos financieros mediante Google Sheets API con validaciones robustas"
     ]
   }
 ]

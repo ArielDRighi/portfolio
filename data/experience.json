@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "company": "Empresa Actual S.A.",
+    "position": "Desarrollador Backend Senior",
+    "startDate": "2023-01-15",
+    "endDate": null,
+    "current": true,
+    "description": "Desarrollo y mantenimiento de APIs REST y microservicios para aplicaciones de alto tráfico. Implementación de arquitecturas escalables y optimización de rendimiento de bases de datos.",
+    "responsibilities": [
+      "Diseño e implementación de APIs REST con Node.js y Express",
+      "Desarrollo de microservicios con arquitectura hexagonal",
+      "Optimización de consultas SQL y NoSQL",
+      "Implementación de sistemas de cache con Redis",
+      "Configuración de pipelines CI/CD con Docker y Kubernetes"
+    ],
+    "technologies": ["node", "mongodb", "docker", "aws", "redis"],
+    "achievements": [
+      "Reducción del 40% en tiempos de respuesta de APIs críticas",
+      "Implementación de arquitectura de microservicios que mejoró la escalabilidad",
+      "Liderazgo de equipo de 3 desarrolladores backend"
+    ]
+  },
+  {
+    "id": 2,
+    "company": "TechSolutions Ltda.",
+    "position": "Desarrollador Backend",
+    "startDate": "2021-03-10",
+    "endDate": "2022-12-20",
+    "current": false,
+    "description": "Desarrollo de aplicaciones web empresariales y APIs para sistemas de gestión. Colaboración en equipos ágiles y participación en todo el ciclo de vida del software.",
+    "responsibilities": [
+      "Desarrollo de aplicaciones web con Django y Flask",
+      "Implementación de sistemas de autenticación y autorización",
+      "Integración con servicios externos y APIs de terceros",
+      "Desarrollo de scripts de migración de datos",
+      "Participación en code reviews y mejora de procesos"
+    ],
+    "technologies": ["python", "django", "postgresql", "git"],
+    "achievements": [
+      "Migración exitosa de sistema legacy a arquitectura moderna",
+      "Desarrollo de API que maneja +10k requests diarios",
+      "Implementación de sistema de logs y monitoreo"
+    ]
+  },
+  {
+    "id": 3,
+    "company": "StartupTech",
+    "position": "Desarrollador Full Stack Junior",
+    "startDate": "2020-06-01",
+    "endDate": "2021-02-28",
+    "current": false,
+    "description": "Primer rol profesional en desarrollo. Trabajo en startup de tecnología desarrollando MVP y funcionalidades core del producto.",
+    "responsibilities": [
+      "Desarrollo frontend con React y backend con Node.js",
+      "Implementación de funcionalidades de la aplicación principal",
+      "Testing unitario y de integración",
+      "Soporte técnico y resolución de bugs",
+      "Documentación técnica y de usuario"
+    ],
+    "technologies": ["javascript", "react", "node", "mysql"],
+    "achievements": [
+      "Contribución al desarrollo del MVP de la startup",
+      "Implementación de sistema de notificaciones en tiempo real",
+      "Aprendizaje acelerado de tecnologías modernas"
+    ]
+  }
+]

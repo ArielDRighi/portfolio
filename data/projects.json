@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "name": "API REST E-commerce",
+    "type": "api",
+    "description": "API completa para sistema de e-commerce con autenticación JWT, pagos con Stripe y gestión avanzada de inventario. Incluye documentación Swagger y testing automatizado.",
+    "technologies": ["node", "express", "mongodb", "redis"],
+    "github": "https://github.com/usuario/ecommerce-api",
+    "demo": "https://ecommerce-api-demo.herokuapp.com",
+    "status": "completed",
+    "featured": true,
+    "stats": {
+      "stars": 45,
+      "forks": 12,
+      "commits": 156,
+      "lastUpdate": "2024-09-10"
+    },
+    "highlights": [
+      "Arquitectura RESTful completa",
+      "Autenticación JWT con refresh tokens",
+      "Integración con Stripe para pagos",
+      "Sistema de cache con Redis",
+      "Documentación automática con Swagger"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Microservicios Chat",
+    "type": "microservices",
+    "description": "Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets, RabbitMQ para mensajería y Docker para orquestación.",
+    "technologies": ["node", "docker", "postgresql", "redis"],
+    "github": "https://github.com/usuario/chat-microservices",
+    "demo": "https://chat-demo.vercel.app",
+    "status": "completed",
+    "featured": true,
+    "stats": {
+      "stars": 38,
+      "forks": 8,
+      "commits": 203,
+      "lastUpdate": "2024-08-25"
+    },
+    "highlights": [
+      "Arquitectura de microservicios",
+      "WebSockets para tiempo real",
+      "RabbitMQ para comunicación entre servicios",
+      "Docker Compose para desarrollo",
+      "Monitoreo con Prometheus"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "FastAPI ML Service",
+    "type": "ml",
+    "description": "Servicio de Machine Learning para predicciones usando FastAPI, TensorFlow y MLflow para gestión de modelos. Incluye pipeline CI/CD automatizado.",
+    "technologies": ["python", "fastapi", "postgresql", "docker"],
+    "github": "https://github.com/usuario/ml-service",
+    "demo": null,
+    "status": "completed",
+    "featured": false,
+    "stats": {
+      "stars": 23,
+      "forks": 5,
+      "commits": 89,
+      "lastUpdate": "2024-07-15"
+    },
+    "highlights": [
+      "API para modelos de ML",
+      "Gestión de modelos con MLflow",
+      "Validación automática de datos",
+      "Containerización con Docker",
+      "Pipeline de entrenamiento automatizado"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "GraphQL Blog API",
+    "type": "api",
+    "description": "API GraphQL para blog con subscripciones en tiempo real, cache optimizado con DataLoader y sistema de autenticación basado en roles.",
+    "technologies": ["node", "typescript", "postgresql", "redis"],
+    "github": "https://github.com/usuario/graphql-blog",
+    "demo": "https://blog-api-demo.netlify.app",
+    "status": "in-progress",
+    "featured": true,
+    "stats": {
+      "stars": 15,
+      "forks": 3,
+      "commits": 67,
+      "lastUpdate": "2024-09-12"
+    },
+    "highlights": [
+      "GraphQL con TypeScript",
+      "Subscripciones en tiempo real",
+      "DataLoader para optimización",
+      "Sistema de roles y permisos",
+      "Cache inteligente con Redis"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "DevOps Pipeline",
+    "type": "devops",
+    "description": "Pipeline CI/CD completo con Docker, Kubernetes, monitoring con Grafana y despliegue automatizado en AWS EKS.",
+    "technologies": ["docker", "aws", "node", "postgresql"],
+    "github": "https://github.com/usuario/devops-pipeline",
+    "demo": null,
+    "status": "completed",
+    "featured": false,
+    "stats": {
+      "stars": 31,
+      "forks": 7,
+      "commits": 124,
+      "lastUpdate": "2024-06-30"
+    },
+    "highlights": [
+      "Pipeline CI/CD con GitHub Actions",
+      "Despliegue en Kubernetes",
+      "Monitoreo con Grafana y Prometheus",
+      "Infraestructura como código",
+      "Escalado automático"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Real-time Analytics",
+    "type": "analytics",
+    "description": "Sistema de analíticas en tiempo real con dashboard interactivo, procesamiento de streams con Apache Kafka y visualización avanzada.",
+    "technologies": ["python", "redis", "postgresql", "docker"],
+    "github": "https://github.com/usuario/realtime-analytics",
+    "demo": "https://analytics-dashboard.vercel.app",
+    "status": "completed",
+    "featured": false,
+    "stats": {
+      "stars": 19,
+      "forks": 4,
+      "commits": 95,
+      "lastUpdate": "2024-05-20"
+    },
+    "highlights": [
+      "Procesamiento en tiempo real",
+      "Dashboard interactivo",
+      "Stream processing con Kafka",
+      "Métricas personalizables",
+      "Alertas automáticas"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Blockchain Wallet API",
+    "type": "blockchain",
+    "description": "API para gestión de wallets de criptomonedas con soporte multi-blockchain, transacciones seguras y integración con exchanges.",
+    "technologies": ["node", "typescript", "mongodb", "redis"],
+    "github": "https://github.com/usuario/blockchain-wallet",
+    "demo": null,
+    "status": "completed",
+    "featured": true,
+    "stats": {
+      "stars": 52,
+      "forks": 15,
+      "commits": 187,
+      "lastUpdate": "2024-04-18"
+    },
+    "highlights": [
+      "Soporte multi-blockchain",
+      "Transacciones seguras",
+      "Integración con exchanges",
+      "Monitoreo de precios",
+      "Sistema de alertas"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Event Sourcing System",
+    "type": "architecture",
+    "description": "Sistema de Event Sourcing con CQRS para aplicaciones de alta concurrencia, usando EventStore y proyecciones optimizadas.",
+    "technologies": ["node", "express", "postgresql", "redis"],
+    "github": "https://github.com/usuario/event-sourcing",
+    "demo": null,
+    "status": "in-progress",
+    "featured": false,
+    "stats": {
+      "stars": 28,
+      "forks": 6,
+      "commits": 143,
+      "lastUpdate": "2024-09-08"
+    },
+    "highlights": [
+      "Patrón Event Sourcing",
+      "CQRS implementation",
+      "EventStore integration",
+      "Proyecciones optimizadas",
+      "Alta concurrencia"
+    ]
+  }
+]

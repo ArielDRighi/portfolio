@@ -1,0 +1,162 @@
+<div class="projects">
+  <div class="container">
+    <div class="projects__header">
+      <h2 class="section__title">Mis Proyectos</h2>
+      <p class="section__description">
+        Explora mis proyectos backend navegando por este escritorio. Cada icono representa un proyecto real con
+        tecnologías y enlaces a GitHub.
+      </p>
+    </div>
+
+    <!-- Desktop Windows Interface -->
+    <div class="desktop" id="windowsDesktop">
+      <!-- Desktop Background -->
+      <div class="desktop__background">
+        <div class="desktop__wallpaper"></div>
+
+        <!-- Desktop Icons Grid -->
+        <div class="desktop__icons" id="desktopIcons">
+          <!-- Los iconos se cargarán dinámicamente desde projects.json -->
+          <div class="desktop__loading">
+            <div class="loading-spinner"></div>
+            <p>Cargando proyectos...</p>
+          </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+          <div class="taskbar__start">
+            <button class="start-button" id="startButton">
+              <span class="start-icon">🚀</span>
+              <span class="start-text">Portfolio</span>
+            </button>
+          </div>
+
+          <div class="taskbar__center">
+            <div class="taskbar__apps" id="taskbarApps">
+              <!-- Apps activas aparecerán aquí -->
+            </div>
+          </div>
+
+          <div class="taskbar__system">
+            <div class="system-tray">
+              <div class="system-item" id="projectsCount">
+                <span class="system-icon">📁</span>
+                <span class="system-text">0 proyectos</span>
+              </div>
+              <div class="system-item" id="techStack">
+                <span class="system-icon">⚡</span>
+                <span class="system-text">Tech Stack</span>
+              </div>
+              <div class="system-item system-time" id="systemTime">
+                <span id="currentTime">--:--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start Menu -->
+      <div class="start-menu" id="startMenu">
+        <div class="start-menu__header">
+          <div class="start-user">
+            <div class="start-avatar">👨‍💻</div>
+            <div class="start-info">
+              <span class="start-name">Desarrollador</span>
+              <span class="start-role">Backend</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="start-menu__content">
+          <div class="start-section">
+            <h3 class="start-section__title">Proyectos Destacados</h3>
+            <div class="start-projects" id="startProjects">
+              <!-- Se llenarán dinámicamente -->
+            </div>
+          </div>
+
+          <div class="start-section">
+            <h3 class="start-section__title">Tecnologías</h3>
+            <div class="start-technologies" id="startTechnologies">
+              <!-- Se llenarán dinámicamente -->
+            </div>
+          </div>
+        </div>
+
+        <div class="start-menu__footer">
+          <button class="start-action" data-action="github">
+            <span class="action-icon">🐙</span>
+            <span class="action-text">Ver en GitHub</span>
+          </button>
+          <button class="start-action" data-action="download">
+            <span class="action-icon">📁</span>
+            <span class="action-text">Descargar CV</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Details Modal (Windows Style) -->
+    <div class="project-window" id="projectWindow">
+      <div class="window">
+        <div class="window__header">
+          <div class="window__title" id="windowTitle">
+            <span class="window__icon" id="windowIcon">📁</span>
+            <span class="window__text" id="windowText">Proyecto</span>
+          </div>
+          <div class="window__controls">
+            <button class="window__control window__control--minimize">−</button>
+            <button class="window__control window__control--maximize">□</button>
+            <button class="window__control window__control--close" id="closeWindow">×</button>
+          </div>
+        </div>
+
+        <div class="window__content" id="windowContent">
+          <!-- Contenido del proyecto se carga dinámicamente -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right-click Context Menu -->
+    <div class="context-menu" id="contextMenu">
+      <div class="context-item" data-action="open">
+        <span class="context-icon">📂</span>
+        <span class="context-text">Abrir proyecto</span>
+      </div>
+      <div class="context-item" data-action="github">
+        <span class="context-icon">🐙</span>
+        <span class="context-text">Ver en GitHub</span>
+      </div>
+      <div class="context-item" data-action="demo">
+        <span class="context-icon">🌐</span>
+        <span class="context-text">Ver demo</span>
+      </div>
+      <div class="context-divider"></div>
+      <div class="context-item" data-action="properties">
+        <span class="context-icon">⚙️</span>
+        <span class="context-text">Propiedades</span>
+      </div>
+    </div>
+
+    <!-- Desktop Statistics -->
+    <div class="desktop__stats">
+      <div class="stats-card">
+        <span class="stats-number" id="totalProjects">0</span>
+        <span class="stats-label">Proyectos</span>
+      </div>
+      <div class="stats-card">
+        <span class="stats-number" id="totalTechnologies">0</span>
+        <span class="stats-label">Tecnologías</span>
+      </div>
+      <div class="stats-card">
+        <span class="stats-number" id="totalStars">0</span>
+        <span class="stats-label">GitHub Stars</span>
+      </div>
+      <div class="stats-card">
+        <span class="stats-number" id="totalCommits">0</span>
+        <span class="stats-label">Commits</span>
+      </div>
+    </div>
+  </div>
+</div>

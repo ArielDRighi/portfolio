@@ -1,0 +1,482 @@
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* ===================================
+   TABLET (768px - 1023px)
+   =================================== */
+@media (max-width: 1023px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  /* Navegación */
+  .nav__menu {
+    gap: var(--spacing-lg);
+  }
+
+  /* About section */
+  .about__content {
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .about__photo {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Skills */
+  .skills__grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  /* Contact */
+  .contact__content {
+    gap: var(--spacing-2xl);
+  }
+}
+
+/* ===================================
+   MOBILE (hasta 767px)
+   =================================== */
+@media (max-width: 767px) {
+  /* Variables específicas para móvil */
+  :root {
+    --spacing-3xl: 2.5rem;
+    --spacing-2xl: 2rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  /* ===================================
+     NAVEGACIÓN MÓVIL
+     =================================== */
+  .nav {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: 999;
+  }
+
+  .nav__menu--open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__toggle--open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav__toggle--open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav__toggle--open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  .theme-toggle {
+    padding: var(--spacing-xs);
+    font-size: var(--font-size-base);
+  }
+
+  /* ===================================
+     SECCIÓN ABOUT MÓVIL
+     =================================== */
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .about__photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .about__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .about__name {
+    font-size: var(--font-size-xl);
+  }
+
+  .about__description {
+    font-size: var(--font-size-base);
+    text-align: left;
+  }
+
+  /* Skills móvil */
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .skills__category {
+    padding: var(--spacing-lg);
+  }
+
+  .skills__list {
+    justify-content: center;
+  }
+
+  /* ===================================
+     TIMELINE MÓVIL
+     =================================== */
+  .timeline::before {
+    left: var(--spacing-lg);
+  }
+
+  .timeline__item:nth-child(odd) .timeline__content,
+  .timeline__item:nth-child(even) .timeline__content {
+    margin-left: calc(var(--spacing-lg) + var(--spacing-xl));
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .timeline__marker {
+    left: var(--spacing-lg);
+  }
+
+  .timeline__content {
+    padding: var(--spacing-lg);
+  }
+
+  .timeline__technologies {
+    justify-content: flex-start;
+  }
+
+  /* ===================================
+     PROYECTOS MÓVIL
+     =================================== */
+  .projects {
+    min-height: 60vh;
+  }
+
+  .desktop__background {
+    padding: var(--spacing-md);
+  }
+
+  .desktop__icons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .project-icon {
+    min-height: 110px;
+    padding: var(--spacing-sm);
+  }
+
+  .project-icon__image {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .project-icon__title {
+    font-size: var(--font-size-xs);
+  }
+
+  .project-icon__description {
+    display: none; /* Ocultar en móvil por espacio */
+  }
+
+  .project-icon__technologies {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: var(--spacing-xs);
+    gap: 2px;
+  }
+
+  .tech-badge {
+    font-size: 8px;
+    padding: 1px 4px;
+  }
+
+  .project-icon__tooltip {
+    display: none; /* Desactivar tooltips en móvil */
+  }
+
+  .desktop__taskbar {
+    height: 40px;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .desktop__start-button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .desktop__time {
+    font-size: var(--font-size-xs);
+  }
+
+  /* ===================================
+     CONTACTO MÓVIL
+     =================================== */
+  .contact__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .contact__description {
+    font-size: var(--font-size-base);
+  }
+
+  .contact__link {
+    padding: var(--spacing-sm);
+  }
+
+  .contact__icon {
+    font-size: var(--font-size-lg);
+  }
+
+  .form {
+    padding: var(--spacing-lg);
+  }
+
+  .form__group {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .form__input,
+  .form__textarea {
+    padding: var(--spacing-sm);
+  }
+
+  .form__button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+}
+
+/* ===================================
+   MOBILE PEQUEÑO (hasta 480px)
+   =================================== */
+@media (max-width: 480px) {
+  /* Navegación */
+  .nav__logo h1 {
+    font-size: var(--font-size-lg);
+  }
+
+  /* About */
+  .about__photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .about__name {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Proyectos móvil pequeño */
+  .desktop__icons {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .project-icon {
+    min-height: 100px;
+    padding: var(--spacing-sm);
+  }
+
+  .project-icon__image {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-base);
+  }
+
+  .project-icon__title {
+    font-size: var(--font-size-xs);
+    line-height: 1.2;
+  }
+
+  /* Timeline más compacta */
+  .timeline__content {
+    padding: var(--spacing-md);
+  }
+
+  .timeline__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .timeline__company {
+    font-size: var(--font-size-base);
+  }
+
+  /* Skills compactas */
+  .skills__category {
+    padding: var(--spacing-md);
+  }
+
+  .skill-tag {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ===================================
+   LANDSCAPE EN MÓVIL
+   =================================== */
+@media (max-width: 767px) and (orientation: landscape) {
+  .projects {
+    min-height: 50vh;
+  }
+
+  .desktop__icons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about__content {
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-lg);
+    text-align: left;
+  }
+
+  .about__photo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* ===================================
+   ESCRITORIO GRANDE (1200px+)
+   =================================== */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .about__content {
+    grid-template-columns: 350px 1fr;
+    gap: var(--spacing-3xl);
+  }
+
+  .about__photo {
+    width: 280px;
+    height: 280px;
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .desktop__icons {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+
+  .project-icon {
+    min-height: 160px;
+    padding: var(--spacing-xl);
+  }
+
+  .project-icon__image {
+    width: 56px;
+    height: 56px;
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* ===================================
+   ANIMACIONES RESPONSIVAS
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===================================
+   ALTO CONTRASTE
+   =================================== */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: #000000;
+    --color-text-light: var(--color-text);
+  }
+
+  .project-icon {
+    border-width: 3px;
+  }
+
+  .tech-badge {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* ===================================
+   MODO IMPRESIÓN
+   =================================== */
+@media print {
+  .header,
+  .nav__toggle,
+  .theme-toggle,
+  .desktop__taskbar,
+  .form,
+  .footer {
+    display: none;
+  }
+
+  .main {
+    margin-top: 0;
+  }
+
+  .section {
+    break-inside: avoid;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .project-icon {
+    background: white;
+    border: 2px solid #000;
+    color: black;
+  }
+
+  .skills__category {
+    break-inside: avoid;
+  }
+}

@@ -28,6 +28,7 @@
   .about__photo {
     width: 200px;
     height: 200px;
+    object-position: center 30%; /* Mantener el mismo centrado en mobile */
   }
 
   /* Skills */
@@ -124,6 +125,7 @@
   .about__photo {
     width: 180px;
     height: 180px;
+    object-position: center 30%;
   }
 
   .about__title {
@@ -298,6 +300,7 @@
   .about__photo {
     width: 150px;
     height: 150px;
+    object-position: center 30%;
   }
 
   .about__title {
@@ -375,6 +378,7 @@
   .about__photo {
     width: 160px;
     height: 160px;
+    object-position: center 30%;
   }
 }
 
@@ -394,6 +398,7 @@
   .about__photo {
     width: 280px;
     height: 280px;
+    object-position: center 30%;
   }
 
   .skills__grid {

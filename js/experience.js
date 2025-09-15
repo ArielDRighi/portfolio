@@ -60,7 +60,7 @@ class ExperienceManager {
       {
         id: 1,
         company: "GesDev",
-        position: "Backend Developer",
+        position: "Desarrollador Backend",
         startDate: "2025-06-17",
         endDate: "2025-09-15",
         current: false,
@@ -104,7 +104,7 @@ class ExperienceManager {
       {
         id: 2,
         company: "MVA",
-        position: "Backend Developer",
+        position: "Desarrollador Backend",
         startDate: "2025-03-26",
         endDate: "2025-09-12",
         current: false,
@@ -148,7 +148,7 @@ class ExperienceManager {
       {
         id: 3,
         company: "Segimed",
-        position: "Backend Developer (Pasantía)",
+        position: "Desarrollador Backend (Pasantía)",
         startDate: "2025-06-01",
         endDate: null,
         current: true,
@@ -186,7 +186,7 @@ class ExperienceManager {
       {
         id: 4,
         company: "SwaplyAr",
-        position: "Backend Developer (Pasantía)",
+        position: "Desarrollador Backend (Pasantía)",
         startDate: "2025-01-01",
         endDate: "2025-06-30",
         current: false,
@@ -222,7 +222,7 @@ class ExperienceManager {
       },
       {
         id: 5,
-        company: "Video Game Industry",
+        company: "Industria de Videojuegos",
         position: "Líder de Proyecto y Diseño → Diseñador de Juegos → Artista 3D",
         startDate: "2012-01-01",
         endDate: "2024-12-31",

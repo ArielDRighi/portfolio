@@ -6,6 +6,7 @@
 class AnimationController {
   constructor() {
     this.observers = new Map();
+    this.timers = new Set(); // Almacenar referencias de timers para cleanup
     this.init();
   }
 
@@ -85,12 +86,16 @@ class AnimationController {
         i++;
       } else {
         clearInterval(timer);
+        this.timers.delete(timer); // Limpiar referencia cuando termina
         // Remover el cursor parpadeante después de completar
         setTimeout(() => {
           element.style.borderRight = "none";
         }, 1000);
       }
     }, 100);
+
+    // Almacenar referencia del timer para cleanup
+    this.timers.add(timer);
   }
 
   /**
@@ -301,11 +306,16 @@ class AnimationController {
   }
 
   /**
-   * Limpiar observadores
+   * Limpiar observadores y timers
    */
   destroy() {
+    // Limpiar observadores
     this.observers.forEach((observer) => observer.disconnect());
     this.observers.clear();
+
+    // Limpiar timers activos
+    this.timers.forEach((timer) => clearInterval(timer));
+    this.timers.clear();
   }
 
   /**

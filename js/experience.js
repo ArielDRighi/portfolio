@@ -27,10 +27,24 @@ class ExperienceManager {
     }
   }
 
-  loadExperience() {
-    // Usar datos embebidos directamente para compatibilidad con file://
-    this.experiences = this.getExperienceData();
-    // Ordenar: primero las actuales, luego por fecha de finalización más reciente
+  async loadExperience() {
+    try {
+      // Intentar cargar desde JSON primero (mejor separación de responsabilidades)
+      const response = await fetch("./data/experience.json");
+      if (response.ok) {
+        this.experiences = await response.json();
+      } else {
+        // Fallback a datos embebidos si hay problemas de CORS/file://
+        console.warn("No se pudo cargar experience.json, usando datos embebidos como fallback");
+        this.experiences = this.getFallbackExperienceData();
+      }
+    } catch (error) {
+      // Fallback a datos embebidos para compatibilidad con file://
+      console.warn("Error cargando JSON, usando datos embebidos:", error.message);
+      this.experiences = this.getFallbackExperienceData();
+    }
+
+    // Ordenar: primero las actuales, luego por fecha de inicio más reciente
     this.experiences.sort((a, b) => {
       // Si una es actual y la otra no, la actual va primera
       if (a.current && !b.current) return -1;
@@ -41,7 +55,7 @@ class ExperienceManager {
     });
   }
 
-  getExperienceData() {
+  getFallbackExperienceData() {
     return [
       {
         id: 1,

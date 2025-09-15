@@ -97,10 +97,145 @@ class WindowsDesktop {
       }
       this.projects = await response.json();
       console.log("✅ Proyectos cargados:", this.projects.length);
+
+      // Intentar enriquecer con datos de GitHub si está configurado
+      await this.enrichWithGitHub();
     } catch (error) {
       console.error("❌ Error cargando proyectos:", error);
       this.projects = this.getDefaultProjects();
     }
+  }
+
+  /**
+   * Enriquece los proyectos con datos de GitHub
+   */
+  async enrichWithGitHub() {
+    try {
+      // Cargar la integración de GitHub si no está disponible
+      if (!window.githubIntegration) {
+        await this.loadGitHubIntegration();
+      }
+
+      // Intentar cargar configuración
+      const configured = window.githubIntegration.loadConfiguration();
+
+      if (configured && window.githubIntegration.isConfigured()) {
+        console.log("🔗 Enriqueciendo proyectos con datos de GitHub...");
+
+        // Enriquecer solo proyectos que tengan URL de GitHub
+        const projectsWithGitHub = this.projects.filter((p) => p.github);
+
+        if (projectsWithGitHub.length > 0) {
+          const enrichedProjects = await window.githubIntegration.enrichProjects(this.projects);
+          this.projects = enrichedProjects;
+          console.log(`✅ ${projectsWithGitHub.length} proyectos enriquecidos con GitHub`);
+          this.showGitHubStatus(true);
+        }
+      } else {
+        this.showGitHubStatus(false);
+      }
+    } catch (error) {
+      console.warn("⚠️ No se pudo enriquecer con GitHub:", error);
+      this.showGitHubStatus(false);
+    }
+  }
+
+  /**
+   * Carga dinámicamente la integración de GitHub
+   */
+  async loadGitHubIntegration() {
+    return new Promise((resolve, reject) => {
+      if (window.githubIntegration) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "js/github-integration.js";
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  /**
+   * Muestra el estado de GitHub en la taskbar
+   */
+  showGitHubStatus(connected) {
+    // Remover estado anterior
+    const existingStatus = this.container.querySelector(".github-status");
+    if (existingStatus) {
+      existingStatus.remove();
+    }
+
+    const statusElement = document.createElement("div");
+    statusElement.className = "github-status";
+
+    if (connected) {
+      statusElement.innerHTML = `
+        <div class="status-connected">
+          <i class="fab fa-github"></i>
+          <span>GitHub conectado</span>
+        </div>
+        <button class="config-btn" onclick="windowsDesktop.openGitHubConfig()">
+          <i class="fas fa-cog"></i>
+        </button>
+      `;
+    } else {
+      statusElement.innerHTML = `
+        <div class="status-disconnected">
+          <i class="fab fa-github"></i>
+          <span>Configurar GitHub</span>
+        </div>
+        <button class="config-btn" onclick="windowsDesktop.openGitHubConfig()">
+          <i class="fas fa-plus"></i>
+        </button>
+      `;
+    }
+
+    const taskbar = this.container.querySelector(".taskbar");
+    if (taskbar) {
+      taskbar.appendChild(statusElement);
+    }
+  }
+
+  /**
+   * Abre la configuración de GitHub
+   */
+  openGitHubConfig() {
+    // Crear un modal iframe para la configuración
+    const modal = document.createElement("div");
+    modal.className = "github-config-modal";
+    modal.innerHTML = `
+      <div class="modal-overlay" onclick="this.parentElement.remove()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <iframe src="components/github-config/github-config-simple.html" 
+                  width="100%" height="500" frameborder="0">
+          </iframe>
+          <button class="modal-close" onclick="this.parentElement.parentElement.remove()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Escuchar mensajes del iframe
+    window.addEventListener(
+      "message",
+      (event) => {
+        if (event.data.action === "closeGitHubConfig") {
+          modal.remove();
+          // Recargar proyectos para aplicar nueva configuración
+          this.loadProjects().then(() => {
+            this.renderDesktopIcons();
+            this.updateStats();
+          });
+        }
+      },
+      { once: true }
+    );
   }
 
   getDefaultProjects() {

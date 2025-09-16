@@ -395,6 +395,11 @@ class ContactForm {
 // INICIALIZACIÓN
 // ===================================
 document.addEventListener("DOMContentLoaded", () => {
+  // Inicializar iconos Feather
+  if (typeof feather !== "undefined") {
+    feather.replace();
+  }
+
   // Inicializar componentes
   new Navigation();
   new AnimationManager();

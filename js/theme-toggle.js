@@ -128,10 +128,17 @@ class ThemeManager {
   updateToggleButton() {
     if (!this.toggleButton) return;
 
-    const icon = this.toggleButton.querySelector(".theme-toggle__icon");
-    if (icon) {
-      icon.textContent =
-        this.currentTheme === THEME_CONFIG.themes.dark ? THEME_CONFIG.icons.light : THEME_CONFIG.icons.dark;
+    const moonIcon = this.toggleButton.querySelector(".theme-toggle__icon-moon");
+    const sunIcon = this.toggleButton.querySelector(".theme-toggle__icon-sun");
+
+    if (moonIcon && sunIcon) {
+      if (this.currentTheme === THEME_CONFIG.themes.dark) {
+        moonIcon.style.display = "none";
+        sunIcon.style.display = "inline-block";
+      } else {
+        moonIcon.style.display = "inline-block";
+        sunIcon.style.display = "none";
+      }
     }
 
     // Actualizar aria-label para accesibilidad

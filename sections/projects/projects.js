@@ -1,108 +1,183 @@
 /**
- * Sistema de Escritorio Windows para Proyectos
- * Maneja la interfaz desktop, iconos, ventanas y integración con GitHub
+ * Sistema de Tarjetas Elegantes para Proyectos
+ * Maneja el renderizado de tarjetas con datos embebidos
  */
-class WindowsDesktop {
+class ProjectsGrid {
   constructor() {
-    this.desktop = document.getElementById("windowsDesktop");
-    this.iconsContainer = document.getElementById("desktopIcons");
-    this.startButton = document.getElementById("startButton");
-    this.startMenu = document.getElementById("startMenu");
-    this.projectWindow = document.getElementById("projectWindow");
-    this.contextMenu = document.getElementById("contextMenu");
+    console.log("ProjectsGrid constructor called");
+    this.gridContainer = document.getElementById("projectsGrid");
+    this.projectModal = document.getElementById("projectModal");
+    this.modalClose = document.getElementById("modalClose");
+    this.modalOverlay = document.getElementById("modalOverlay");
+    this.modalBody = document.getElementById("modalBody");
 
-    this.projects = [];
-    this.selectedIcon = null;
-    this.isStartMenuOpen = false;
+    console.log("Grid container found:", !!this.gridContainer);
+
+    this.projects = this.getEmbeddedProjects();
+    this.isModalOpen = false;
 
     this.init();
   }
 
   async init() {
-    if (!this.desktop) return;
+    console.log("ProjectsGrid init called");
+    if (!this.gridContainer) {
+      console.log("No grid container found, aborting init");
+      return;
+    }
 
+    console.log("Setting up event listeners and rendering projects");
     this.setupEventListeners();
-    this.startClock();
-    await this.loadProjects();
-    this.renderDesktopIcons();
+    this.renderProjectCards();
     this.updateStats();
-    this.setupStartMenu();
+  }
+
+  getEmbeddedProjects() {
+    return [
+      {
+        id: 1,
+        name: "API REST E-commerce",
+        type: "API",
+        description:
+          "API completa para sistema de e-commerce con autenticación JWT, pagos con Stripe y gestión avanzada de inventario.",
+        technologies: ["node", "express", "mongodb", "redis"],
+        github: "https://github.com/ArielDRighi/ecommerce-api",
+        demo: null,
+        status: "completed",
+        featured: true,
+        stats: { stars: 45, forks: 12, commits: 156 },
+      },
+      {
+        id: 2,
+        name: "Microservicios Chat",
+        type: "Microservices",
+        description: "Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets y RabbitMQ.",
+        technologies: ["node", "docker", "postgresql", "redis"],
+        github: "https://github.com/ArielDRighi/chat-microservices",
+        demo: null,
+        status: "completed",
+        featured: true,
+        stats: { stars: 38, forks: 8, commits: 203 },
+      },
+      {
+        id: 3,
+        name: "FastAPI ML Service",
+        type: "Machine Learning",
+        description: "Servicio de Machine Learning para predicciones usando FastAPI, TensorFlow y MLflow.",
+        technologies: ["python", "fastapi", "postgresql", "docker"],
+        github: "https://github.com/ArielDRighi/ml-service",
+        demo: null,
+        status: "completed",
+        featured: false,
+        stats: { stars: 23, forks: 5, commits: 89 },
+      },
+      {
+        id: 4,
+        name: "GraphQL Blog API",
+        type: "API",
+        description: "API GraphQL para blog con subscripciones en tiempo real y cache optimizado con DataLoader.",
+        technologies: ["node", "typescript", "postgresql", "redis"],
+        github: "https://github.com/ArielDRighi/graphql-blog",
+        demo: null,
+        status: "in-progress",
+        featured: true,
+        stats: { stars: 15, forks: 3, commits: 67 },
+      },
+      {
+        id: 5,
+        name: "DevOps Pipeline",
+        type: "DevOps",
+        description:
+          "Pipeline CI/CD completo con Docker, Kubernetes, monitoring con Grafana y despliegue automatizado.",
+        technologies: ["docker", "aws", "node", "postgresql"],
+        github: "https://github.com/ArielDRighi/devops-pipeline",
+        demo: null,
+        status: "completed",
+        featured: false,
+        stats: { stars: 31, forks: 7, commits: 124 },
+      },
+      {
+        id: 6,
+        name: "Real-time Analytics",
+        type: "Analytics",
+        description: "Sistema de analíticas en tiempo real con dashboard interactivo y procesamiento de streams.",
+        technologies: ["python", "redis", "postgresql", "docker"],
+        github: "https://github.com/ArielDRighi/realtime-analytics",
+        demo: null,
+        status: "completed",
+        featured: false,
+        stats: { stars: 19, forks: 4, commits: 95 },
+      },
+      {
+        id: 7,
+        name: "Blockchain Wallet API",
+        type: "Blockchain",
+        description:
+          "API para gestión de wallets de criptomonedas con soporte multi-blockchain y transacciones seguras.",
+        technologies: ["node", "typescript", "mongodb", "redis"],
+        github: "https://github.com/ArielDRighi/blockchain-wallet",
+        demo: null,
+        status: "completed",
+        featured: true,
+        stats: { stars: 52, forks: 15, commits: 187 },
+      },
+      {
+        id: 8,
+        name: "Event Sourcing System",
+        type: "Architecture",
+        description: "Sistema de Event Sourcing con CQRS para aplicaciones de alta concurrencia usando EventStore.",
+        technologies: ["node", "express", "postgresql", "redis"],
+        github: "https://github.com/ArielDRighi/event-sourcing",
+        demo: null,
+        status: "in-progress",
+        featured: false,
+        stats: { stars: 28, forks: 6, commits: 143 },
+      },
+    ];
   }
 
   setupEventListeners() {
-    // Start button toggle
-    if (this.startButton) {
-      this.startButton.addEventListener("click", this.toggleStartMenu.bind(this));
+    // Modal close events
+    if (this.modalClose) {
+      this.modalClose.addEventListener("click", this.closeModal.bind(this));
     }
 
-    // Close start menu on outside click
-    document.addEventListener("click", (e) => {
-      if (this.isStartMenuOpen && !this.startMenu.contains(e.target) && !this.startButton.contains(e.target)) {
-        this.closeStartMenu();
-      }
-    });
-
-    // Desktop click (deselect icons)
-    if (this.desktop) {
-      this.desktop.addEventListener("click", (e) => {
-        if (e.target === this.desktop || e.target.classList.contains("desktop__background")) {
-          this.deselectAllIcons();
+    if (this.modalOverlay) {
+      this.modalOverlay.addEventListener("click", (e) => {
+        if (e.target === this.modalOverlay) {
+          this.closeModal();
         }
       });
     }
 
-    // Context menu
-    if (this.desktop) {
-      this.desktop.addEventListener("contextmenu", this.handleRightClick.bind(this));
-    }
-
-    // Close context menu on click outside
-    document.addEventListener("click", () => {
-      this.hideContextMenu();
-    });
-
-    // Window close
-    const closeBtn = document.getElementById("closeWindow");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", this.closeProjectWindow.bind(this));
-    }
-
-    // Start menu actions
-    document.addEventListener("click", (e) => {
-      const action = e.target.closest("[data-action]");
-      if (action) {
-        this.handleStartAction(action.dataset.action);
-      }
-    });
-
-    // ESC key handlers
+    // ESC key to close modal
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (this.projectWindow.classList.contains("active")) {
-          this.closeProjectWindow();
-        } else if (this.isStartMenuOpen) {
-          this.closeStartMenu();
-        } else if (this.contextMenu.classList.contains("active")) {
-          this.hideContextMenu();
-        }
+      if (e.key === "Escape" && this.isModalOpen) {
+        this.closeModal();
       }
     });
   }
 
   async loadProjects() {
+    console.log("🔄 Starting loadProjects...");
     try {
+      console.log("📁 Fetching data/projects.json...");
       const response = await fetch("data/projects.json");
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       this.projects = await response.json();
       console.log("✅ Proyectos cargados:", this.projects.length);
+      console.log("Projects data:", this.projects);
 
-      // Intentar enriquecer con datos de GitHub si está configurado
-      await this.enrichWithGitHub();
+      // Comentar temporalmente para debugging
+      // await this.enrichWithGitHub();
+      console.log("✅ Skipping GitHub enrichment for debugging");
     } catch (error) {
       console.error("❌ Error cargando proyectos:", error);
+      console.log("📦 Using default projects...");
       this.projects = this.getDefaultProjects();
+      console.log("Default projects loaded:", this.projects.length);
     }
   }
 
@@ -111,8 +186,11 @@ class WindowsDesktop {
    */
   async enrichWithGitHub() {
     try {
+      console.log("🔄 Starting GitHub enrichment...");
+
       // Cargar la integración de GitHub si no está disponible
       if (!window.githubIntegration) {
+        console.log("📦 Loading GitHub integration...");
         await this.loadGitHubIntegration();
       }
 
@@ -121,22 +199,15 @@ class WindowsDesktop {
 
       if (configured && window.githubIntegration.isConfigured()) {
         console.log("🔗 Enriqueciendo proyectos con datos de GitHub...");
-
-        // Enriquecer solo proyectos que tengan URL de GitHub
-        const projectsWithGitHub = this.projects.filter((p) => p.github);
-
-        if (projectsWithGitHub.length > 0) {
-          const enrichedProjects = await window.githubIntegration.enrichProjects(this.projects);
-          this.projects = enrichedProjects;
-          console.log(`✅ ${projectsWithGitHub.length} proyectos enriquecidos con GitHub`);
-          this.showGitHubStatus(true);
-        }
+        const enrichedProjects = await window.githubIntegration.enrichProjects(this.projects);
+        this.projects = enrichedProjects;
+        console.log(`✅ Proyectos enriquecidos con GitHub`);
       } else {
-        this.showGitHubStatus(false);
+        console.log("ℹ️ GitHub integration not configured, skipping enrichment");
       }
     } catch (error) {
       console.warn("⚠️ No se pudo enriquecer con GitHub:", error);
-      this.showGitHubStatus(false);
+      console.log("ℹ️ Continuing without GitHub enrichment");
     }
   }
 
@@ -146,96 +217,31 @@ class WindowsDesktop {
   async loadGitHubIntegration() {
     return new Promise((resolve, reject) => {
       if (window.githubIntegration) {
+        console.log("✅ GitHub integration already loaded");
         resolve();
         return;
       }
 
+      console.log("📦 Loading js/github-integration.js...");
       const script = document.createElement("script");
       script.src = "js/github-integration.js";
-      script.onload = resolve;
-      script.onerror = reject;
+      script.onload = () => {
+        console.log("✅ GitHub integration loaded");
+        resolve();
+      };
+      script.onerror = (error) => {
+        console.warn("⚠️ Failed to load GitHub integration:", error);
+        reject(error);
+      };
+
+      // Agregar timeout para evitar que se cuelgue
+      setTimeout(() => {
+        console.warn("⏰ GitHub integration load timeout");
+        reject(new Error("Timeout loading GitHub integration"));
+      }, 5000);
+
       document.head.appendChild(script);
     });
-  }
-
-  /**
-   * Muestra el estado de GitHub en la taskbar
-   */
-  showGitHubStatus(connected) {
-    // Remover estado anterior
-    const existingStatus = this.container.querySelector(".github-status");
-    if (existingStatus) {
-      existingStatus.remove();
-    }
-
-    const statusElement = document.createElement("div");
-    statusElement.className = "github-status";
-
-    if (connected) {
-      statusElement.innerHTML = `
-        <div class="status-connected">
-          <i class="fab fa-github"></i>
-          <span>GitHub conectado</span>
-        </div>
-        <button class="config-btn" onclick="windowsDesktop.openGitHubConfig()">
-          <i class="fas fa-cog"></i>
-        </button>
-      `;
-    } else {
-      statusElement.innerHTML = `
-        <div class="status-disconnected">
-          <i class="fab fa-github"></i>
-          <span>Configurar GitHub</span>
-        </div>
-        <button class="config-btn" onclick="windowsDesktop.openGitHubConfig()">
-          <i class="fas fa-plus"></i>
-        </button>
-      `;
-    }
-
-    const taskbar = this.container.querySelector(".taskbar");
-    if (taskbar) {
-      taskbar.appendChild(statusElement);
-    }
-  }
-
-  /**
-   * Abre la configuración de GitHub
-   */
-  openGitHubConfig() {
-    // Crear un modal iframe para la configuración
-    const modal = document.createElement("div");
-    modal.className = "github-config-modal";
-    modal.innerHTML = `
-      <div class="modal-overlay" onclick="this.parentElement.remove()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-          <iframe src="components/github-config/github-config-simple.html" 
-                  width="100%" height="500" frameborder="0">
-          </iframe>
-          <button class="modal-close" onclick="this.parentElement.parentElement.remove()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-
-    // Escuchar mensajes del iframe
-    window.addEventListener(
-      "message",
-      (event) => {
-        if (event.data.action === "closeGitHubConfig") {
-          modal.remove();
-          // Recargar proyectos para aplicar nueva configuración
-          this.loadProjects().then(() => {
-            this.renderDesktopIcons();
-            this.updateStats();
-          });
-        }
-      },
-      { once: true }
-    );
   }
 
   getDefaultProjects() {
@@ -244,410 +250,582 @@ class WindowsDesktop {
         id: 1,
         name: "API REST E-commerce",
         type: "api",
-        description: "API completa para sistema de e-commerce con autenticación JWT, pagos y gestión de inventario",
+        description:
+          "API completa para sistema de e-commerce con autenticación JWT, pagos con Stripe y gestión avanzada de inventario. Incluye documentación Swagger y testing automatizado.",
         technologies: ["node", "express", "mongodb", "redis"],
         github: "https://github.com/usuario/ecommerce-api",
-        demo: null,
+        demo: "https://ecommerce-api-demo.herokuapp.com",
         status: "completed",
         featured: true,
         stats: { stars: 45, forks: 12, commits: 156 },
+        highlights: [
+          "Arquitectura RESTful completa",
+          "Autenticación JWT con refresh tokens",
+          "Integración con Stripe para pagos",
+          "Sistema de cache con Redis",
+          "Documentación automática con Swagger",
+        ],
       },
       {
         id: 2,
         name: "Microservicios Chat",
         type: "microservices",
-        description: "Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets",
+        description:
+          "Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets, RabbitMQ para mensajería y Docker para orquestación.",
         technologies: ["node", "docker", "postgresql", "redis"],
         github: "https://github.com/usuario/chat-microservices",
-        demo: "https://chat-demo.com",
+        demo: "https://chat-demo.vercel.app",
         status: "completed",
         featured: true,
         stats: { stars: 38, forks: 8, commits: 203 },
+        highlights: [
+          "Arquitectura de microservicios",
+          "WebSockets para tiempo real",
+          "RabbitMQ para comunicación entre servicios",
+          "Docker Compose para desarrollo",
+          "Monitoreo con Prometheus",
+        ],
       },
       {
         id: 3,
         name: "FastAPI ML Service",
         type: "ml",
-        description: "Servicio de Machine Learning para predicciones usando FastAPI y TensorFlow",
+        description:
+          "Servicio de Machine Learning para predicciones usando FastAPI, TensorFlow y MLflow para gestión de modelos. Incluye pipeline CI/CD automatizado.",
         technologies: ["python", "fastapi", "postgresql", "docker"],
         github: "https://github.com/usuario/ml-service",
         demo: null,
         status: "completed",
         featured: false,
         stats: { stars: 23, forks: 5, commits: 89 },
-      },
-      {
-        id: 4,
-        name: "GraphQL Blog API",
-        type: "api",
-        description: "API GraphQL para blog con subscripciones en tiempo real y cache optimizado",
-        technologies: ["node", "typescript", "postgresql", "redis"],
-        github: "https://github.com/usuario/graphql-blog",
-        demo: "https://blog-api-demo.com",
-        status: "in-progress",
-        featured: true,
-        stats: { stars: 15, forks: 3, commits: 67 },
-      },
-      {
-        id: 5,
-        name: "DevOps Pipeline",
-        type: "devops",
-        description: "Pipeline CI/CD completo con Docker, Kubernetes y monitoring automatizado",
-        technologies: ["docker", "aws", "node", "postgresql"],
-        github: "https://github.com/usuario/devops-pipeline",
-        demo: null,
-        status: "completed",
-        featured: false,
-        stats: { stars: 31, forks: 7, commits: 124 },
-      },
-      {
-        id: 6,
-        name: "Real-time Analytics",
-        type: "analytics",
-        description: "Sistema de analíticas en tiempo real con dashboard interactivo",
-        technologies: ["python", "redis", "postgresql", "docker"],
-        github: "https://github.com/usuario/realtime-analytics",
-        demo: "https://analytics-demo.com",
-        status: "completed",
-        featured: false,
-        stats: { stars: 19, forks: 4, commits: 95 },
+        highlights: [
+          "API para modelos de ML",
+          "Gestión de modelos con MLflow",
+          "Validación automática de datos",
+          "Containerización con Docker",
+          "Pipeline de entrenamiento automatizado",
+        ],
       },
     ];
   }
 
-  renderDesktopIcons() {
-    if (!this.iconsContainer) return;
+  renderProjectCards() {
+    console.log("🎨 Starting renderProjectCards...");
+    console.log("Grid container:", this.gridContainer);
+    console.log("Projects to render:", this.projects.length);
+
+    if (!this.gridContainer) {
+      console.log("❌ No grid container found");
+      return;
+    }
 
     // Clear loading state
-    this.iconsContainer.innerHTML = "";
+    console.log("🧹 Clearing loading state...");
+    this.gridContainer.innerHTML = "";
 
-    this.projects.forEach((project) => {
-      const icon = this.createDesktopIcon(project);
-      this.iconsContainer.appendChild(icon);
+    if (this.projects.length === 0) {
+      console.log("⚠️ No projects to render");
+      this.gridContainer.innerHTML = "<p>No hay proyectos disponibles</p>";
+      return;
+    }
+
+    console.log("🔄 Creating project cards...");
+    this.projects.forEach((project, index) => {
+      console.log(`Creating card ${index + 1}:`, project.name);
+      const card = this.createProjectCard(project);
+      this.gridContainer.appendChild(card);
     });
-  }
 
-  createDesktopIcon(project) {
-    const icon = document.createElement("div");
-    icon.className = "desktop-icon";
-    icon.dataset.projectId = project.id;
+    console.log("✅ All cards created");
 
-    const iconEmoji = this.getProjectIcon(project.type);
-    const techBadges = this.createTechBadges(project.technologies);
-
-    icon.innerHTML = `
-      <div class="icon-image">
-        ${iconEmoji}
-        <div class="tech-badges">
-          ${techBadges}
-        </div>
-      </div>
-      <div class="icon-label">${project.name}</div>
-    `;
-
-    // Event listeners
-    icon.addEventListener("click", () => this.selectIcon(icon));
-    icon.addEventListener("dblclick", () => this.openProject(project));
-    icon.addEventListener("contextmenu", (e) => this.showIconContextMenu(e, project));
-
-    return icon;
-  }
-
-  getProjectIcon(type) {
-    const icons = {
-      api: "🔌",
-      microservices: "🏗️",
-      ml: "🤖",
-      devops: "⚙️",
-      analytics: "📊",
-      database: "💾",
-      frontend: "🎨",
-      mobile: "📱",
-      desktop: "💻",
-      game: "🎮",
-      tool: "🛠️",
-      library: "📚",
-    };
-    return icons[type] || "📁";
-  }
-
-  createTechBadges(technologies) {
-    return technologies
-      .slice(0, 4)
-      .map((tech) => `<div class="tech-badge tech-badge--${tech}" title="${tech}"></div>`)
-      .join("");
-  }
-
-  selectIcon(icon) {
-    this.deselectAllIcons();
-    icon.classList.add("selected");
-    this.selectedIcon = icon;
-  }
-
-  deselectAllIcons() {
-    const icons = this.iconsContainer.querySelectorAll(".desktop-icon");
-    icons.forEach((icon) => icon.classList.remove("selected"));
-    this.selectedIcon = null;
-  }
-
-  openProject(project) {
-    this.showProjectWindow(project);
-  }
-
-  showProjectWindow(project) {
-    const windowTitle = document.getElementById("windowTitle");
-    const windowText = document.getElementById("windowText");
-    const windowIcon = document.getElementById("windowIcon");
-    const windowContent = document.getElementById("windowContent");
-
-    if (windowTitle && windowText && windowIcon && windowContent) {
-      windowIcon.textContent = this.getProjectIcon(project.type);
-      windowText.textContent = project.name;
-      windowContent.innerHTML = this.createProjectContent(project);
-
-      this.projectWindow.classList.add("active");
-      document.body.style.overflow = "hidden";
+    // Initialize Feather Icons for the new cards
+    if (typeof feather !== "undefined") {
+      console.log("🪶 Replacing feather icons...");
+      feather.replace();
+    } else {
+      console.log("⚠️ Feather icons not available");
     }
   }
 
-  createProjectContent(project) {
-    const statusIcon = project.status === "completed" ? "✅" : project.status === "in-progress" ? "🔄" : "⏳";
+  createProjectCard(project) {
+    const card = document.createElement("div");
+    card.className = "project-card";
+    card.dataset.projectId = project.id;
 
-    const techList = project.technologies
-      .map((tech) => `<span class="tech-tag tech-tag--${tech}">${tech}</span>`)
-      .join("");
+    const statusClass = project.status === "completed" ? "completed" : "in-progress";
+    const statusText = project.status === "completed" ? "Completado" : "En Progreso";
 
-    return `
-      <div class="project-content">
-        <div class="project-header">
-          <div class="project-title">
-            <h3>${project.name}</h3>
-            <div class="project-status">
-              <span class="status-icon">${statusIcon}</span>
-              <span class="status-text">${this.getStatusText(project.status)}</span>
-            </div>
-          </div>
-          <div class="project-stats">
-            <div class="stat-item">
-              <span class="stat-icon">⭐</span>
-              <span class="stat-value">${project.stats.stars}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-icon">🍴</span>
-              <span class="stat-value">${project.stats.forks}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-icon">📝</span>
-              <span class="stat-value">${project.stats.commits}</span>
-            </div>
-          </div>
+    const techGrid = this.createTechGrid(project.technologies);
+    const hoverInfo = this.createHoverInfo(project);
+
+    card.innerHTML = `
+      <div class="project__header">
+        <div class="project__title-section">
+          <h3 class="project__title">${project.name}</h3>
+          <span class="project__type">${project.type}</span>
         </div>
-        
-        <div class="project-description">
-          <p>${project.description}</p>
+        <div class="project__status project__status--${statusClass}">
+          <span class="project__status-dot"></span>
+          <span>${statusText}</span>
         </div>
-        
-        <div class="project-technologies">
-          <h4>Tecnologías utilizadas:</h4>
-          <div class="tech-list">
-            ${techList}
+      </div>
+
+      <div class="project__content">
+        <p class="project__description">${project.description}</p>
+
+        <div class="project__technologies">
+          <div class="project__tech-label">
+            <i data-feather="code"></i>
+            <span>Tecnologías</span>
+          </div>
+          <div class="project__tech-grid">
+            ${techGrid}
           </div>
         </div>
-        
-        <div class="project-actions">
-          <a href="${project.github}" target="_blank" class="project-btn project-btn--primary">
-            <span class="btn-icon">🐙</span>
-            Ver en GitHub
+
+        <div class="project__actions">
+          <a href="${project.github}" target="_blank" class="project__action project__action--primary">
+            <i data-feather="github"></i>
+            <span>GitHub</span>
           </a>
           ${
             project.demo
               ? `
-            <a href="${project.demo}" target="_blank" class="project-btn project-btn--secondary">
-              <span class="btn-icon">🌐</span>
-              Ver Demo
+            <a href="${project.demo}" target="_blank" class="project__action">
+              <i data-feather="external-link"></i>
+              <span>Demo</span>
+            </a>
+          `
+              : `
+            <button class="project__action" onclick="projectsGrid.openModal(${project.id})">
+              <i data-feather="info"></i>
+              <span>Detalles</span>
+            </button>
+          `
+          }
+        </div>
+      </div>
+
+      ${hoverInfo}
+    `;
+
+    // Add click event for opening modal
+    card.addEventListener("click", (e) => {
+      // Only open modal if not clicking on action buttons
+      if (!e.target.closest(".project__action")) {
+        this.openModal(project.id);
+      }
+    });
+
+    return card;
+  }
+
+  createTechGrid(technologies) {
+    return technologies
+      .slice(0, 6)
+      .map((tech) => {
+        const techName = this.getTechDisplayName(tech);
+        const techIcon = this.getTechIcon(tech);
+
+        return `
+        <div class="tech-item" title="${techName}">
+          <div class="tech-icon tech-icon--${tech}">${techIcon}</div>
+          <span class="tech-name">${techName}</span>
+        </div>
+      `;
+      })
+      .join("");
+  }
+
+  createHoverInfo(project) {
+    const highlights = project.highlights ? project.highlights.slice(0, 4) : [];
+
+    return `
+      <div class="project__hover-info">
+        <div class="project__hover-content">
+          <h4 class="project__hover-title">${project.name}</h4>
+          
+          ${
+            highlights.length > 0
+              ? `
+            <ul class="project__highlights">
+              ${highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+            </ul>
+          `
+              : ""
+          }
+
+          <div class="project__stats">
+            <div class="project__stat">
+              <span class="project__stat-number">${project.stats.stars}</span>
+              <span class="project__stat-label">Stars</span>
+            </div>
+            <div class="project__stat">
+              <span class="project__stat-number">${project.stats.commits}</span>
+              <span class="project__stat-label">Commits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  getTechDisplayName(tech) {
+    const names = {
+      node: "Node.js",
+      express: "Express",
+      mongodb: "MongoDB",
+      postgresql: "PostgreSQL",
+      redis: "Redis",
+      docker: "Docker",
+      aws: "AWS",
+      python: "Python",
+      fastapi: "FastAPI",
+      typescript: "TypeScript",
+    };
+    return names[tech] || tech.charAt(0).toUpperCase() + tech.slice(1);
+  }
+
+  getTechIcon(tech) {
+    const icons = {
+      node: "💚",
+      express: "🚂",
+      mongodb: "🍃",
+      postgresql: "🐘",
+      redis: "🔴",
+      docker: "🐳",
+      aws: "☁️",
+      python: "🐍",
+      fastapi: "⚡",
+      typescript: "📘",
+    };
+    return icons[tech] || "⚙️";
+  }
+
+  openModal(projectId) {
+    const project = this.projects.find((p) => p.id === projectId);
+    if (!project) return;
+
+    this.modalBody.innerHTML = this.createModalContent(project);
+    this.projectModal.classList.add("active");
+    this.isModalOpen = true;
+    document.body.style.overflow = "hidden";
+
+    // Initialize Feather Icons in modal
+    if (typeof feather !== "undefined") {
+      feather.replace();
+    }
+  }
+
+  createModalContent(project) {
+    const statusIcon = project.status === "completed" ? "check-circle" : "clock";
+    const statusText = project.status === "completed" ? "Completado" : "En Progreso";
+    const statusClass = project.status === "completed" ? "completed" : "in-progress";
+
+    const techList = project.technologies
+      .map(
+        (tech) => `
+      <span class="tech-tag tech-tag--${tech}">
+        ${this.getTechIcon(tech)} ${this.getTechDisplayName(tech)}
+      </span>
+    `
+      )
+      .join("");
+
+    const highlights = project.highlights || [];
+
+    return `
+      <div class="modal-project-content">
+        <div class="modal-project-header">
+          <div class="modal-project-title">
+            <h2>${project.name}</h2>
+            <div class="modal-project-status modal-project-status--${statusClass}">
+              <i data-feather="${statusIcon}"></i>
+              <span>${statusText}</span>
+            </div>
+          </div>
+          <div class="modal-project-type">${project.type}</div>
+        </div>
+
+        <div class="modal-project-description">
+          <p>${project.description}</p>
+        </div>
+
+        ${
+          highlights.length > 0
+            ? `
+          <div class="modal-project-highlights">
+            <h3>
+              <i data-feather="star"></i>
+              Características Destacadas
+            </h3>
+            <ul>
+              ${highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+            </ul>
+          </div>
+        `
+            : ""
+        }
+
+        <div class="modal-project-technologies">
+          <h3>
+            <i data-feather="code"></i>
+            Tecnologías Utilizadas
+          </h3>
+          <div class="modal-tech-grid">
+            ${techList}
+          </div>
+        </div>
+
+        <div class="modal-project-stats">
+          <div class="modal-stat-card">
+            <i data-feather="star" class="modal-stat-icon"></i>
+            <div class="modal-stat-info">
+              <span class="modal-stat-number">${project.stats.stars}</span>
+              <span class="modal-stat-label">GitHub Stars</span>
+            </div>
+          </div>
+          <div class="modal-stat-card">
+            <i data-feather="git-branch" class="modal-stat-icon"></i>
+            <div class="modal-stat-info">
+              <span class="modal-stat-number">${project.stats.forks}</span>
+              <span class="modal-stat-label">Forks</span>
+            </div>
+          </div>
+          <div class="modal-stat-card">
+            <i data-feather="git-commit" class="modal-stat-icon"></i>
+            <div class="modal-stat-info">
+              <span class="modal-stat-number">${project.stats.commits}</span>
+              <span class="modal-stat-label">Commits</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-project-actions">
+          <a href="${project.github}" target="_blank" class="modal-action-btn modal-action-btn--primary">
+            <i data-feather="github"></i>
+            <span>Ver en GitHub</span>
+          </a>
+          ${
+            project.demo
+              ? `
+            <a href="${project.demo}" target="_blank" class="modal-action-btn modal-action-btn--secondary">
+              <i data-feather="external-link"></i>
+              <span>Ver Demo</span>
             </a>
           `
               : ""
           }
         </div>
       </div>
-      
+
       <style>
-        .project-content { font-family: var(--font-primary); }
-        .project-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; }
-        .project-title h3 { margin: 0 0 0.5rem 0; color: var(--color-text); }
-        .project-status { display: flex; align-items: center; gap: 0.5rem; }
-        .status-icon { font-size: 1rem; }
-        .status-text { font-size: 0.875rem; color: var(--color-text-light); }
-        .project-stats { display: flex; gap: 1rem; }
-        .stat-item { display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; }
-        .project-description { margin-bottom: 1.5rem; line-height: 1.6; }
-        .project-technologies h4 { margin: 0 0 0.75rem 0; color: var(--color-text); }
-        .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .tech-tag { padding: 0.25rem 0.5rem; background: var(--color-accent-light); color: var(--color-accent); border-radius: 1rem; font-size: 0.75rem; text-transform: uppercase; font-weight: 500; }
-        .project-actions { display: flex; gap: 1rem; }
-        .project-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; transition: all 0.2s; }
-        .project-btn--primary { background: var(--color-accent); color: white; }
-        .project-btn--primary:hover { background: var(--color-primary); transform: translateY(-1px); }
-        .project-btn--secondary { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
-        .project-btn--secondary:hover { background: var(--color-accent-light); }
+        .modal-project-content {
+          font-family: var(--font-primary);
+        }
+        
+        .modal-project-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: var(--spacing-xl);
+          padding-bottom: var(--spacing-lg);
+          border-bottom: 1px solid var(--color-border);
+        }
+        
+        .modal-project-title h2 {
+          margin: 0 0 var(--spacing-sm) 0;
+          color: var(--color-text);
+          font-size: var(--font-size-xl);
+        }
+        
+        .modal-project-status {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-xs);
+          padding: var(--spacing-xs) var(--spacing-sm);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-sm);
+          font-weight: 600;
+        }
+        
+        .modal-project-status--completed {
+          background: var(--color-success-light);
+          color: var(--color-success);
+        }
+        
+        .modal-project-status--in-progress {
+          background: var(--color-warning-light);
+          color: var(--color-warning);
+        }
+        
+        .modal-project-type {
+          background: var(--color-accent-light);
+          color: var(--color-accent);
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-sm);
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+        
+        .modal-project-description {
+          margin-bottom: var(--spacing-xl);
+          line-height: 1.6;
+          color: var(--color-text-light);
+        }
+        
+        .modal-project-highlights,
+        .modal-project-technologies {
+          margin-bottom: var(--spacing-xl);
+        }
+        
+        .modal-project-highlights h3,
+        .modal-project-technologies h3 {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          margin: 0 0 var(--spacing-md) 0;
+          color: var(--color-text);
+          font-size: var(--font-size-lg);
+        }
+        
+        .modal-project-highlights ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        .modal-project-highlights li {
+          padding: var(--spacing-sm) 0;
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          color: var(--color-text-light);
+        }
+        
+        .modal-project-highlights li::before {
+          content: '';
+          width: 6px;
+          height: 6px;
+          background: var(--color-accent);
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        
+        .modal-tech-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--spacing-sm);
+        }
+        
+        .tech-tag {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-xs);
+          padding: var(--spacing-sm) var(--spacing-md);
+          background: var(--color-background);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-sm);
+          font-weight: 600;
+          color: var(--color-text);
+        }
+        
+        .modal-project-stats {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: var(--spacing-md);
+          margin-bottom: var(--spacing-xl);
+          padding: var(--spacing-lg);
+          background: var(--color-background);
+          border-radius: var(--radius-lg);
+        }
+        
+        .modal-stat-card {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-md);
+        }
+        
+        .modal-stat-icon {
+          color: var(--color-accent);
+          width: 24px;
+          height: 24px;
+        }
+        
+        .modal-stat-number {
+          display: block;
+          font-size: var(--font-size-lg);
+          font-weight: 700;
+          color: var(--color-text);
+        }
+        
+        .modal-stat-label {
+          font-size: var(--font-size-sm);
+          color: var(--color-text-light);
+        }
+        
+        .modal-project-actions {
+          display: flex;
+          gap: var(--spacing-md);
+          justify-content: center;
+        }
+        
+        .modal-action-btn {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          padding: var(--spacing-md) var(--spacing-xl);
+          border-radius: var(--radius-md);
+          text-decoration: none;
+          font-weight: 600;
+          transition: all var(--transition-fast);
+        }
+        
+        .modal-action-btn--primary {
+          background: var(--color-accent);
+          color: var(--color-background);
+        }
+        
+        .modal-action-btn--primary:hover {
+          background: var(--color-accent-secondary);
+          transform: translateY(-2px);
+        }
+        
+        .modal-action-btn--secondary {
+          background: var(--color-background);
+          color: var(--color-text);
+          border: 1px solid var(--color-border);
+        }
+        
+        .modal-action-btn--secondary:hover {
+          background: var(--color-accent-light);
+          border-color: var(--color-accent);
+        }
+        
+        @media (max-width: 768px) {
+          .modal-project-header {
+            flex-direction: column;
+            gap: var(--spacing-md);
+          }
+          
+          .modal-project-stats {
+            grid-template-columns: 1fr;
+          }
+          
+          .modal-project-actions {
+            flex-direction: column;
+          }
+        }
       </style>
     `;
   }
 
-  getStatusText(status) {
-    const texts = {
-      completed: "Completado",
-      "in-progress": "En progreso",
-      planning: "Planificación",
-    };
-    return texts[status] || status;
-  }
-
-  closeProjectWindow() {
-    this.projectWindow.classList.remove("active");
+  closeModal() {
+    this.projectModal.classList.remove("active");
+    this.isModalOpen = false;
     document.body.style.overflow = "";
-  }
-
-  toggleStartMenu() {
-    if (this.isStartMenuOpen) {
-      this.closeStartMenu();
-    } else {
-      this.openStartMenu();
-    }
-  }
-
-  openStartMenu() {
-    this.startMenu.classList.add("active");
-    this.startButton.classList.add("active");
-    this.isStartMenuOpen = true;
-  }
-
-  closeStartMenu() {
-    this.startMenu.classList.remove("active");
-    this.startButton.classList.remove("active");
-    this.isStartMenuOpen = false;
-  }
-
-  setupStartMenu() {
-    const startProjects = document.getElementById("startProjects");
-    const startTechnologies = document.getElementById("startTechnologies");
-
-    if (startProjects) {
-      const featuredProjects = this.projects.filter((p) => p.featured).slice(0, 3);
-      startProjects.innerHTML = featuredProjects
-        .map(
-          (project) => `
-        <div class="start-item" data-project-id="${project.id}">
-          <div class="start-item__icon">${this.getProjectIcon(project.type)}</div>
-          <div class="start-item__text">${project.name}</div>
-        </div>
-      `
-        )
-        .join("");
-
-      // Add click listeners
-      startProjects.addEventListener("click", (e) => {
-        const item = e.target.closest(".start-item");
-        if (item) {
-          const projectId = parseInt(item.dataset.projectId);
-          const project = this.projects.find((p) => p.id === projectId);
-          if (project) {
-            this.openProject(project);
-            this.closeStartMenu();
-          }
-        }
-      });
-    }
-
-    if (startTechnologies) {
-      const technologies = [...new Set(this.projects.flatMap((p) => p.technologies))];
-      startTechnologies.innerHTML = technologies
-        .slice(0, 5)
-        .map(
-          (tech) => `
-        <div class="start-item">
-          <div class="start-item__icon tech-badge tech-badge--${tech}"></div>
-          <div class="start-item__text">${tech}</div>
-        </div>
-      `
-        )
-        .join("");
-    }
-  }
-
-  handleRightClick(e) {
-    e.preventDefault();
-
-    const icon = e.target.closest(".desktop-icon");
-    if (icon) {
-      const projectId = parseInt(icon.dataset.projectId);
-      const project = this.projects.find((p) => p.id === projectId);
-      this.showIconContextMenu(e, project);
-    }
-  }
-
-  showIconContextMenu(e, project) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const contextMenu = document.getElementById("contextMenu");
-    if (!contextMenu) return;
-
-    // Update context menu actions
-    const contextItems = contextMenu.querySelectorAll(".context-item[data-action]");
-    contextItems.forEach((item) => {
-      item.onclick = () => this.handleContextAction(item.dataset.action, project);
-    });
-
-    // Position and show
-    contextMenu.style.left = `${e.pageX}px`;
-    contextMenu.style.top = `${e.pageY}px`;
-    contextMenu.classList.add("active");
-  }
-
-  hideContextMenu() {
-    const contextMenu = document.getElementById("contextMenu");
-    if (contextMenu) {
-      contextMenu.classList.remove("active");
-    }
-  }
-
-  handleContextAction(action, project) {
-    this.hideContextMenu();
-
-    switch (action) {
-      case "open":
-        this.openProject(project);
-        break;
-      case "github":
-        window.open(project.github, "_blank");
-        break;
-      case "demo":
-        if (project.demo) {
-          window.open(project.demo, "_blank");
-        }
-        break;
-      case "properties":
-        this.showProjectProperties(project);
-        break;
-    }
-  }
-
-  handleStartAction(action) {
-    switch (action) {
-      case "github":
-        window.open("https://github.com/tu-usuario", "_blank");
-        break;
-      case "download":
-        // Trigger CV download
-        const link = document.createElement("a");
-        link.href = "assets/documents/cv.pdf";
-        link.download = "CV-Desarrollador-Backend.pdf";
-        link.click();
-        break;
-    }
-    this.closeStartMenu();
   }
 
   updateStats() {
@@ -655,7 +833,6 @@ class WindowsDesktop {
     const totalTechnologies = document.getElementById("totalTechnologies");
     const totalStars = document.getElementById("totalStars");
     const totalCommits = document.getElementById("totalCommits");
-    const projectsCount = document.getElementById("projectsCount");
 
     if (totalProjects) {
       this.animateCounter(totalProjects, this.projects.length);
@@ -667,17 +844,13 @@ class WindowsDesktop {
     }
 
     if (totalStars) {
-      const starsCount = this.projects.reduce((sum, p) => sum + p.stats.stars, 0);
+      const starsCount = this.projects.reduce((sum, p) => sum + (p.stats ? p.stats.stars : 0), 0);
       this.animateCounter(totalStars, starsCount);
     }
 
     if (totalCommits) {
-      const commitsCount = this.projects.reduce((sum, p) => sum + p.stats.commits, 0);
+      const commitsCount = this.projects.reduce((sum, p) => sum + (p.stats ? p.stats.commits : 0), 0);
       this.animateCounter(totalCommits, commitsCount);
-    }
-
-    if (projectsCount) {
-      projectsCount.querySelector(".system-text").textContent = `${this.projects.length} proyectos`;
     }
   }
 
@@ -700,35 +873,25 @@ class WindowsDesktop {
 
     requestAnimationFrame(updateCounter);
   }
-
-  startClock() {
-    const updateTime = () => {
-      const timeElement = document.getElementById("currentTime");
-      if (timeElement) {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString("es-ES", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        timeElement.textContent = timeString;
-      }
-    };
-
-    updateTime();
-    setInterval(updateTime, 1000);
-  }
 }
 
 // Auto-initialize when section is loaded
 document.addEventListener("sectionLoaded", (event) => {
+  console.log("Event sectionLoaded received:", event.detail);
   if (event.detail.section === "projects") {
-    window.windowsDesktop = new WindowsDesktop();
+    console.log("Initializing ProjectsGrid from sectionLoaded");
+    window.projectsGrid = new ProjectsGrid();
   }
 });
 
 // Fallback initialization for non-modular version
 document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("windowsDesktop") && !window.windowsDesktop) {
-    window.windowsDesktop = new WindowsDesktop();
+  console.log("DOMContentLoaded - checking for projectsGrid element");
+  const gridElement = document.getElementById("projectsGrid");
+  console.log("Grid element found:", !!gridElement);
+
+  if (gridElement && !window.projectsGrid) {
+    console.log("Initializing ProjectsGrid from DOMContentLoaded");
+    window.projectsGrid = new ProjectsGrid();
   }
 });

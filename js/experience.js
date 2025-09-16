@@ -29,15 +29,9 @@ class ExperienceManager {
 
   async loadExperience() {
     try {
-      // Intentar cargar desde JSON primero (mejor separación de responsabilidades)
-      const response = await fetch("./data/experience.json");
-      if (response.ok) {
-        this.experiences = await response.json();
-      } else {
-        // Fallback a datos embebidos si hay problemas de CORS/file://
-        console.warn("No se pudo cargar experience.json, usando datos embebidos como fallback");
-        this.experiences = this.getFallbackExperienceData();
-      }
+      // Usar datos embebidos directamente para evitar problemas de CORS
+      console.log("Usando datos embebidos de experiencia");
+      this.experiences = this.getFallbackExperienceData();
     } catch (error) {
       // Fallback a datos embebidos para compatibilidad con file://
       console.warn("Error cargando JSON, usando datos embebidos:", error.message);

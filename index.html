@@ -58,16 +58,17 @@
     <link rel="canonical" href="https://arielrighi.github.io/portfolio/" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"
+    />
     <link rel="manifest" href="site.webmanifest" />
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/themes.css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/desktop.css" />
+    <link rel="stylesheet" href="sections/projects/projects-simple.css" />
     <link rel="stylesheet" href="css/responsive.css" />
 
     <!-- Fonts -->
@@ -439,11 +440,50 @@
       <!-- Sección: Proyectos (Escritorio Windows) -->
       <section id="projects" class="section projects">
         <div class="container">
-          <h2 class="section__title">Mis Proyectos</h2>
-          <div class="desktop" id="desktop">
-            <div class="desktop__background">
-              <div class="desktop__icons" id="desktopIcons">
-                <!-- Los iconos de proyectos se cargarán dinámicamente -->
+          <div class="projects__header">
+            <h2 class="section__title">Mis Proyectos</h2>
+            <p class="section__description">
+              Explora mi experiencia en desarrollo backend a través de estos proyectos. Cada tarjeta muestra las
+              tecnologías utilizadas y detalles del proyecto al hacer hover.
+            </p>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="projects__grid" id="projectsGrid">
+            <div class="projects__loading">
+              <div class="loading-spinner"></div>
+              <p>Cargando proyectos...</p>
+            </div>
+          </div>
+
+          <!-- Project Statistics -->
+          <div class="projects__stats">
+            <div class="stats-card">
+              <i data-feather="folder" class="stats-icon"></i>
+              <div class="stats-info">
+                <span class="stats-number" id="totalProjects">0</span>
+                <span class="stats-label">Proyectos</span>
+              </div>
+            </div>
+            <div class="stats-card">
+              <i data-feather="code" class="stats-icon"></i>
+              <div class="stats-info">
+                <span class="stats-number" id="totalTechnologies">0</span>
+                <span class="stats-label">Tecnologías</span>
+              </div>
+            </div>
+            <div class="stats-card">
+              <i data-feather="star" class="stats-icon"></i>
+              <div class="stats-info">
+                <span class="stats-number" id="totalStars">0</span>
+                <span class="stats-label">GitHub Stars</span>
+              </div>
+            </div>
+            <div class="stats-card">
+              <i data-feather="git-commit" class="stats-icon"></i>
+              <div class="stats-info">
+                <span class="stats-number" id="totalCommits">0</span>
+                <span class="stats-label">Commits</span>
               </div>
             </div>
           </div>
@@ -529,6 +569,6 @@
     <script src="js/main.js"></script>
     <script src="js/experience.js"></script>
     <script src="js/contact.js"></script>
-    <script src="js/desktop.js"></script>
+    <script src="sections/projects/projects-simple.js"></script>
   </body>
 </html>

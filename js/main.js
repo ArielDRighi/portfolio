@@ -405,20 +405,8 @@ document.addEventListener("DOMContentLoaded", () => {
   new AnimationManager();
   new ContactForm();
 
-  // Configurar clock en desktop si existe
-  updateDesktopClock();
-  setInterval(updateDesktopClock, 60000); // Actualizar cada minuto
-
   console.log("Portfolio inicializado correctamente");
 });
-
-// Función para actualizar el reloj del escritorio
-function updateDesktopClock() {
-  const clockElement = document.querySelector(".desktop__time");
-  if (clockElement) {
-    clockElement.textContent = utils.getCurrentTime();
-  }
-}
 
 // Exportar para uso en otros archivos
 window.PortfolioUtils = utils;

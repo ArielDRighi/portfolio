@@ -1,4 +1,6 @@
-/* ===== PROJECTS SECTION - SIMPLE CARDS ==.project-card {
+/* ===== PROJECTS SECTION - SIMPLE CARDS ===== */
+
+.project-card {
   background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-xl);
@@ -35,8 +37,8 @@
   border-color: var(--color-accent);
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-lg);
-} Projects Section */
-.projects {
+}
+Projects Section */ .projects {
   padding: 60px 0;
   background: var(--color-background);
 }

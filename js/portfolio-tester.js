@@ -430,9 +430,6 @@ class PortfolioTester {
 }
 
 // Exportar para uso global
-window.PortfolioTester = PortfolioTester;
-
-// Hacer disponible globalmente para testing manual
 if (typeof window !== "undefined") {
   window.PortfolioTester = PortfolioTester;
 

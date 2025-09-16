@@ -82,6 +82,11 @@
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
 
+  /* Layout específico */
+  --about-photo-margin-top: -70px;
+  --about-photo-margin-left: -120px;
+  --about-highlights-margin-left: -120px;
+
   /* Z-index */
   --z-dropdown: 1000;
   --z-sticky: 1020;

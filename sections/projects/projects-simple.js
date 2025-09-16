@@ -129,7 +129,7 @@ class SimpleProjectsGrid {
   createProjectCard(project) {
     const card = document.createElement("a");
     card.className = "project-card";
-    card.href = project.html_url || `https://github.com/${project.owner}/${project.name}`;
+    card.href = project.github || project.html_url || "#";
     card.target = "_blank";
     card.rel = "noopener noreferrer";
 

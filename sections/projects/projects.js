@@ -4,14 +4,11 @@
  */
 class ProjectsGrid {
   constructor() {
-    console.log("ProjectsGrid constructor called");
     this.gridContainer = document.getElementById("projectsGrid");
     this.projectModal = document.getElementById("projectModal");
     this.modalClose = document.getElementById("modalClose");
     this.modalOverlay = document.getElementById("modalOverlay");
     this.modalBody = document.getElementById("modalBody");
-
-    console.log("Grid container found:", !!this.gridContainer);
 
     this.projects = this.getEmbeddedProjects();
     this.isModalOpen = false;
@@ -20,13 +17,10 @@ class ProjectsGrid {
   }
 
   async init() {
-    console.log("ProjectsGrid init called");
     if (!this.gridContainer) {
-      console.log("No grid container found, aborting init");
       return;
     }
 
-    console.log("Setting up event listeners and rendering projects");
     this.setupEventListeners();
     this.renderProjectCards();
     this.updateStats();
@@ -159,25 +153,16 @@ class ProjectsGrid {
   }
 
   async loadProjects() {
-    console.log("🔄 Starting loadProjects...");
     try {
-      console.log("📁 Fetching data/projects.json...");
       const response = await fetch("data/projects.json");
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       this.projects = await response.json();
-      console.log("✅ Proyectos cargados:", this.projects.length);
-      console.log("Projects data:", this.projects);
-
-      // Comentar temporalmente para debugging
-      // await this.enrichWithGitHub();
-      console.log("✅ Skipping GitHub enrichment for debugging");
+      await this.enrichWithGitHub();
     } catch (error) {
-      console.error("❌ Error cargando proyectos:", error);
-      console.log("📦 Using default projects...");
+      console.error("Error cargando proyectos:", error);
       this.projects = this.getDefaultProjects();
-      console.log("Default projects loaded:", this.projects.length);
     }
   }
 
@@ -186,11 +171,8 @@ class ProjectsGrid {
    */
   async enrichWithGitHub() {
     try {
-      console.log("🔄 Starting GitHub enrichment...");
-
       // Cargar la integración de GitHub si no está disponible
       if (!window.githubIntegration) {
-        console.log("📦 Loading GitHub integration...");
         await this.loadGitHubIntegration();
       }
 
@@ -198,16 +180,11 @@ class ProjectsGrid {
       const configured = window.githubIntegration.loadConfiguration();
 
       if (configured && window.githubIntegration.isConfigured()) {
-        console.log("🔗 Enriqueciendo proyectos con datos de GitHub...");
         const enrichedProjects = await window.githubIntegration.enrichProjects(this.projects);
         this.projects = enrichedProjects;
-        console.log(`✅ Proyectos enriquecidos con GitHub`);
-      } else {
-        console.log("ℹ️ GitHub integration not configured, skipping enrichment");
       }
     } catch (error) {
-      console.warn("⚠️ No se pudo enriquecer con GitHub:", error);
-      console.log("ℹ️ Continuing without GitHub enrichment");
+      console.warn("No se pudo enriquecer con GitHub:", error);
     }
   }
 

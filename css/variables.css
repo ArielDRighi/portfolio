@@ -3,15 +3,16 @@
    =================================== */
 :root {
   /* Colores principales */
-  --color-primary: #2c3e50;
-  --color-secondary: #ecf0f1;
-  --color-accent: #27ae60;
-  --color-text: #2c3e50;
-  --color-text-light: #7f8c8d;
-  --color-background: #ffffff;
-  --color-surface: #f8f9fa;
-  --color-border: #e0e0e0;
-  --color-accent-light: rgba(39, 174, 96, 0.1);
+  --color-primary: #2d3748;
+  --color-secondary: #e2e8f0;
+  --color-accent: #10b981;
+  --color-text: #2d3748;
+  --color-text-light: #718096;
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-accent-light: rgba(16, 185, 129, 0.1);
+  --color-background-transparent: rgba(248, 249, 250, 0.95);
 
   /* Estado colores */
   --color-success: #27ae60;
@@ -28,11 +29,11 @@
   --color-info-dark: #2980b9;
 
   /* Colores para tema oscuro */
-  --color-dark-background: #1a1a1a;
-  --color-dark-surface: #2d2d2d;
-  --color-dark-text: #e0e0e0;
-  --color-dark-text-light: #b0b0b0;
-  --color-dark-border: #404040;
+  --color-dark-background: #111827;
+  --color-dark-surface: #1f2937;
+  --color-dark-text: #e2e8f0;
+  --color-dark-text-light: #9ca3af;
+  --color-dark-border: #374151;
 
   /* Tipografía */
   --font-primary: "Roboto", sans-serif;
@@ -81,6 +82,11 @@
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
 
+  /* Layout específico */
+  --about-photo-margin-top: -70px;
+  --about-photo-margin-left: -120px;
+  --about-highlights-margin-left: -120px;
+
   /* Z-index */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -99,4 +105,5 @@
   --color-text: var(--color-dark-text);
   --color-text-light: var(--color-dark-text-light);
   --color-border: var(--color-dark-border);
+  --color-background-transparent: rgba(17, 24, 39, 0.95);
 }

@@ -647,8 +647,8 @@ class CrossDeviceTester {
   }
 }
 
-// Exportar para uso modular
-export default CrossDeviceTester;
+// Exportar para uso global
+window.CrossDeviceTester = CrossDeviceTester;
 
 // Auto-inicializar
 if (typeof window !== "undefined") {

@@ -523,8 +523,8 @@ class PerformanceOptimizer {
   }
 }
 
-// Exportar para uso modular
-export default PerformanceOptimizer;
+// Exportar para uso global
+window.PerformanceOptimizer = PerformanceOptimizer;
 
 // Auto-inicializar
 if (typeof window !== "undefined") {

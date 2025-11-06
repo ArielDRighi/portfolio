@@ -3,6 +3,9 @@
  * This file initializes all modules and components
  */
 
+// Import external dependencies
+import feather from "feather-icons";
+
 // Import stylesheets
 import "./css/themes.css";
 import "./css/styles.css";
@@ -24,10 +27,8 @@ import "./sections/projects/projects-simple.js";
 
 // Initialize application
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Feather Icons (temporary, will be replaced with npm package)
-  if (typeof feather !== "undefined") {
-    feather.replace();
-  }
+  // Initialize Feather Icons from npm package
+  feather.replace();
 
-  console.log("🚀 Portfolio initialized with Vite + ES6 Modules");
+  console.log("🚀 Portfolio initialized with Vite + ES6 Modules + npm dependencies");
 });

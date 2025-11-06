@@ -31,5 +31,8 @@
   "homepage": "https://github.com/ArielDRighi/portfolio#readme",
   "devDependencies": {
     "vite": "^7.2.1"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2"
   }
 }

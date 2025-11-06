@@ -229,27 +229,45 @@
   /* ===================================
      TIMELINE MÓVIL
      =================================== */
+  .experience {
+    overflow-x: hidden;
+  }
+
+  .timeline {
+    max-width: 100%;
+    padding: 0 var(--spacing-sm);
+  }
+
   .timeline::before {
-    left: var(--spacing-lg);
+    left: 15px;
+  }
+
+  .timeline__item {
+    margin-bottom: var(--spacing-2xl);
   }
 
   .timeline__item:nth-child(odd) .timeline__content,
   .timeline__item:nth-child(even) .timeline__content {
-    margin-left: calc(var(--spacing-lg) + var(--spacing-xl));
-    margin-right: 0;
+    margin-left: 45px;
+    margin-right: var(--spacing-sm);
     text-align: left;
+    width: calc(100% - 55px);
+    box-sizing: border-box;
   }
 
   .timeline__marker {
-    left: var(--spacing-lg);
+    left: 15px;
+    width: 16px;
+    height: 16px;
   }
 
   .timeline__content {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
   }
 
   .timeline__technologies {
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   /* ===================================

@@ -1,12 +1,14 @@
 /**
- * MAIN.JS - Funcionalidades principales del portfolio
+ * MAIN.TS - Funcionalidades principales del portfolio
  * Maneja navegación, formularios y utilidades generales
  */
+
+import type { Config } from '../types';
 
 // ===================================
 // CONFIGURACIÓN Y CONSTANTES
 // ===================================
-export const CONFIG = {
+export const CONFIG: Config = {
   animationDuration: 300,
   scrollOffset: 80,
   debounceDelay: 250,
@@ -17,20 +19,23 @@ export const CONFIG = {
 // ===================================
 export const utils = {
   // Debounce function para optimizar eventos
-  debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
+  debounce<T extends (...args: any[]) => any>(
+    func: T,
+    wait: number
+  ): (...args: Parameters<T>) => void {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    return function executedFunction(...args: Parameters<T>): void {
+      const later = (): void => {
+        if (timeout) clearTimeout(timeout);
         func(...args);
       };
-      clearTimeout(timeout);
+      if (timeout) clearTimeout(timeout);
       timeout = setTimeout(later, wait);
     };
   },
 
   // Smooth scroll a una sección
-  smoothScrollTo(element, offset = CONFIG.scrollOffset) {
+  smoothScrollTo(element: HTMLElement, offset: number = CONFIG.scrollOffset): void {
     const targetPosition = element.offsetTop - offset;
     window.scrollTo({
       top: targetPosition,
@@ -39,7 +44,7 @@ export const utils = {
   },
 
   // Verificar si un elemento está visible en el viewport
-  isInViewport(element) {
+  isInViewport(element: HTMLElement): boolean {
     const rect = element.getBoundingClientRect();
     return (
       rect.top >= 0 &&
@@ -50,7 +55,7 @@ export const utils = {
   },
 
   // Formatear fecha actual
-  getCurrentTime() {
+  getCurrentTime(): string {
     const now = new Date();
     return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   },
@@ -60,98 +65,106 @@ export const utils = {
 // NAVEGACIÓN
 // ===================================
 export class Navigation {
+  private navToggle: HTMLElement | null;
+  private navMenu: HTMLElement | null;
+  private navLinks: NodeListOf<HTMLElement>;
+  private header: HTMLElement | null;
+
   constructor() {
     this.navToggle = document.getElementById('navToggle');
-    this.navMenu = document.querySelector('.nav__menu');
-    this.navLinks = document.querySelectorAll('.nav__link');
-    this.header = document.querySelector('.header');
+    this.navMenu = document.querySelector<HTMLElement>('.nav__menu');
+    this.navLinks = document.querySelectorAll<HTMLElement>('.nav__link');
+    this.header = document.querySelector<HTMLElement>('.header');
 
     this.init();
   }
 
-  init() {
-    this.bindEvents();
-    this.handleScroll();
+  init(): void {
+    this.setupEventListeners();
+    this.handleScroll(); // Check inicial
   }
 
-  bindEvents() {
-    // Toggle menú móvil
+  setupEventListeners(): void {
+    // Mobile menu toggle
     if (this.navToggle) {
       this.navToggle.addEventListener('click', () => this.toggleMobileMenu());
     }
 
-    // Navegación suave
-    this.navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => this.handleNavClick(e));
+    // Navigation links
+    this.navLinks.forEach((link: HTMLElement) => {
+      link.addEventListener('click', (e: Event) => this.handleNavClick(e));
     });
 
-    // Scroll para header sticky
-    window.addEventListener(
-      'scroll',
-      utils.debounce(() => this.handleScroll(), 100)
-    );
+    // Scroll effects
+    window.addEventListener('scroll', utils.debounce(() => this.handleScroll(), 100));
 
-    // Cerrar menú móvil al redimensionar
-    window.addEventListener('resize', () => this.closeMobileMenu());
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        this.navMenu &&
+        this.navToggle &&
+        !this.navMenu.contains(target) &&
+        !this.navToggle.contains(target)
+      ) {
+        this.closeMobileMenu();
+      }
+    });
   }
 
-  toggleMobileMenu() {
-    this.navMenu.classList.toggle('nav__menu--open');
-    this.navToggle.classList.toggle('nav__toggle--open');
+  toggleMobileMenu(): void {
+    this.navMenu?.classList.toggle('nav__menu--open');
+    this.navToggle?.classList.toggle('nav__toggle--open');
   }
 
-  closeMobileMenu() {
-    this.navMenu.classList.remove('nav__menu--open');
-    this.navToggle.classList.remove('nav__toggle--open');
+  closeMobileMenu(): void {
+    this.navMenu?.classList.remove('nav__menu--open');
+    this.navToggle?.classList.remove('nav__toggle--open');
   }
 
-  handleNavClick(e) {
+  handleNavClick(e: Event): void {
     e.preventDefault();
-    const targetId = e.target.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
+    const target = e.currentTarget as HTMLElement;
+    const targetId = target.getAttribute('href');
+    const targetSection = targetId ? document.querySelector<HTMLElement>(targetId) : null;
 
-    if (targetElement) {
-      utils.smoothScrollTo(targetElement);
+    if (targetSection) {
+      utils.smoothScrollTo(targetSection);
+      this.updateActiveLink(target);
       this.closeMobileMenu();
-
-      // Actualizar enlace activo
-      this.updateActiveLink(e.target);
     }
   }
 
-  updateActiveLink(activeLink) {
-    this.navLinks.forEach((link) => link.classList.remove('nav__link--active'));
+  updateActiveLink(activeLink: HTMLElement): void {
+    this.navLinks.forEach((link: HTMLElement) => link.classList.remove('nav__link--active'));
     activeLink.classList.add('nav__link--active');
   }
 
-  handleScroll() {
-    const scrollY = window.scrollY;
-
-    // Efecto header sticky
-    if (scrollY > 100) {
-      this.header.classList.add('header--scrolled');
+  handleScroll(): void {
+    // Header shadow on scroll
+    if (window.scrollY > 50) {
+      this.header?.classList.add('header--scrolled');
     } else {
-      this.header.classList.remove('header--scrolled');
+      this.header?.classList.remove('header--scrolled');
     }
 
-    // Actualizar navegación activa basada en scroll
-    this.updateActiveSection();
+    // Update active link based on scroll position
+    this.updateActiveNavOnScroll();
   }
 
-  updateActiveSection() {
-    const sections = document.querySelectorAll('.section');
-    const scrollPosition = window.scrollY + CONFIG.scrollOffset + 50;
+  updateActiveNavOnScroll(): void {
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const scrollY = window.pageYOffset;
 
-    sections.forEach((section) => {
+    sections.forEach((section: HTMLElement) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute('id');
 
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        const correspondingLink = document.querySelector(`[href="#${sectionId}"]`);
+      if (scrollY >= sectionTop - CONFIG.scrollOffset && scrollY < sectionTop + sectionHeight) {
+        const correspondingLink = document.querySelector<HTMLElement>(`.nav__link[href="#${sectionId}"]`);
         if (correspondingLink) {
-          this.navLinks.forEach((link) => link.classList.remove('nav__link--active'));
-          correspondingLink.classList.add('nav__link--active');
+          this.updateActiveLink(correspondingLink);
         }
       }
     });
@@ -162,34 +175,37 @@ export class Navigation {
 // ANIMACIONES DE ENTRADA
 // ===================================
 export class AnimationManager {
+  private observedElements: Set<Element>;
+  private observer!: IntersectionObserver;
+
   constructor() {
     this.observedElements = new Set();
     this.init();
   }
 
-  init() {
+  init(): void {
     this.createObserver();
     this.observeElements();
   }
 
-  createObserver() {
-    const options = {
+  createObserver(): void {
+    const options: IntersectionObserverInit = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
     };
 
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    this.observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
-          this.animateElement(entry.target);
+          this.animateElement(entry.target as HTMLElement);
           this.observer.unobserve(entry.target);
         }
       });
     }, options);
   }
 
-  observeElements() {
-    const elementsToAnimate = document.querySelectorAll(`
+  observeElements(): void {
+    const elementsToAnimate = document.querySelectorAll<HTMLElement>(`
       .skills__category,
       .timeline__item,
       .contact__link,
@@ -197,7 +213,7 @@ export class AnimationManager {
       .about__info
     `);
 
-    elementsToAnimate.forEach((element) => {
+    elementsToAnimate.forEach((element: HTMLElement) => {
       element.style.opacity = '0';
       element.style.transform = 'translateY(30px)';
       element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -205,7 +221,7 @@ export class AnimationManager {
     });
   }
 
-  animateElement(element) {
+  animateElement(element: HTMLElement): void {
     element.style.opacity = '1';
     element.style.transform = 'translateY(0)';
   }
@@ -214,41 +230,51 @@ export class AnimationManager {
 // ===================================
 // FORMULARIO DE CONTACTO
 // ===================================
+type NotificationType = 'success' | 'error';
+
+interface FormDataObject {
+  [key: string]: FormDataEntryValue;
+}
+
 export class ContactForm {
+  private form: HTMLFormElement | null;
+
   constructor() {
-    this.form = document.getElementById('contactForm');
+    this.form = document.getElementById('contactForm') as HTMLFormElement | null;
     this.init();
   }
 
-  init() {
+  init(): void {
     if (this.form) {
       this.bindEvents();
     }
   }
 
-  bindEvents() {
-    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+  bindEvents(): void {
+    if (!this.form) return;
+
+    this.form.addEventListener('submit', (e: Event) => this.handleSubmit(e));
 
     // Validación en tiempo real
-    const inputs = this.form.querySelectorAll('input, textarea');
-    inputs.forEach((input) => {
+    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea');
+    inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
       input.addEventListener('blur', () => this.validateField(input));
       input.addEventListener('input', () => this.clearFieldError(input));
     });
   }
 
-  async handleSubmit(e) {
+  async handleSubmit(e: Event): Promise<void> {
     e.preventDefault();
 
-    if (!this.validateForm()) {
+    if (!this.validateForm() || !this.form) {
       return;
     }
 
     const formData = this.getFormData();
-    const submitButton = this.form.querySelector('.form__button');
+    const submitButton = this.form.querySelector<HTMLButtonElement>('.form__button');
 
     try {
-      this.setSubmitting(true, submitButton);
+      if (submitButton) this.setSubmitting(true, submitButton);
 
       // Aquí iría la lógica para enviar el formulario
       // Por ahora, simulamos el envío
@@ -259,15 +285,17 @@ export class ContactForm {
     } catch (error) {
       this.showError('Hubo un error al enviar el mensaje. Inténtalo de nuevo.');
     } finally {
-      this.setSubmitting(false, submitButton);
+      if (submitButton) this.setSubmitting(false, submitButton);
     }
   }
 
-  validateForm() {
-    const inputs = this.form.querySelectorAll('input[required], textarea[required]');
+  validateForm(): boolean {
+    if (!this.form) return false;
+
+    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
     let isValid = true;
 
-    inputs.forEach((input) => {
+    inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
       if (!this.validateField(input)) {
         isValid = false;
       }
@@ -276,7 +304,7 @@ export class ContactForm {
     return isValid;
   }
 
-  validateField(field) {
+  validateField(field: HTMLInputElement | HTMLTextAreaElement): boolean {
     const value = field.value.trim();
     const fieldName = field.name;
     let isValid = true;
@@ -315,32 +343,35 @@ export class ContactForm {
     return isValid;
   }
 
-  showFieldError(field, message) {
+  showFieldError(field: HTMLInputElement | HTMLTextAreaElement, message: string): void {
     field.classList.add('form__input--error');
 
-    let errorElement = field.parentNode.querySelector('.form__error');
+    const parentNode = field.parentNode as HTMLElement;
+    let errorElement = parentNode.querySelector<HTMLSpanElement>('.form__error');
     if (!errorElement) {
       errorElement = document.createElement('span');
       errorElement.className = 'form__error';
-      field.parentNode.appendChild(errorElement);
+      parentNode.appendChild(errorElement);
     }
     errorElement.textContent = message;
   }
 
-  clearFieldError(field) {
+  clearFieldError(field: HTMLInputElement | HTMLTextAreaElement): void {
     field.classList.remove('form__input--error');
-    const errorElement = field.parentNode.querySelector('.form__error');
+    const parentNode = field.parentNode as HTMLElement;
+    const errorElement = parentNode.querySelector('.form__error');
     if (errorElement) {
       errorElement.remove();
     }
   }
 
-  getFormData() {
+  getFormData(): FormDataObject {
+    if (!this.form) return {};
     const formData = new FormData(this.form);
     return Object.fromEntries(formData.entries());
   }
 
-  setSubmitting(isSubmitting, button) {
+  setSubmitting(isSubmitting: boolean, button: HTMLButtonElement): void {
     if (isSubmitting) {
       button.disabled = true;
       button.textContent = 'Enviando...';
@@ -350,9 +381,9 @@ export class ContactForm {
     }
   }
 
-  async simulateFormSubmission(data) {
+  async simulateFormSubmission(data: FormDataObject): Promise<void> {
     // Simular delay de envío
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
         console.log('Datos del formulario:', data);
         resolve();
@@ -360,15 +391,15 @@ export class ContactForm {
     });
   }
 
-  showSuccess() {
+  showSuccess(): void {
     this.showNotification('¡Mensaje enviado exitosamente!', 'success');
   }
 
-  showError(message) {
+  showError(message: string): void {
     this.showNotification(message, 'error');
   }
 
-  showNotification(message, type) {
+  showNotification(message: string, type: NotificationType): void {
     // Crear notificación
     const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
@@ -386,8 +417,8 @@ export class ContactForm {
     }, 3000);
   }
 
-  resetForm() {
-    this.form.reset();
+  resetForm(): void {
+    this.form?.reset();
   }
 }
 

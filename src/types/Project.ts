@@ -23,4 +23,12 @@ export interface Project {
 }
 
 export type ProjectStatus = 'completed' | 'in-progress';
-export type ProjectType = 'monolith' | 'microservices' | 'api' | 'ml' | 'devops' | 'blockchain' | 'architecture' | 'analytics';
+export type ProjectType =
+  | 'monolith'
+  | 'microservices'
+  | 'api'
+  | 'ml'
+  | 'devops'
+  | 'blockchain'
+  | 'architecture'
+  | 'analytics';

@@ -14,7 +14,7 @@ import './css/responsive.css';
 
 // Import JavaScript modules with ES6 exports
 import { initializeThemeManager } from './js/theme-manager.js';
-import { initializePortfolio } from './js/main.js';
+import { initializePortfolio } from './js/main.ts';
 
 // Import other modules (will be converted to ES6 modules in future tasks)
 import './js/animation-controller.js';

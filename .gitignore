@@ -49,6 +49,10 @@ temp/
 dist/
 build/
 
+# Test coverage reports
+coverage/
+.nyc_output/
+
 # Archivos de configuración local
 config.local.js
 config.local.json

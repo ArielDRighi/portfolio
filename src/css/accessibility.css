@@ -1,0 +1,175 @@
+/**
+ * Accessibility Styles
+ * Estilos para mejorar la accesibilidad
+ */
+
+/* Skip Link para navegación por teclado */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary, #2563eb);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--color-accent, #fbbf24);
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only - Ocultar visualmente pero accesible para lectores */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus indicators mejorados cuando se usa teclado */
+.using-keyboard *:focus {
+  outline: 3px solid var(--color-primary, #2563eb);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.using-keyboard a:focus,
+.using-keyboard button:focus {
+  outline-color: var(--color-accent, #fbbf24);
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.2);
+}
+
+/* Mejorar contraste de links */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Indicadores de estado para elementos interactivos */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* Animaciones reducidas para usuarios con preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skip-link {
+    transition: none;
+  }
+}
+
+/* Mejorar contraste en modo oscuro */
+[data-theme='dark'] .skip-link {
+  background-color: var(--color-primary, #3b82f6);
+}
+
+[data-theme='dark'] .using-keyboard *:focus {
+  outline-color: var(--color-accent, #fbbf24);
+}
+
+/* Indicador de que un elemento es clickeable */
+[role='button'],
+button,
+a[href] {
+  cursor: pointer;
+}
+
+[role='button']:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Mejorar áreas de toque en móviles */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a[href],
+  input[type='submit'],
+  input[type='button'],
+  .tech-item,
+  .project-card {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Estados hover accesibles */
+.tech-item:hover,
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.tech-item:focus-within,
+.project-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  outline: 3px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* Alto contraste para texto importante */
+.highlight-number,
+.stat-number {
+  font-weight: 700;
+  color: var(--color-primary, #2563eb);
+}
+
+[data-theme='dark'] .highlight-number,
+[data-theme='dark'] .stat-number {
+  color: var(--color-accent, #fbbf24);
+}
+
+/* Mejorar legibilidad de placeholders */
+::placeholder {
+  opacity: 0.6;
+  color: inherit;
+}
+
+/* Indicador de carga accesible */
+.projects-loading {
+  color: var(--color-text, #1f2937);
+}
+
+[data-theme='dark'] .projects-loading {
+  color: var(--color-text-light, #f9fafb);
+}
+
+/* Mensajes de error accesibles */
+.projects-error,
+.form__error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .projects-error,
+[data-theme='dark'] .form__error {
+  color: #fca5a5;
+}

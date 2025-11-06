@@ -11,11 +11,13 @@ import './css/themes.css';
 import './css/styles.css';
 import './sections/projects/projects-simple.css';
 import './sections/projects/projects-states.css';
+import './css/accessibility.css';
 import './css/responsive.css';
 
 // Import JavaScript modules with ES6 exports
 import { initializeThemeManager } from './js/theme-manager.ts';
 import { initializePortfolio } from './js/main.ts';
+import { initializeAccessibility } from './js/accessibility.ts';
 
 // Import other modules (will be converted to ES6 modules in future tasks)
 import './js/animation-controller.js';
@@ -30,6 +32,9 @@ import './sections/projects/projects-simple.ts';
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Feather Icons from npm package
   feather.replace();
+
+  // Initialize Accessibility features
+  initializeAccessibility();
 
   console.log('🚀 Portfolio initialized with Vite + ES6 Modules + npm dependencies');
 });

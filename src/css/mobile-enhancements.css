@@ -53,11 +53,22 @@
   /* Asegurar que el contenido no se desborde horizontalmente */
   body {
     overflow-x: hidden;
+    width: 100%;
   }
 
   .container {
     width: 100%;
     max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Asegurar que todas las secciones no desborden */
+  .section,
+  .about,
+  .about__content,
+  .about__highlights {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 

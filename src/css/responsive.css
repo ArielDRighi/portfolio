@@ -167,10 +167,13 @@
     margin: var(--spacing-xl) auto 0;
     max-width: 100%;
     justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-sm);
   }
 
   .highlight-item {
-    min-width: 90px;
+    width: 100%;
+    min-width: auto;
     padding: var(--spacing-md);
   }
 

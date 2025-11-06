@@ -231,7 +231,13 @@ a:hover {
   flex-direction: column;
   gap: 2px;
   position: relative;
-  left: -50px;
+  left: 0;
+}
+
+@media (min-width: 769px) {
+  .logo__content {
+    left: -50px;
+  }
 }
 
 .logo__name {
@@ -255,7 +261,13 @@ a:hover {
   list-style: none;
   gap: var(--spacing-xl);
   margin-right: auto;
-  margin-left: calc(var(--spacing-lg) + 240px);
+  margin-left: 0;
+}
+
+@media (min-width: 769px) {
+  .nav__menu {
+    margin-left: calc(var(--spacing-lg) + 240px);
+  }
 }
 
 .nav__link {
@@ -326,7 +338,9 @@ a:hover {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--spacing-md);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .about__image {
@@ -349,7 +363,13 @@ a:hover {
   border: 5px solid var(--color-accent);
   box-shadow: var(--shadow-lg);
   display: block;
-  margin: -70px auto var(--spacing-lg) -120px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+@media (min-width: 769px) {
+  .about__photo {
+    margin: -70px auto var(--spacing-lg) -120px;
+  }
 }
 
 .about__title {
@@ -463,7 +483,7 @@ a:hover {
   flex-direction: row;
   justify-content: center;
   gap: var(--spacing-lg);
-  margin: var(--spacing-xl) 0 0 -310px;
+  margin: var(--spacing-xl) auto 0;
   width: 100%;
   max-width: 320px;
   flex-wrap: wrap;
@@ -544,10 +564,14 @@ a:hover {
 
   .about__highlights {
     gap: var(--spacing-md);
+    margin: var(--spacing-lg) auto 0;
+    max-width: 100%;
+    flex-direction: column;
   }
 
   .highlight-item {
-    min-width: 100px;
+    width: 100%;
+    min-width: auto;
     padding: var(--spacing-md) var(--spacing-sm);
   }
 

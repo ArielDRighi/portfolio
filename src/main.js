@@ -23,7 +23,7 @@ import './js/performance-optimizer.js';
 import './js/cross-device-tester.js';
 import './js/experience.js';
 import './js/contact.js';
-import './sections/projects/projects-simple.js';
+import './sections/projects/projects-simple.ts';
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', () => {

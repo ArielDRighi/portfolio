@@ -2,7 +2,20 @@
  * Sistema Simplificado de Proyectos
  * Solo tarjetas que redirigen a GitHub al hacer click
  */
+import type { Project } from '../../types';
+
+interface TechIconMap {
+  [key: string]: string;
+}
+
+interface TechDisplayNames {
+  [key: string]: string;
+}
+
 class SimpleProjectsGrid {
+  private gridContainer: HTMLElement | null;
+  private projects: Project[];
+
   constructor() {
     console.log('SimpleProjectsGrid constructor called');
     this.gridContainer = document.getElementById('projectsGrid');
@@ -13,13 +26,13 @@ class SimpleProjectsGrid {
     }
   }
 
-  init() {
+  init(): void {
     console.log('Initializing simple projects grid');
     this.renderProjectCards();
     this.updateStats();
   }
 
-  getProjects() {
+  getProjects(): Project[] {
     return [
       {
         id: 1,
@@ -46,36 +59,38 @@ class SimpleProjectsGrid {
     ];
   }
 
-  renderProjectCards() {
+  renderProjectCards(): void {
     console.log('Rendering project cards');
+
+    if (!this.gridContainer) return;
 
     // Clear loading state
     this.gridContainer.innerHTML = '';
 
-    this.projects.forEach((project) => {
+    this.projects.forEach((project: Project) => {
       const card = this.createProjectCard(project);
-      this.gridContainer.appendChild(card);
+      this.gridContainer!.appendChild(card);
     });
 
     // Initialize Feather Icons for the new cards
-    if (typeof feather !== 'undefined') {
-      feather.replace();
+    if (typeof window !== 'undefined' && 'feather' in window) {
+      (window as any).feather.replace();
     }
 
     console.log('Projects rendered successfully');
   }
 
-  createProjectCard(project) {
+  createProjectCard(project: Project): HTMLAnchorElement {
     const card = document.createElement('a');
     card.className = 'project-card';
-    card.href = project.github || project.html_url || '#';
+    card.href = project.github || '#';
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
 
     // Crear mini logos de tecnologías
     const techIcons = project.technologies
       .slice(0, 6)
-      .map((tech) => {
+      .map((tech: string) => {
         const icon = this.getTechIcon(tech);
         return `<span class="tech-badge" data-tech="${tech}" title="${this.getTechDisplayName(tech)}">${icon}</span>`;
       })
@@ -92,9 +107,9 @@ class SimpleProjectsGrid {
     return card;
   }
 
-  getTechIcon(tech) {
+  getTechIcon(tech: string): string {
     // Usar los mismos iconos que en el Stack Tecnológico
-    const iconMap = {
+    const iconMap: TechIconMap = {
       javascript: 'javascript',
       typescript: 'typescript',
       python: 'python',
@@ -120,14 +135,15 @@ class SimpleProjectsGrid {
       ubuntu: 'ubuntu',
     };
 
-    const iconName = iconMap[tech.toLowerCase()] || tech.toLowerCase();
+    const techLower = tech.toLowerCase();
+    const iconName = iconMap[techLower] || techLower;
     return `<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/${iconName}.svg" alt="${this.getTechDisplayName(
       tech
     )}" class="tech-icon">`;
   }
 
-  getTechDisplayName(tech) {
-    const names = {
+  getTechDisplayName(tech: string): string {
+    const names: TechDisplayNames = {
       node: 'Node.js',
       express: 'Express',
       mongodb: 'MongoDB',
@@ -178,17 +194,17 @@ class SimpleProjectsGrid {
     }
   }
 
-  animateCounter(element, target) {
+  animateCounter(element: HTMLElement, target: number): void {
     const duration = 2000;
     const start = 0;
     const startTime = performance.now();
 
-    const updateCounter = (currentTime) => {
+    const updateCounter = (currentTime: number): void => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const current = Math.floor(start + (target - start) * progress);
 
-      element.textContent = current;
+      element.textContent = current.toString();
 
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
@@ -196,6 +212,13 @@ class SimpleProjectsGrid {
     };
 
     requestAnimationFrame(updateCounter);
+  }
+}
+
+// Extend Window interface to include custom property
+declare global {
+  interface Window {
+    simpleProjectsGrid?: SimpleProjectsGrid;
   }
 }
 

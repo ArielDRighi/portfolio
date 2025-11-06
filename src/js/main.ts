@@ -96,7 +96,10 @@ export class Navigation {
     });
 
     // Scroll effects
-    window.addEventListener('scroll', utils.debounce(() => this.handleScroll(), 100));
+    window.addEventListener(
+      'scroll',
+      utils.debounce(() => this.handleScroll(), 100)
+    );
 
     // Cerrar menú al hacer clic fuera
     document.addEventListener('click', (e: MouseEvent) => {
@@ -162,7 +165,9 @@ export class Navigation {
       const sectionId = section.getAttribute('id');
 
       if (scrollY >= sectionTop - CONFIG.scrollOffset && scrollY < sectionTop + sectionHeight) {
-        const correspondingLink = document.querySelector<HTMLElement>(`.nav__link[href="#${sectionId}"]`);
+        const correspondingLink = document.querySelector<HTMLElement>(
+          `.nav__link[href="#${sectionId}"]`
+        );
         if (correspondingLink) {
           this.updateActiveLink(correspondingLink);
         }
@@ -256,7 +261,9 @@ export class ContactForm {
     this.form.addEventListener('submit', (e: Event) => this.handleSubmit(e));
 
     // Validación en tiempo real
-    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea');
+    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+      'input, textarea'
+    );
     inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {
       input.addEventListener('blur', () => this.validateField(input));
       input.addEventListener('input', () => this.clearFieldError(input));
@@ -292,7 +299,9 @@ export class ContactForm {
   validateForm(): boolean {
     if (!this.form) return false;
 
-    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
+    const inputs = this.form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+      'input[required], textarea[required]'
+    );
     let isValid = true;
 
     inputs.forEach((input: HTMLInputElement | HTMLTextAreaElement) => {

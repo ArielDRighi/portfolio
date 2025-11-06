@@ -13,9 +13,13 @@ interface TechDisplayNames {
   [key: string]: string;
 }
 
+type LoadingState = 'idle' | 'loading' | 'success' | 'error';
+
 class SimpleProjectsGrid {
   private gridContainer: HTMLElement | null;
   private projects: Project[] = [];
+  private state: LoadingState = 'idle';
+  private errorMessage: string = '';
 
   constructor() {
     console.log('SimpleProjectsGrid constructor called');
@@ -28,16 +32,53 @@ class SimpleProjectsGrid {
 
   async init(): Promise<void> {
     console.log('Initializing simple projects grid');
-    await this.loadProjects();
-    this.renderProjectCards();
-    this.updateStats();
+    try {
+      this.setState('loading');
+      await this.loadProjects();
+      this.setState('success');
+      this.renderProjectCards();
+      await this.updateStats();
+    } catch (error) {
+      this.setState('error');
+      this.errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      this.renderError();
+    }
   }
 
-  async loadProjects(): Promise<void> {
+  private setState(state: LoadingState): void {
+    this.state = state;
+    console.log('State changed to:', state);
+  }
+
+  private async loadProjects(): Promise<void> {
     this.projects = await projectService.getProjects();
+    if (this.projects.length === 0) {
+      throw new Error('No se encontraron proyectos');
+    }
   }
 
-  renderProjectCards(): void {
+  private renderLoading(): void {
+    if (!this.gridContainer) return;
+    this.gridContainer.innerHTML = `
+      <div class="projects-loading">
+        <div class="spinner"></div>
+        <p>Cargando proyectos...</p>
+      </div>
+    `;
+  }
+
+  private renderError(): void {
+    if (!this.gridContainer) return;
+    this.gridContainer.innerHTML = `
+      <div class="projects-error">
+        <p>❌ Error al cargar proyectos</p>
+        <p class="error-message">${this.errorMessage}</p>
+        <button onclick="location.reload()" class="retry-button">Reintentar</button>
+      </div>
+    `;
+  }
+
+  private renderProjectCards(): void {
     console.log('Rendering project cards');
 
     if (!this.gridContainer) return;
@@ -58,7 +99,7 @@ class SimpleProjectsGrid {
     console.log('Projects rendered successfully');
   }
 
-  createProjectCard(project: Project): HTMLAnchorElement {
+  private createProjectCard(project: Project): HTMLAnchorElement {
     const card = document.createElement('a');
     card.className = 'project-card';
     card.href = project.github || '#';
@@ -85,7 +126,7 @@ class SimpleProjectsGrid {
     return card;
   }
 
-  getTechIcon(tech: string): string {
+  private getTechIcon(tech: string): string {
     // Usar los mismos iconos que en el Stack Tecnológico
     const iconMap: TechIconMap = {
       javascript: 'javascript',
@@ -117,10 +158,10 @@ class SimpleProjectsGrid {
     const iconName = iconMap[techLower] || techLower;
     return `<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/${iconName}.svg" alt="${this.getTechDisplayName(
       tech
-    )}" class="tech-icon">`;
+    )}" class="tech-icon" loading="lazy">`;
   }
 
-  getTechDisplayName(tech: string): string {
+  private getTechDisplayName(tech: string): string {
     const names: TechDisplayNames = {
       node: 'Node.js',
       express: 'Express',
@@ -143,7 +184,7 @@ class SimpleProjectsGrid {
     return names[tech] || tech.charAt(0).toUpperCase() + tech.slice(1);
   }
 
-  async updateStats(): Promise<void> {
+  private async updateStats(): Promise<void> {
     const totalProjects = document.getElementById('totalProjects');
     const totalTechnologies = document.getElementById('totalTechnologies');
     const totalStars = document.getElementById('totalStars');
@@ -168,7 +209,7 @@ class SimpleProjectsGrid {
     }
   }
 
-  animateCounter(element: HTMLElement, target: number): void {
+  private animateCounter(element: HTMLElement, target: number): void {
     const duration = 2000;
     const start = 0;
     const startTime = performance.now();
@@ -186,6 +227,20 @@ class SimpleProjectsGrid {
     };
 
     requestAnimationFrame(updateCounter);
+  }
+
+  /**
+   * Obtiene el estado actual de carga
+   */
+  getState(): LoadingState {
+    return this.state;
+  }
+
+  /**
+   * Obtiene los proyectos cargados
+   */
+  getProjects(): Project[] {
+    return [...this.projects];
   }
 }
 

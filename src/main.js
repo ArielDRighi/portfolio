@@ -10,6 +10,7 @@ import feather from 'feather-icons';
 import './css/themes.css';
 import './css/styles.css';
 import './sections/projects/projects-simple.css';
+import './sections/projects/projects-states.css';
 import './css/responsive.css';
 
 // Import JavaScript modules with ES6 exports

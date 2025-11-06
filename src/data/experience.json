@@ -1,0 +1,70 @@
+[
+  {
+    "id": 3,
+    "company": "Segimed",
+    "position": "Backend Developer (Internship)",
+    "startDate": "2025-06-01",
+    "endDate": null,
+    "current": true,
+    "description": "Segimed es una plataforma clínica que facilita el seguimiento de pacientes y la relación médico-paciente a distancia, manejo de historiales médicos, alertas en tiempo real, comunicación y agenda médica, con especial énfasis en seguridad, privacidad y disponibilidad. Mi participación contribuyó a estructurar la arquitectura backend para soportar múltiples clientes, integraciones críticas y garantizar el cumplimiento de estándares de seguridad en salud digital.",
+    "responsibilities": [
+      "Desarrollo de sistema multi-tenant para soportar múltiples médicos, pacientes y clínicas con aislamiento y seguridad entre clientes",
+      "Implementación de autenticación por JWT para usuarios diferenciados (médicos, pacientes) asegurando sesiones seguras y roles granulares",
+      "Integración con servicios externos Twilio para notificaciones, mensajes y llamadas en tiempo real",
+      "Integración con Cloudinary para manejo de almacenamiento de archivos médicos (imágenes, estudios médicos)",
+      "Mantenimiento y optimización de base de datos PostgreSQL mediante Prisma como ORM, incluyendo diseño de esquemas y migraciones",
+      "Aseguramiento de buenas prácticas de backend con enfoque en seguridad, escalabilidad y limpieza de código",
+      "Implementación de pruebas y documentación técnica para garantizar mantenibilidad del sistema"
+    ],
+    "technologies": [
+      "nestjs",
+      "typescript",
+      "postgresql",
+      "prisma",
+      "jwt",
+      "twilio",
+      "cloudinary",
+      "websockets"
+    ],
+    "achievements": [
+      "Estructuración exitosa de arquitectura backend multi-tenant para plataforma de salud digital con múltiples clientes",
+      "Implementación de estándares de seguridad críticos cumpliendo regulaciones del sector salud",
+      "Desarrollo de integraciones críticas con servicios externos garantizando comunicación en tiempo real",
+      "Optimización de base de datos para manejo eficiente de historiales médicos sensibles"
+    ]
+  },
+  {
+    "id": 4,
+    "company": "SwaplyAr",
+    "position": "Backend Developer (Internship)",
+    "startDate": "2025-01-01",
+    "endDate": "2025-06-30",
+    "current": false,
+    "description": "SwaplyAr es una plataforma fintech que facilita transacciones financieras digitales internacionales entre billeteras virtuales y cuentas bancarias, con foco en seguridad, transparencia, eficiencia y usabilidad. Mi participación contribuyó al desarrollo del backend encargado de manejar el registro, inicio de sesión, gestión de usuarios e integración con servicios externos, asegurando que la API sea mantenible y segura.",
+    "responsibilities": [
+      "Desarrollo de API REST para registro, autenticación y gestión de usuarios en plataforma fintech internacional",
+      "Implementación de sistema de autenticación seguro con JWT para transacciones financieras críticas",
+      "Integración con Google Sheets API para gestión y sincronización de datos financieros en tiempo real",
+      "Desarrollo de middleware de validación con express-validator para asegurar integridad de datos financieros",
+      "Implementación de documentación automática de API utilizando Swagger para facilitar integración con frontend",
+      "Participación en organización del backlog y priorización de tareas mediante metodologías ágiles",
+      "Seguimiento de metodología Gitflow para control de versiones y deployments seguros"
+    ],
+    "technologies": [
+      "nodejs",
+      "express",
+      "jwt",
+      "bcrypt",
+      "google-sheets",
+      "swagger",
+      "express-validator",
+      "git"
+    ],
+    "achievements": [
+      "Implementación exitosa de sistema de autenticación robusto para plataforma fintech con transacciones internacionales",
+      "Desarrollo de documentación automatizada con Swagger mejorando mantenibilidad de APIs críticas",
+      "Optimización de flujo de trabajo con metodología Gitflow garantizando deployments seguros",
+      "Gestión eficiente de datos financieros mediante Google Sheets API con validaciones robustas"
+    ]
+  }
+]

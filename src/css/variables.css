@@ -1,0 +1,109 @@
+/* ===================================
+   VARIABLES CSS GLOBALES
+   =================================== */
+:root {
+  /* Colores principales */
+  --color-primary: #2d3748;
+  --color-secondary: #e2e8f0;
+  --color-accent: #10b981;
+  --color-text: #2d3748;
+  --color-text-light: #718096;
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-accent-light: rgba(16, 185, 129, 0.1);
+  --color-background-transparent: rgba(248, 249, 250, 0.95);
+
+  /* Estado colores */
+  --color-success: #27ae60;
+  --color-success-light: rgba(39, 174, 96, 0.1);
+  --color-success-dark: #1e8449;
+  --color-error: #e74c3c;
+  --color-error-light: rgba(231, 76, 60, 0.1);
+  --color-error-dark: #c0392b;
+  --color-warning: #f39c12;
+  --color-warning-light: rgba(243, 156, 18, 0.1);
+  --color-warning-dark: #d68910;
+  --color-info: #3498db;
+  --color-info-light: rgba(52, 152, 219, 0.1);
+  --color-info-dark: #2980b9;
+
+  /* Colores para tema oscuro */
+  --color-dark-background: #111827;
+  --color-dark-surface: #1f2937;
+  --color-dark-text: #e2e8f0;
+  --color-dark-text-light: #9ca3af;
+  --color-dark-border: #374151;
+
+  /* Tipografía */
+  --font-primary: 'Roboto', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-size-2xs: 0.625rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Espaciado */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Transiciones */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Layout específico */
+  --about-photo-margin-top: -70px;
+  --about-photo-margin-left: -120px;
+  --about-highlights-margin-left: -120px;
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+}
+
+/* Tema oscuro */
+[data-theme='dark'] {
+  --color-background: var(--color-dark-background);
+  --color-surface: var(--color-dark-surface);
+  --color-text: var(--color-dark-text);
+  --color-text-light: var(--color-dark-text-light);
+  --color-border: var(--color-dark-border);
+  --color-background-transparent: rgba(17, 24, 39, 0.95);
+}

@@ -1,0 +1,68 @@
+{
+  "name": "portfolio",
+  "version": "2.0.0",
+  "description": "Professional portfolio for Ariel David Righi - Backend Developer",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write \"src/**/*.{js,ts,css,html}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,css,html}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArielDRighi/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "backend-developer",
+    "typescript",
+    "vite"
+  ],
+  "author": "Ariel David Righi",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ArielDRighi/portfolio/issues"
+  },
+  "homepage": "https://github.com/ArielDRighi/portfolio#readme",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write",
+      "vitest related --run"
+    ],
+    "*.{css,html,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@types/node": "^24.10.0",
+    "@vitest/coverage-v8": "^4.0.7",
+    "@vitest/ui": "^4.0.7",
+    "eslint": "^9.39.1",
+    "happy-dom": "^20.0.10",
+    "husky": "^9.1.7",
+    "jsdom": "^27.1.0",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.1",
+    "vitest": "^4.0.7"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2"
+  }
+}

@@ -1,11 +1,15 @@
 # 📖 README - Portfolio del Desarrollador Backend
 
 ![Portfolio Status](https://img.shields.io/badge/Status-Production%20Ready-success)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
+![Vite](https://img.shields.io/badge/Vite-7.2-646CFF)
+![Tests](https://img.shields.io/badge/Tests-40%20passing-success)
+![Coverage](<https://img.shields.io/badge/Coverage-100%25%20(services)-success>)
 ![Performance](https://img.shields.io/badge/Lighthouse-92%2F100-brightgreen)
 ![Mobile Friendly](https://img.shields.io/badge/Mobile-Friendly-success)
 
-> 🎯 **Portfolio profesional** optimizado para desarrolladores backend con enfoque en experiencia de usuario, performance y accesibilidad.
+> 🎯 **Portfolio profesional moderno** con arquitectura TypeScript + Vite, testing comprehensivo y características de accesibilidad avanzadas.
 
 ## 🚀 Demo en Vivo
 
@@ -56,21 +60,37 @@
 - ♿ **ARIA labels** y estructura semántica
 - 🤖 **Sitemap.xml** y robots.txt optimizados
 
-## 🏗️ Arquitectura Técnica
+## 🏗️ Arquitectura Técnica Moderna
+
+### 🎯 Tech Stack
 
 ```
-🎯 Frontend Stack:
-├── 🌐 HTML5 Semántico
-├── 🎨 CSS3 (Grid, Flexbox, Custom Properties)
-├── ⚡ JavaScript ES6+ (Modules, Classes, Async/Await)
-├── 🔧 Service Worker (PWA capabilities)
-└── 📱 Progressive Web App
+📦 Build System:
+├── ⚡ Vite 7.2 (Lightning-fast HMR)
+├── 📘 TypeScript 5.9 (Strict mode)
+├── 🎨 CSS Modules & Modern CSS
+└── 🔧 ES6+ Modules
 
 🧪 Testing & Quality:
-├── 🔍 Automated Testing Suite
-├── ♿ Accessibility Validation
-├── 📊 Performance Monitoring
-└── 🌐 Cross-Browser Testing
+├── ✅ Vitest (Unit & Integration tests)
+├── � @vitest/coverage-v8 (100% service layer)
+├── 🔍 ESLint + Prettier (Code quality)
+├── � TypeScript strict mode (Type safety)
+└── ♿ Accessibility testing tools
+
+🏛️ Architecture:
+├── 🎯 Service Layer (Data management)
+├── 🧩 Component-based (Modular)
+├── � Lazy Loading (Performance)
+├── 🎨 CSS-in-TS (Type-safe styles)
+└── 🔄 State Management (Loading/Error states)
+
+🚀 Features:
+├── 🌐 Progressive Web App
+├── ♿ WCAG 2.1 AA Compliance
+├── 🌓 Theme System (Dark/Light)
+├── ⌨️ Keyboard Navigation
+└── 📱 Responsive Design
 
 🚀 DevOps & Deploy:
 ├── 📦 GitHub Pages
@@ -81,38 +101,56 @@
 
 ## 🛠️ Instalación y Configuración
 
-### Opción 1: Fork del Repositorio
+### Prerequisites
+
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+
+### Quick Start
 
 ```bash
-# 1. Fork este repositorio en GitHub
-# 2. Clona tu fork
-git clone https://github.com/TU-USUARIO/portfolio.git
+# 1. Clona el repositorio
+git clone https://github.com/ArielDRighi/portfolio.git
 cd portfolio
 
-# 3. Personaliza el contenido
-# - Edita index.html con tu información
-# - Actualiza data/projects.json
-# - Modifica data/experience.json
+# 2. Instala dependencias
+npm install
 
-# 4. Configura GitHub Pages
-# Ir a Settings > Pages > Source: Deploy from branch: main
+# 3. Inicia el servidor de desarrollo
+npm run dev
+# ➜ Local: http://localhost:3000/
+
+# 4. Build para producción
+npm run build
+
+# 5. Preview del build
+npm run preview
 ```
 
-### Opción 2: Uso Local
+### Scripts Disponibles
 
 ```bash
-# Clona el repositorio
-git clone https://github.com/TU-USUARIO/portfolio.git
-cd portfolio
+npm run dev          # Inicia Vite dev server con HMR
+npm run build        # Build optimizado para producción
+npm run preview      # Preview del build de producción
+npm run type-check   # Verifica tipos de TypeScript
+npm run lint         # Ejecuta ESLint
+npm run format       # Formatea código con Prettier
+npm run test         # Ejecuta tests en modo watch
+npm run test:run     # Ejecuta tests una vez
+npm run test:ui      # Abre UI de Vitest
+npm run test:coverage # Genera reporte de cobertura
+```
 
-# Servidor local (cualquier opción)
-python -m http.server 8000
-# o
-npx live-server
-# o
-npx serve .
+### Desarrollo
 
-# Abrir http://localhost:8000
+```bash
+# Development con hot reload
+npm run dev
+
+# El servidor se recargará automáticamente al guardar cambios
+# TypeScript se compila on-the-fly
+# CSS se actualiza sin recargar la página
 ```
 
 ## 🎯 Personalización Rápida
@@ -160,50 +198,75 @@ npx serve .
 }
 ```
 
-## 🧪 Testing y Validación
+## 🧪 Testing y Calidad
 
-### Tests Automatizados
+### Test Suite
 
-```javascript
-// En consola del navegador
-runTests(); // Suite completa
+```bash
+# Ejecutar todos los tests
+npm run test
 
-// Tests específicos
-runTest("responsive"); // Diseño responsivo
-runTest("theme"); // Sistema de temas
-runTest("animation"); // Animaciones
-runTest("accessibility"); // Accesibilidad
-runTest("performance"); // Performance
+# Tests con UI interactiva
+npm run test:ui
 
-// Reportes detallados
-getPerformanceReport();
-getCrossDeviceReport();
+# Una sola ejecución
+npm run test:run
+
+# Con reporte de cobertura
+npm run test:coverage
 ```
+
+### Cobertura de Tests
+
+```
+File                | % Stmts | % Branch | % Funcs | % Lines |
+--------------------|---------|----------|---------|---------|
+All files           |   27.07 |     25.6 |   32.43 |    25.6 |
+ services           |     100 |    91.66 |     100 |     100 |
+  ProjectService.ts |     100 |    91.66 |     100 |     100 |
+```
+
+- ✅ 40 tests pasando
+- ✅ 100% cobertura en service layer
+- ✅ Unit tests para utils
+- ✅ Integration tests para ProjectService
 
 ### Métricas de Calidad
 
-| Aspecto          | Score   | Status       |
-| ---------------- | ------- | ------------ |
-| 🚀 Performance   | 92/100  | ✅ Excelente |
-| ♿ Accessibility | 95/100  | ✅ Excelente |
-| 🔍 SEO           | 100/100 | ✅ Perfecto  |
-| 📱 Responsive    | 100%    | ✅ Perfecto  |
+| Aspecto          | Score       | Status       |
+| ---------------- | ----------- | ------------ |
+| 🚀 Performance   | 92/100      | ✅ Excelente |
+| ♿ Accessibility | WCAG 2.1 AA | ✅ Compliant |
+| 🔍 SEO           | 100/100     | ✅ Perfecto  |
+| 📱 Responsive    | 100%        | ✅ Perfecto  |
+| 📘 TypeScript    | Strict      | ✅ Enabled   |
+| 🧪 Test Coverage | 100% (svc)  | ✅ High      |
 
-## 📊 Performance Benchmarks
+## 📊 Performance
 
-### Core Web Vitals
+### Build Output
 
-- **LCP (Largest Contentful Paint):** 1.8s ⚡
-- **FCP (First Contentful Paint):** 1.2s ⚡
-- **CLS (Cumulative Layout Shift):** 0.05 ✅
-- **Bundle Size:** 320KB total 📦
+```
+dist/index.html                 2.25 kB │ gzip:  0.98 kB
+dist/assets/index-[hash].js   164.12 kB │ gzip: 52.48 kB
+dist/assets/index-[hash].css   62.91 kB │ gzip: 12.35 kB
+```
 
-### Compatibilidad
+### Optimizaciones
 
-- ✅ Chrome 90+ (98% usuarios)
-- ✅ Firefox 88+ (95% usuarios)
-- ✅ Safari 14+ (92% usuarios)
-- ✅ Edge 90+ (90% usuarios)
+- ✅ Lazy loading en imágenes
+- ✅ Code splitting con Vite
+- ✅ Tree shaking automático
+- ✅ CSS minificado
+- ✅ Caché de ProjectService
+- ✅ Debounce en eventos
+
+### Navegadores Soportados
+
+- ✅ Chrome/Edge 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ ES2020 target
 
 ## 🎨 Capturas de Pantalla
 
@@ -219,9 +282,21 @@ getCrossDeviceReport();
 
 ![Mobile View](https://via.placeholder.com/400x600/3b82f6/ffffff?text=Portfolio+Mobile)
 
-## 🔧 Configuración Avanzada
+## � Despliegue
 
-### GitHub Pages Deployment
+### Build de Producción
+
+```bash
+# Generar build optimizado
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+Los archivos generados estarán en `/dist` listos para desplegar.
+
+### GitHub Pages (Recomendado)
 
 ```yaml
 # .github/workflows/deploy.yml
@@ -230,16 +305,26 @@ on:
   push:
     branches: [main]
 jobs:
-  deploy:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:run
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./dist
 ```
+
+### Otras Opciones
+
+- **Netlify/Vercel:** Conectar repositorio, detecta Vite automáticamente
+- **FTP tradicional:** Subir contenido de `/dist` al servidor
 
 ### Custom Domain
 
@@ -267,33 +352,86 @@ echo "tu-dominio.com" > CNAME
 ¡Las contribuciones son bienvenidas! Por favor:
 
 1. **Fork** el proyecto
-2. **Crea** una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. **Abre** un Pull Request
+2. **Crea** una rama (`git checkout -b feature/AmazingFeature`)
+3. **Commit** con convenciones (`git commit -m 'feat: add amazing feature'`)
+4. **Ejecuta** tests (`npm run test:run`)
+5. **Push** y abre Pull Request
 
-### Guidelines
+### Conventional Commits
 
-- ✅ Mantén el código limpio y documentado
-- ✅ Sigue las convenciones de naming existentes
-- ✅ Añade tests para nuevas funcionalidades
-- ✅ Actualiza la documentación según sea necesario
+```
+feat: nueva funcionalidad
+fix: corrección de bug
+refactor: cambio de código sin afectar funcionalidad
+test: agregar o modificar tests
+docs: cambios en documentación
+chore: tareas de mantenimiento
+perf: mejoras de performance
+```
+
+### Quality Checks
+
+```bash
+npm run type-check  # TypeScript sin errores
+npm run lint        # ESLint sin warnings
+npm run test:run    # Todos los tests pasando
+npm run build       # Build exitoso
+```
+
+## �️ Arquitectura del Proyecto
+
+```
+portfolio/
+├── src/
+│   ├── js/
+│   │   ├── main.ts              # Entry point, core functionality
+│   │   ├── accessibility.ts     # WCAG 2.1 features
+│   │   ├── theme-manager.ts     # Theme system
+│   │   └── __tests__/           # Unit tests
+│   ├── services/
+│   │   ├── ProjectService.ts    # Data service layer
+│   │   └── __tests__/           # Service tests
+│   ├── sections/
+│   │   └── projects/
+│   │       ├── projects-simple.ts
+│   │       └── projects-states.css
+│   ├── css/
+│   │   ├── variables.css        # Design tokens
+│   │   ├── accessibility.css    # A11y styles
+│   │   └── themes.css           # Light/dark themes
+│   └── types/
+│       └── index.d.ts           # TypeScript interfaces
+├── data/
+│   ├── projects.json            # Project data
+│   └── experience.json          # Experience data
+├── vite.config.js               # Vite + Vitest config
+├── tsconfig.json                # TypeScript config
+└── package.json                 # Dependencies & scripts
+```
 
 ## 📈 Roadmap
 
-### 🎯 Versión 1.1 (Q4 2024)
+### ✅ Versión 2.0 (Actual)
 
-- [ ] 🔄 Progressive Web App completa
-- [ ] 🌐 Internacionalización (ES/EN)
-- [ ] 📊 Analytics dashboard
-- [ ] 🤖 Chatbot de contacto
+- [x] TypeScript + Vite migration
+- [x] Service layer architecture
+- [x] Comprehensive test suite
+- [x] WCAG 2.1 AA compliance
+- [x] Performance optimizations
 
-### 🚀 Versión 2.0 (Q1 2025)
+### 🎯 Versión 2.1 (Próximo)
 
-- [ ] 🎮 Micro-interacciones avanzadas
-- [ ] 🔍 Búsqueda en proyectos
-- [ ] 📱 App móvil React Native
-- [ ] 🔗 CMS headless integration
+- [ ] GitHub Actions CI/CD
+- [ ] Pre-commit hooks (Husky)
+- [ ] Aumentar cobertura a >70%
+- [ ] E2E tests con Playwright
+
+### 🚀 Futuro
+
+- [ ] Internacionalización (i18n)
+- [ ] CMS integration
+- [ ] Analytics dashboard
+- [ ] PWA avanzado
 
 ## 📞 Contacto y Soporte
 

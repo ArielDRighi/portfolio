@@ -4,6 +4,7 @@
 /* Import theme system */
 @import url('themes.css');
 @import url('responsive-optimized.css');
+@import url('mobile-enhancements.css');
 @import url('animations.css');
 
 /* ===================================

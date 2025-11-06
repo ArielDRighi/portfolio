@@ -1,5 +1,5 @@
 /* ===================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - Mobile First
    =================================== */
 
 /* ===================================
@@ -21,14 +21,21 @@
 
   /* About section */
   .about__content {
-    grid-template-columns: 250px 1fr;
-    gap: var(--spacing-xl);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    text-align: center;
   }
 
   .about__photo {
     width: 200px;
     height: 200px;
-    object-position: center 30%; /* Mantener el mismo centrado en mobile */
+    margin: 0 auto var(--spacing-lg);
+    object-position: center 20%;
+  }
+
+  .about__highlights {
+    margin: var(--spacing-xl) auto 0;
+    justify-content: center;
   }
 
   /* Skills */
@@ -37,9 +44,22 @@
     gap: var(--spacing-lg);
   }
 
+  .tech-stack {
+    flex-direction: column;
+  }
+
+  .tech-category {
+    width: 100%;
+  }
+
   /* Contact */
   .contact__content {
     gap: var(--spacing-2xl);
+  }
+
+  /* Contact Links Grid */
+  .contact__links {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -125,7 +145,8 @@
   .about__photo {
     width: 180px;
     height: 180px;
-    object-position: center 30%;
+    object-position: center 20%;
+    margin: 0 auto var(--spacing-lg);
   }
 
   .about__title {
@@ -139,6 +160,28 @@
   .about__description {
     font-size: var(--font-size-base);
     text-align: left;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .about__highlights {
+    margin: var(--spacing-xl) auto 0;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .highlight-item {
+    min-width: 90px;
+    padding: var(--spacing-md);
+  }
+
+  /* Logo nav responsive */
+  .logo__content {
+    left: 0;
+    transform: none;
+  }
+
+  .nav__menu {
+    margin-left: 0;
   }
 
   /* Skills móvil */
@@ -153,6 +196,31 @@
 
   .skills__list {
     justify-content: center;
+  }
+
+  /* Tech Stack Mobile */
+  .tech-stack {
+    flex-direction: column;
+  }
+
+  .tech-category {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .tech-grid {
+    gap: var(--spacing-md);
+  }
+
+  .tech-item {
+    min-width: 70px;
+    max-width: 85px;
+    padding: var(--spacing-sm);
+  }
+
+  .tech-icon {
+    width: 28px;
+    height: 28px;
   }
 
   /* ===================================
@@ -257,16 +325,29 @@
     gap: var(--spacing-xl);
   }
 
-  .contact__description {
-    font-size: var(--font-size-base);
+  .contact__links {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: none !important;
   }
 
   .contact__link {
-    padding: var(--spacing-sm);
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-lg);
   }
 
   .contact__icon {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-2xl);
+    margin: 0 auto var(--spacing-sm);
+  }
+
+  .contact__text {
+    width: 100%;
+    align-items: center;
+  }
+
+  .contact__description {
+    font-size: var(--font-size-base);
   }
 
   .form {
@@ -300,7 +381,8 @@
   .about__photo {
     width: 150px;
     height: 150px;
-    object-position: center 30%;
+    object-position: center 20%;
+    margin: 0 auto var(--spacing-md);
   }
 
   .about__title {
@@ -309,6 +391,25 @@
 
   .about__name {
     font-size: var(--font-size-lg);
+  }
+
+  .about__description {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .about__highlights {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .highlight-item {
+    width: 100%;
+    min-width: auto;
+    padding: var(--spacing-sm);
+  }
+
+  .highlight-number {
+    font-size: var(--font-size-xl);
   }
 
   /* Proyectos móvil pequeño */

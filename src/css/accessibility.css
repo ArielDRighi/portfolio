@@ -122,13 +122,11 @@ button:disabled {
 }
 
 /* Estados hover accesibles */
-.tech-item:hover,
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.tech-item:focus-within,
 .project-card:focus-within {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);

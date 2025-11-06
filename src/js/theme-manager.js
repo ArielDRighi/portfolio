@@ -2,7 +2,7 @@
  * Theme Toggle System
  * Maneja el cambio entre tema claro y oscuro con persistencia
  */
-class ThemeManager {
+export class ThemeManager {
   constructor() {
     this.themes = {
       light: {
@@ -282,11 +282,17 @@ class ThemeManager {
 }
 
 // Inicializar automáticamente cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-  window.themeManager = new ThemeManager();
-});
+export function initializeThemeManager() {
+  return new ThemeManager();
+}
 
-// Exportar para uso en módulos
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", () => {
+    window.themeManager = initializeThemeManager();
+  });
+}
+
+// Legacy support
 if (typeof module !== "undefined" && module.exports) {
   module.exports = ThemeManager;
 }

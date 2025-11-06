@@ -6,7 +6,7 @@
 // ===================================
 // CONFIGURACIÓN Y CONSTANTES
 // ===================================
-const CONFIG = {
+export const CONFIG = {
   animationDuration: 300,
   scrollOffset: 80,
   debounceDelay: 250,
@@ -15,7 +15,7 @@ const CONFIG = {
 // ===================================
 // UTILIDADES
 // ===================================
-const utils = {
+export const utils = {
   // Debounce function para optimizar eventos
   debounce(func, wait) {
     let timeout;
@@ -59,7 +59,7 @@ const utils = {
 // ===================================
 // NAVEGACIÓN
 // ===================================
-class Navigation {
+export class Navigation {
   constructor() {
     this.navToggle = document.getElementById("navToggle");
     this.navMenu = document.querySelector(".nav__menu");
@@ -161,7 +161,7 @@ class Navigation {
 // ===================================
 // ANIMACIONES DE ENTRADA
 // ===================================
-class AnimationManager {
+export class AnimationManager {
   constructor() {
     this.observedElements = new Set();
     this.init();
@@ -214,7 +214,7 @@ class AnimationManager {
 // ===================================
 // FORMULARIO DE CONTACTO
 // ===================================
-class ContactForm {
+export class ContactForm {
   constructor() {
     this.form = document.getElementById("contactForm");
     this.init();
@@ -394,20 +394,16 @@ class ContactForm {
 // ===================================
 // INICIALIZACIÓN
 // ===================================
-document.addEventListener("DOMContentLoaded", () => {
-  // Inicializar iconos Feather
-  if (typeof feather !== "undefined") {
-    feather.replace();
-  }
-
+export function initializePortfolio() {
   // Inicializar componentes
   new Navigation();
   new AnimationManager();
   new ContactForm();
 
   console.log("Portfolio inicializado correctamente");
-});
+}
 
-// Exportar para uso en otros archivos
-window.PortfolioUtils = utils;
-window.PortfolioConfig = CONFIG;
+// Auto-initialize on DOMContentLoaded
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", initializePortfolio);
+}

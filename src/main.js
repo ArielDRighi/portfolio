@@ -6,7 +6,8 @@
 // Import external dependencies
 import feather from 'feather-icons';
 
-// Import stylesheets
+// Import stylesheets (order matters!)
+import './css/variables.css';
 import './css/themes.css';
 import './css/styles.css';
 import './sections/projects/projects-simple.css';
@@ -16,6 +17,7 @@ import './css/responsive.css';
 
 // Import JavaScript modules
 import { initializeAccessibility } from './js/accessibility.ts';
+import './js/theme-manager.ts'; // Auto-inicializa el theme manager
 
 // Import other modules (will be converted to ES6 modules in future tasks)
 import './js/animation-controller.js';

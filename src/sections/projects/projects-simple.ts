@@ -3,6 +3,7 @@
  * Solo tarjetas que redirigen a GitHub al hacer click
  */
 import type { Project } from '../../types';
+import { projectService } from '../../services/ProjectService';
 
 interface TechIconMap {
   [key: string]: string;
@@ -14,49 +15,26 @@ interface TechDisplayNames {
 
 class SimpleProjectsGrid {
   private gridContainer: HTMLElement | null;
-  private projects: Project[];
+  private projects: Project[] = [];
 
   constructor() {
     console.log('SimpleProjectsGrid constructor called');
     this.gridContainer = document.getElementById('projectsGrid');
-    this.projects = this.getProjects();
 
     if (this.gridContainer) {
       this.init();
     }
   }
 
-  init(): void {
+  async init(): Promise<void> {
     console.log('Initializing simple projects grid');
+    await this.loadProjects();
     this.renderProjectCards();
     this.updateStats();
   }
 
-  getProjects(): Project[] {
-    return [
-      {
-        id: 1,
-        name: 'Ecommerce Monolith Foundation',
-        type: 'Monolith',
-        description:
-          'Backend monolítico de nivel empresarial para e-commerce. Optimización extrema con 34 índices estratégicos en PostgreSQL (mejoras del 85-94%). Suite comprehensiva de 514 pruebas (74.69% cobertura). Pipeline CI/CD profesional con quality gates y escaneo de seguridad.',
-        technologies: ['node', 'typescript', 'postgresql', 'docker'],
-        github: 'https://github.com/ArielDRighi/ecommerce-monolith-foundation',
-        status: 'completed',
-        stats: { stars: 3, forks: 0, commits: 66 },
-      },
-      {
-        id: 2,
-        name: 'Ecommerce Async Resilient System',
-        type: 'Microservices',
-        description:
-          'Sistema asíncrono de procesamiento de órdenes con arquitectura event-driven. Saga Pattern con compensación automática, 4 colas especializadas (Bull + Redis). Circuit Breaker + Retry + Idempotency. Performance: de 5 segundos a 100 milisegundos. 1,187 tests unitarios + 262 E2E (72% coverage).',
-        technologies: ['node', 'typescript', 'postgresql', 'redis', 'docker'],
-        github: 'https://github.com/ArielDRighi/ecommerce-async-resilient-system',
-        status: 'completed',
-        stats: { stars: 0, forks: 0, commits: 235 },
-      },
-    ];
+  async loadProjects(): Promise<void> {
+    this.projects = await projectService.getProjects();
   }
 
   renderProjectCards(): void {
@@ -165,32 +143,28 @@ class SimpleProjectsGrid {
     return names[tech] || tech.charAt(0).toUpperCase() + tech.slice(1);
   }
 
-  updateStats() {
+  async updateStats(): Promise<void> {
     const totalProjects = document.getElementById('totalProjects');
     const totalTechnologies = document.getElementById('totalTechnologies');
     const totalStars = document.getElementById('totalStars');
     const totalCommits = document.getElementById('totalCommits');
 
+    const stats = await projectService.getTotalStats();
+
     if (totalProjects) {
-      this.animateCounter(totalProjects, this.projects.length);
+      this.animateCounter(totalProjects, stats.totalProjects);
     }
 
     if (totalTechnologies) {
-      const techCount = [...new Set(this.projects.flatMap((p) => p.technologies))].length;
-      this.animateCounter(totalTechnologies, techCount);
+      this.animateCounter(totalTechnologies, stats.totalTechnologies);
     }
 
     if (totalStars) {
-      const starsCount = this.projects.reduce((sum, p) => sum + (p.stats ? p.stats.stars : 0), 0);
-      this.animateCounter(totalStars, starsCount);
+      this.animateCounter(totalStars, stats.totalStars);
     }
 
     if (totalCommits) {
-      const commitsCount = this.projects.reduce(
-        (sum, p) => sum + (p.stats ? p.stats.commits : 0),
-        0
-      );
-      this.animateCounter(totalCommits, commitsCount);
+      this.animateCounter(totalCommits, stats.totalCommits);
     }
   }
 

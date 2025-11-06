@@ -325,9 +325,10 @@
     gap: var(--spacing-xl);
   }
 
-  .contact__links {
-    grid-template-columns: 1fr !important;
-    grid-template-areas: none !important;
+  .contact__content .contact__links {
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+    gap: var(--spacing-md);
   }
 
   .contact__link {

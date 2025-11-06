@@ -2,7 +2,39 @@
  * Theme Toggle System
  * Maneja el cambio entre tema claro y oscuro con persistencia
  */
+type ThemeName = 'light' | 'dark';
+
+interface ThemeConfig {
+  name: ThemeName;
+  label: string;
+  icon: string;
+}
+
+interface ThemeVariables {
+  primary: string;
+  secondary: string;
+  background: string;
+  text: string;
+  accent: string;
+}
+
+interface ThemeChangedEvent extends CustomEvent {
+  detail: {
+    theme: ThemeName;
+    previousTheme: ThemeName;
+  };
+}
+
+declare global {
+  interface Window {
+    themeManager?: ThemeManager;
+  }
+}
+
 export class ThemeManager {
+  private themes: Record<ThemeName, ThemeConfig>;
+  private currentTheme: ThemeName;
+
   constructor() {
     this.themes = {
       light: {
@@ -24,7 +56,7 @@ export class ThemeManager {
   /**
    * Inicializa el sistema de temas
    */
-  init() {
+  init(): void {
     this.createThemeButton();
     this.applyTheme(this.currentTheme);
     this.setupEventListeners();
@@ -34,7 +66,7 @@ export class ThemeManager {
   /**
    * Configura el botón de toggle de tema existente
    */
-  createThemeButton() {
+  createThemeButton(): void {
     // Buscar el botón existente en el HTML
     const existingButton = document.getElementById('themeToggle');
     if (existingButton) {
@@ -68,7 +100,7 @@ export class ThemeManager {
   /**
    * Configura los event listeners
    */
-  setupEventListeners() {
+  setupEventListeners(): void {
     const themeButton =
       document.getElementById('themeToggle') || document.getElementById('theme-toggle');
     if (themeButton) {
@@ -95,8 +127,8 @@ export class ThemeManager {
   /**
    * Cambia entre temas
    */
-  toggleTheme() {
-    const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+  toggleTheme(): void {
+    const newTheme: ThemeName = this.currentTheme === 'light' ? 'dark' : 'light';
     this.applyTheme(newTheme);
     this.saveTheme(newTheme);
 
@@ -114,7 +146,7 @@ export class ThemeManager {
   /**
    * Aplica un tema específico
    */
-  applyTheme(themeName) {
+  applyTheme(themeName: ThemeName): void {
     const root = document.documentElement;
 
     // Remover tema anterior
@@ -138,7 +170,7 @@ export class ThemeManager {
   /**
    * Actualiza el contenido del botón (solo icono)
    */
-  updateButtonContent(button) {
+  updateButtonContent(button: HTMLElement): void {
     const icon = button.querySelector('.theme-toggle__icon');
 
     if (icon) {
@@ -164,8 +196,8 @@ export class ThemeManager {
   /**
    * Actualiza el color del tema para móviles
    */
-  updateMetaThemeColor(themeName) {
-    let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  updateMetaThemeColor(themeName: ThemeName): void {
+    let themeColorMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
 
     if (!themeColorMeta) {
       themeColorMeta = document.createElement('meta');
@@ -173,7 +205,7 @@ export class ThemeManager {
       document.head.appendChild(themeColorMeta);
     }
 
-    const colors = {
+    const colors: Record<ThemeName, string> = {
       light: '#ffffff',
       dark: '#1a1a1a',
     };
@@ -184,11 +216,11 @@ export class ThemeManager {
   /**
    * Carga el tema guardado
    */
-  loadSavedTheme() {
+  loadSavedTheme(): ThemeName {
     try {
       const saved = localStorage.getItem('theme-preference');
-      if (saved && this.themes[saved]) {
-        return saved;
+      if (saved && (saved === 'light' || saved === 'dark')) {
+        return saved as ThemeName;
       }
     } catch (error) {
       console.warn('Error loading saved theme:', error);
@@ -201,7 +233,7 @@ export class ThemeManager {
   /**
    * Guarda el tema actual
    */
-  saveTheme(themeName) {
+  saveTheme(themeName: ThemeName): void {
     try {
       localStorage.setItem('theme-preference', themeName);
     } catch (error) {
@@ -212,7 +244,7 @@ export class ThemeManager {
   /**
    * Obtiene el tema preferido del sistema
    */
-  getSystemTheme() {
+  getSystemTheme(): ThemeName {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
@@ -222,21 +254,21 @@ export class ThemeManager {
   /**
    * Verifica si el usuario tiene una preferencia guardada
    */
-  hasUserPreference() {
+  hasUserPreference(): boolean {
     return localStorage.getItem('theme-preference') !== null;
   }
 
   /**
    * Obtiene el tema actual
    */
-  getCurrentTheme() {
+  getCurrentTheme(): ThemeName {
     return this.currentTheme;
   }
 
   /**
    * Establece un tema específico
    */
-  setTheme(themeName) {
+  setTheme(themeName: ThemeName): void {
     if (this.themes[themeName]) {
       this.applyTheme(themeName);
       this.saveTheme(themeName);
@@ -247,7 +279,7 @@ export class ThemeManager {
   /**
    * Obtiene las variables CSS del tema actual
    */
-  getThemeVariables() {
+  getThemeVariables(): ThemeVariables {
     const root = document.documentElement;
     const computedStyle = getComputedStyle(root);
 
@@ -263,14 +295,14 @@ export class ThemeManager {
   /**
    * Verifica si el tema oscuro está activo
    */
-  isDarkTheme() {
+  isDarkTheme(): boolean {
     return this.currentTheme === 'dark';
   }
 
   /**
    * Destructor
    */
-  destroy() {
+  destroy(): void {
     const themeButton =
       document.getElementById('themeToggle') || document.getElementById('theme-toggle');
     if (themeButton) {
@@ -285,7 +317,7 @@ export class ThemeManager {
 }
 
 // Inicializar automáticamente cuando el DOM esté listo
-export function initializeThemeManager() {
+export function initializeThemeManager(): ThemeManager {
   return new ThemeManager();
 }
 

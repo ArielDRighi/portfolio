@@ -10,9 +10,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "lint": "eslint src/**/*.js",
-    "format": "prettier --write \"src/**/*.{js,css,html}\"",
-    "format:check": "prettier --check \"src/**/*.{js,css,html}\"",
+    "format": "prettier --write \"src/**/*.{js,ts,css,html}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,css,html}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,8 +34,10 @@
   },
   "homepage": "https://github.com/ArielDRighi/portfolio#readme",
   "devDependencies": {
+    "@types/node": "^24.10.0",
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
     "vite": "^7.2.1"
   },
   "dependencies": {

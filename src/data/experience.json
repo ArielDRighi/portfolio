@@ -1,110 +1,4 @@
-[[
-
-  {  {
-
-    "id": 1,    "id": 1,
-
-    "company": "GesDev",    "company": "Segimed",
-
-    "position": "Backend Developer",    "position": "Backend Developer (Internship)",
-
-    "startDate": "2025-06-17",    "startDate": "2025-06-01",
-
-    "endDate": "2025-09-15",    "endDate": null,
-
-    "current": false,    "current": true,
-
-    "description": "Desarrollo completo de un sistema de gestión empresarial integral para empresas de servicios con más de 400 empleados y 20+ años de trayectoria. El sistema automatiza y optimiza procesos críticos del negocio, desde recursos humanos hasta operaciones complejas, con arquitectura enterprise y automatización avanzada.",    "description": "Segimed es una plataforma clínica que facilita el seguimiento de pacientes y la relación médico-paciente a distancia, manejo de historiales médicos, alertas en tiempo real, comunicación y agenda médica, con especial énfasis en seguridad, privacidad y disponibilidad. Mi participación contribuyó a estructurar la arquitectura backend para soportar múltiples clientes, integraciones críticas y garantizar el cumplimiento de estándares de seguridad en salud digital.",
-
-    "responsibilities": [    "responsibilities": [
-
-      "Desarrollo de sistema empresarial integral con 23 módulos funcionales interconectados utilizando NestJS y TypeScript",      "Desarrollo de sistema multi-tenant para soportar múltiples médicos, pacientes y clínicas con aislamiento y seguridad entre clientes",
-
-      "Implementación de arquitectura enterprise con 150+ endpoints REST API documentados con Swagger automático",      "Implementación de autenticación por JWT para usuarios diferenciados (médicos, pacientes) asegurando sesiones seguras y roles granulares",
-
-      "Diseño y desarrollo de base de datos PostgreSQL con 25+ tablas y relaciones complejas para gestión empresarial",      "Integración con servicios externos Twilio para notificaciones, mensajes y llamadas en tiempo real",
-
-      "Desarrollo de sistema de asignación inteligente de recursos (empleados, vehículos, herramientas) por servicio",      "Integración con Cloudinary para manejo de almacenamiento de archivos médicos (imágenes, estudios médicos)",
-
-      "Implementación de generación automática de tareas que crea 300+ tareas al crear un servicio contractual",      "Mantenimiento y optimización de base de datos PostgreSQL mediante Prisma como ORM, incluyendo diseño de esquemas y migraciones",
-
-      "Creación de sistema multi-depósito con gestión completa de inventario y transferencias en tiempo real",      "Aseguramiento de buenas prácticas de backend con enfoque en seguridad, escalabilidad y limpieza de código",
-
-      "Desarrollo de CRM completo con gestión integral de clientes, múltiples ubicaciones y contratos dinámicos",      "Implementación de pruebas y documentación técnica para garantizar mantenibilidad del sistema"
-
-      "Implementación de scheduler robusto con cron jobs para contratos, licencias y reportes programados"    ],
-
-    ],    "technologies": ["nestjs", "typescript", "postgresql", "prisma", "jwt", "twilio", "cloudinary", "websockets"],
-
-    "technologies": ["nestjs", "typescript", "postgresql", "typeorm", "jwt", "passport", "bcrypt", "exceljs", "nodemailer", "pdfkit", "swagger", "jest"],    "achievements": [
-
-    "achievements": [      "Estructuración exitosa de arquitectura backend multi-tenant para plataforma de salud digital con múltiples clientes",
-
-      "Digitalización completa de procesos empresariales manuales para empresa con 400+ empleados y 20+ años de experiencia",      "Implementación de estándares de seguridad críticos cumpliendo regulaciones del sector salud",
-
-      "Desarrollo exitoso de 23 módulos interconectados con arquitectura enterprise escalable y mantenible",      "Desarrollo de integraciones críticas con servicios externos garantizando comunicación en tiempo real",
-
-      "Implementación de sistema de automatización que genera automáticamente hasta 348 tareas por servicio",      "Optimización de base de datos para manejo eficiente de historiales médicos sensibles"
-
-      "Creación de sistema multi-tenant con inventario multi-depósito y e-commerce interno funcional",    ]
-
-      "Desarrollo de dashboard analytics con KPIs empresariales y reportes ejecutivos para toma de decisiones"  },
-
-    ]  {
-
-  },    "id": 2,
-
-  {    "company": "SwaplyAr",
-
-    "id": 2,    "position": "Backend Developer (Internship)",
-
-    "company": "MVA",    "startDate": "2025-01-01",
-
-    "position": "Backend Developer",    "endDate": "2025-06-30",
-
-    "startDate": "2025-03-26",    "current": false,
-
-    "endDate": "2025-09-12",    "description": "SwaplyAr es una plataforma fintech que facilita transacciones financieras digitales internacionales entre billeteras virtuales y cuentas bancarias, con foco en seguridad, transparencia, eficiencia y usabilidad. Mi participación contribuyó al desarrollo del backend encargado de manejar el registro, inicio de sesión, gestión de usuarios e integración con servicios externos, asegurando que la API sea mantenible y segura.",
-
-    "current": false,    "responsibilities": [
-
-    "description": "Desarrollo completo de una aplicación backend empresarial para la gestión integral de servicios de alquiler y mantenimiento de baños químicos. Sistema de gestión empresarial que incluye recursos, clientes, empleados y operaciones logísticas. Proyecto desarrollado en equipo con arquitectura escalable y funcionalidades avanzadas de automatización.",      "Desarrollo y mantenimiento de APIs RESTful usando Node.js y Express.js para transacciones financieras digitales",
-
-    "responsibilities": [      "Implementación de autenticación segura con JWT y bcrypt para protección de datos financieros sensibles",
-
-      "Desarrollo de sistema de gestión empresarial completo con +15 módulos funcionales utilizando NestJS y TypeScript",      "Gestión de datos mediante Google Sheets como base de datos para operaciones de la plataforma fintech",
-
-      "Implementación de sistema de autenticación JWT con roles granulares (Admin, Supervisor, Operario) y guards personalizados",      "Auto-documentación de endpoints con Swagger para facilitar mantenimiento y escalabilidad de APIs",
-
-      "Diseño y desarrollo de arquitectura de base de datos PostgreSQL con TypeORM para gestión de recursos y operaciones",      "Validación de datos con express-validator para asegurar integridad del backend en transacciones financieras",
-
-      "Desarrollo de sistema de asignación automática e inteligente de recursos (empleados, vehículos, baños químicos)",      "Participación en organización del backlog y priorización de tareas mediante metodologías ágiles",
-
-      "Implementación de portal de clientes con sistema de reclamos, encuestas de satisfacción y solicitudes públicas",      "Seguimiento de metodología Gitflow para control de versiones y deployments seguros"
-
-      "Creación de sistema de scheduler para automatización de estados de servicios y alertas de vencimientos",    ],
-
-      "Desarrollo de módulo de reportes con generación de archivos Excel y sistema de notificaciones por email",    "technologies": ["nodejs", "express", "jwt", "bcrypt", "google-sheets", "swagger", "express-validator", "git"],
-
-      "Implementación de validación exhaustiva de DTOs y interceptores para logging y transformación de datos"    "achievements": [
-
-    ],      "Implementación exitosa de sistema de autenticación robusto para plataforma fintech con transacciones internacionales",
-
-    "technologies": ["nestjs", "typescript", "postgresql", "typeorm", "jwt", "passport", "bcrypt", "exceljs", "nodemailer", "jest", "docker"],      "Desarrollo de documentación automatizada con Swagger mejorando mantenibilidad de APIs críticas",
-
-    "achievements": [      "Optimización de flujo de trabajo con metodología Gitflow garantizando deployments seguros",
-
-      "Desarrollo exitoso de +100 endpoints REST API completamente documentados para gestión empresarial integral",      "Gestión eficiente de datos financieros mediante Google Sheets API con validaciones robustas"
-
-      "Implementación de sistema de roles y autorización que optimizó el flujo operativo de la empresa",    ]
-
-      "Creación de portal público que mejoró significativamente la comunicación cliente-empresa",  }
-
-      "Desarrollo de sistema de automatización que redujo errores operativos mediante validaciones inteligentes",]
-
-      "Implementación de arquitectura escalable preparada para crecimiento futuro de la empresa"
-    ]
-  },
+[
   {
     "id": 3,
     "company": "Segimed",
@@ -122,7 +16,16 @@
       "Aseguramiento de buenas prácticas de backend con enfoque en seguridad, escalabilidad y limpieza de código",
       "Implementación de pruebas y documentación técnica para garantizar mantenibilidad del sistema"
     ],
-    "technologies": ["nestjs", "typescript", "postgresql", "prisma", "jwt", "twilio", "cloudinary", "websockets"],
+    "technologies": [
+      "nestjs",
+      "typescript",
+      "postgresql",
+      "prisma",
+      "jwt",
+      "twilio",
+      "cloudinary",
+      "websockets"
+    ],
     "achievements": [
       "Estructuración exitosa de arquitectura backend multi-tenant para plataforma de salud digital con múltiples clientes",
       "Implementación de estándares de seguridad críticos cumpliendo regulaciones del sector salud",
@@ -147,7 +50,16 @@
       "Participación en organización del backlog y priorización de tareas mediante metodologías ágiles",
       "Seguimiento de metodología Gitflow para control de versiones y deployments seguros"
     ],
-    "technologies": ["nodejs", "express", "jwt", "bcrypt", "google-sheets", "swagger", "express-validator", "git"],
+    "technologies": [
+      "nodejs",
+      "express",
+      "jwt",
+      "bcrypt",
+      "google-sheets",
+      "swagger",
+      "express-validator",
+      "git"
+    ],
     "achievements": [
       "Implementación exitosa de sistema de autenticación robusto para plataforma fintech con transacciones internacionales",
       "Desarrollo de documentación automatizada con Swagger mejorando mantenibilidad de APIs críticas",

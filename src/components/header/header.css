@@ -82,7 +82,7 @@
 }
 
 .nav__link.active::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -8px;
   left: 50%;
@@ -131,12 +131,12 @@
   transform: rotate(180deg);
 }
 
-[data-theme="dark"] .theme-icon--light {
+[data-theme='dark'] .theme-icon--light {
   opacity: 0;
   transform: rotate(180deg);
 }
 
-[data-theme="dark"] .theme-icon--dark {
+[data-theme='dark'] .theme-icon--dark {
   opacity: 1;
   transform: rotate(0deg);
 }
@@ -231,6 +231,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-[data-theme="dark"] .header.scrolled {
+[data-theme='dark'] .header.scrolled {
   background-color: rgba(26, 26, 26, 0.95);
 }

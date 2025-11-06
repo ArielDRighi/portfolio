@@ -7,18 +7,18 @@
 // CONFIGURACIÓN DE TEMAS
 // ===================================
 const THEME_CONFIG = {
-  storageKey: "portfolio-theme",
+  storageKey: 'portfolio-theme',
   themes: {
-    light: "light",
-    dark: "dark",
+    light: 'light',
+    dark: 'dark',
   },
   icons: {
-    light: "☀️",
-    dark: "🌙",
+    light: '☀️',
+    dark: '🌙',
   },
   transitions: {
-    duration: "0.3s",
-    easing: "ease-in-out",
+    duration: '0.3s',
+    easing: 'ease-in-out',
   },
 };
 
@@ -27,7 +27,7 @@ const THEME_CONFIG = {
 // ===================================
 class ThemeManager {
   constructor() {
-    this.toggleButton = document.getElementById("themeToggle");
+    this.toggleButton = document.getElementById('themeToggle');
     this.body = document.body;
     this.currentTheme = this.getStoredTheme() || this.getSystemTheme();
 
@@ -44,30 +44,30 @@ class ThemeManager {
   setupThemeTransitions() {
     // Añadir transiciones suaves a elementos que cambian con el tema
     const elementsToTransition = [
-      "body",
-      ".header",
-      ".nav__link",
-      ".section",
-      ".skills__category",
-      ".timeline__content",
-      ".contact__link",
-      ".form__input",
-      ".form__textarea",
-      ".project-icon",
+      'body',
+      '.header',
+      '.nav__link',
+      '.section',
+      '.skills__category',
+      '.timeline__content',
+      '.contact__link',
+      '.form__input',
+      '.form__textarea',
+      '.project-icon',
     ];
 
-    const transitionProperties = ["background-color", "color", "border-color", "box-shadow"].join(
+    const transitionProperties = ['background-color', 'color', 'border-color', 'box-shadow'].join(
       ` ${THEME_CONFIG.transitions.duration} ${THEME_CONFIG.transitions.easing}, `
     );
 
     const transitionRule = `${transitionProperties} ${THEME_CONFIG.transitions.duration} ${THEME_CONFIG.transitions.easing}`;
 
     // Crear y añadir estilo de transiciones
-    if (!document.getElementById("theme-transitions")) {
-      const style = document.createElement("style");
-      style.id = "theme-transitions";
+    if (!document.getElementById('theme-transitions')) {
+      const style = document.createElement('style');
+      style.id = 'theme-transitions';
       style.textContent = `
-        ${elementsToTransition.join(", ")} {
+        ${elementsToTransition.join(', ')} {
           transition: ${transitionRule};
         }
       `;
@@ -77,29 +77,31 @@ class ThemeManager {
 
   bindEvents() {
     if (this.toggleButton) {
-      this.toggleButton.addEventListener("click", () => this.toggleTheme());
+      this.toggleButton.addEventListener('click', () => this.toggleTheme());
     }
 
     // Escuchar cambios en las preferencias del sistema
     if (window.matchMedia) {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      mediaQuery.addEventListener("change", (e) => this.handleSystemThemeChange(e));
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', (e) => this.handleSystemThemeChange(e));
     }
 
     // Atajos de teclado
-    document.addEventListener("keydown", (e) => this.handleKeyboardShortcuts(e));
+    document.addEventListener('keydown', (e) => this.handleKeyboardShortcuts(e));
   }
 
   toggleTheme() {
     const newTheme =
-      this.currentTheme === THEME_CONFIG.themes.light ? THEME_CONFIG.themes.dark : THEME_CONFIG.themes.light;
+      this.currentTheme === THEME_CONFIG.themes.light
+        ? THEME_CONFIG.themes.dark
+        : THEME_CONFIG.themes.light;
 
     this.applyTheme(newTheme, true);
   }
 
   applyTheme(theme, animate = true) {
     // Remover tema anterior
-    this.body.classList.remove("light-theme", "dark-theme");
+    this.body.classList.remove('light-theme', 'dark-theme');
 
     // Aplicar nuevo tema
     this.body.classList.add(`${theme}-theme`);
@@ -128,46 +130,49 @@ class ThemeManager {
   updateToggleButton() {
     if (!this.toggleButton) return;
 
-    const moonIcon = this.toggleButton.querySelector(".theme-toggle__icon-moon");
-    const sunIcon = this.toggleButton.querySelector(".theme-toggle__icon-sun");
+    const moonIcon = this.toggleButton.querySelector('.theme-toggle__icon-moon');
+    const sunIcon = this.toggleButton.querySelector('.theme-toggle__icon-sun');
 
     if (moonIcon && sunIcon) {
       if (this.currentTheme === THEME_CONFIG.themes.dark) {
-        moonIcon.style.display = "none";
-        sunIcon.style.display = "inline-block";
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'inline-block';
       } else {
-        moonIcon.style.display = "inline-block";
-        sunIcon.style.display = "none";
+        moonIcon.style.display = 'inline-block';
+        sunIcon.style.display = 'none';
       }
     }
 
     // Actualizar aria-label para accesibilidad
-    const label = this.currentTheme === THEME_CONFIG.themes.dark ? "Cambiar a tema claro" : "Cambiar a tema oscuro";
-    this.toggleButton.setAttribute("aria-label", label);
+    const label =
+      this.currentTheme === THEME_CONFIG.themes.dark
+        ? 'Cambiar a tema claro'
+        : 'Cambiar a tema oscuro';
+    this.toggleButton.setAttribute('aria-label', label);
   }
 
   updateMetaThemeColor(theme) {
     let metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
     if (!metaThemeColor) {
-      metaThemeColor = document.createElement("meta");
-      metaThemeColor.name = "theme-color";
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.name = 'theme-color';
       document.head.appendChild(metaThemeColor);
     }
 
     const themeColors = {
-      [THEME_CONFIG.themes.light]: "#FFFFFF",
-      [THEME_CONFIG.themes.dark]: "#1A1A1A",
+      [THEME_CONFIG.themes.light]: '#FFFFFF',
+      [THEME_CONFIG.themes.dark]: '#1A1A1A',
     };
 
     metaThemeColor.content = themeColors[theme];
   }
 
   animateToggleButton() {
-    this.toggleButton.style.transform = "scale(0.9)";
+    this.toggleButton.style.transform = 'scale(0.9)';
 
     setTimeout(() => {
-      this.toggleButton.style.transform = "scale(1)";
+      this.toggleButton.style.transform = 'scale(1)';
     }, 150);
   }
 
@@ -175,7 +180,7 @@ class ThemeManager {
     try {
       return localStorage.getItem(THEME_CONFIG.storageKey);
     } catch (error) {
-      console.warn("No se pudo acceder a localStorage para el tema");
+      console.warn('No se pudo acceder a localStorage para el tema');
       return null;
     }
   }
@@ -184,12 +189,12 @@ class ThemeManager {
     try {
       localStorage.setItem(THEME_CONFIG.storageKey, theme);
     } catch (error) {
-      console.warn("No se pudo guardar el tema en localStorage");
+      console.warn('No se pudo guardar el tema en localStorage');
     }
   }
 
   getSystemTheme() {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return THEME_CONFIG.themes.dark;
     }
     return THEME_CONFIG.themes.light;
@@ -205,14 +210,14 @@ class ThemeManager {
 
   handleKeyboardShortcuts(e) {
     // Ctrl/Cmd + Shift + T para cambiar tema
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "t") {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 't') {
       e.preventDefault();
       this.toggleTheme();
     }
   }
 
   dispatchThemeChangeEvent(theme) {
-    const event = new CustomEvent("themechange", {
+    const event = new CustomEvent('themechange', {
       detail: { theme },
     });
     document.dispatchEvent(event);
@@ -236,7 +241,7 @@ class ThemeManager {
     try {
       localStorage.removeItem(THEME_CONFIG.storageKey);
     } catch (error) {
-      console.warn("No se pudo remover la preferencia de tema");
+      console.warn('No se pudo remover la preferencia de tema');
     }
 
     const systemTheme = this.getSystemTheme();
@@ -255,17 +260,17 @@ const ThemeUtils = {
 
   // Verificar si está en tema oscuro
   isDarkTheme() {
-    return document.body.classList.contains("dark-theme");
+    return document.body.classList.contains('dark-theme');
   },
 
   // Obtener colores del tema actual
   getCurrentThemeColors() {
     return {
-      primary: this.getCSSVariable("--color-primary"),
-      secondary: this.getCSSVariable("--color-secondary"),
-      accent: this.getCSSVariable("--color-accent"),
-      background: this.getCSSVariable("--color-background"),
-      text: this.getCSSVariable("--color-text"),
+      primary: this.getCSSVariable('--color-primary'),
+      secondary: this.getCSSVariable('--color-secondary'),
+      accent: this.getCSSVariable('--color-accent'),
+      background: this.getCSSVariable('--color-background'),
+      text: this.getCSSVariable('--color-text'),
     };
   },
 
@@ -286,12 +291,12 @@ const ThemeUtils = {
 // ===================================
 // INICIALIZACIÓN
 // ===================================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Inicializar theme manager
   window.themeManager = new ThemeManager();
 
   // Escuchar eventos de cambio de tema
-  document.addEventListener("themechange", (e) => {
+  document.addEventListener('themechange', (e) => {
     console.log(`Tema cambiado a: ${e.detail.theme}`);
 
     // Aquí se pueden añadir acciones adicionales cuando cambie el tema

@@ -40,7 +40,9 @@
   background-color: var(--color-background);
   border-bottom: 1px solid var(--color-border);
   z-index: var(--z-fixed);
-  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal);
 }
 
 /* Footer */

@@ -4,7 +4,7 @@
  */
 class GitHubIntegration {
   constructor() {
-    this.apiBase = "https://api.github.com";
+    this.apiBase = 'https://api.github.com';
     this.username = null;
     this.cache = new Map();
     this.cacheTimeout = 10 * 60 * 1000; // 10 minutos
@@ -37,7 +37,7 @@ class GitHubIntegration {
       // Solo agregar/actualizar campos básicos
       return {
         ...project,
-        description: project.description || repoData.description || "Sin descripción",
+        description: project.description || repoData.description || 'Sin descripción',
         technologies: project.technologies || this.detectBasicTechnologies(repoData),
         github: repoData.html_url,
         stats: {
@@ -132,16 +132,16 @@ class GitHubIntegration {
     // Agregar tecnologías de los topics
     if (repoData.topics && repoData.topics.length > 0) {
       const knownTechs = [
-        "react",
-        "vue",
-        "angular",
-        "node",
-        "express",
-        "mongodb",
-        "postgresql",
-        "mysql",
-        "docker",
-        "aws",
+        'react',
+        'vue',
+        'angular',
+        'node',
+        'express',
+        'mongodb',
+        'postgresql',
+        'mysql',
+        'docker',
+        'aws',
       ];
 
       repoData.topics.forEach((topic) => {
@@ -161,23 +161,23 @@ class GitHubIntegration {
    */
   normalizeTechnology(tech) {
     const techMap = {
-      javascript: "javascript",
-      typescript: "typescript",
-      python: "python",
-      java: "java",
-      csharp: "c#",
-      cpp: "c++",
-      node: "node",
-      nodejs: "node",
-      react: "react",
-      vue: "vue",
-      angular: "angular",
-      express: "express",
-      mongodb: "mongodb",
-      postgresql: "postgresql",
-      mysql: "mysql",
-      docker: "docker",
-      aws: "aws",
+      javascript: 'javascript',
+      typescript: 'typescript',
+      python: 'python',
+      java: 'java',
+      csharp: 'c#',
+      cpp: 'c++',
+      node: 'node',
+      nodejs: 'node',
+      react: 'react',
+      vue: 'vue',
+      angular: 'angular',
+      express: 'express',
+      mongodb: 'mongodb',
+      postgresql: 'postgresql',
+      mysql: 'mysql',
+      docker: 'docker',
+      aws: 'aws',
     };
 
     return techMap[tech.toLowerCase()] || tech;
@@ -189,15 +189,15 @@ class GitHubIntegration {
   extractRepoName(githubUrl) {
     try {
       const url = new URL(githubUrl);
-      const pathParts = url.pathname.split("/").filter((part) => part);
+      const pathParts = url.pathname.split('/').filter((part) => part);
 
-      if (pathParts.length >= 2 && url.hostname === "github.com") {
+      if (pathParts.length >= 2 && url.hostname === 'github.com') {
         return pathParts[1]; // El segundo elemento es el nombre del repo
       }
 
       return null;
     } catch (error) {
-      console.warn("URL de GitHub inválida:", githubUrl);
+      console.warn('URL de GitHub inválida:', githubUrl);
       return null;
     }
   }
@@ -214,7 +214,7 @@ class GitHubIntegration {
    */
   loadConfiguration() {
     try {
-      const config = localStorage.getItem("github-config");
+      const config = localStorage.getItem('github-config');
       if (config) {
         const parsed = JSON.parse(config);
         if (parsed.username) {
@@ -223,7 +223,7 @@ class GitHubIntegration {
         }
       }
     } catch (error) {
-      console.warn("Error cargando configuración de GitHub:", error);
+      console.warn('Error cargando configuración de GitHub:', error);
     }
     return false;
   }
@@ -274,7 +274,7 @@ class GitHubIntegration {
         following: userData.following || 0,
       };
     } catch (error) {
-      console.warn("Error obteniendo estadísticas de usuario:", error);
+      console.warn('Error obteniendo estadísticas de usuario:', error);
       return null;
     }
   }

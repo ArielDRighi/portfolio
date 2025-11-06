@@ -16,7 +16,7 @@ class CrossDeviceTester {
   }
 
   init() {
-    console.log("🧪 Iniciando Cross-Device Testing...");
+    console.log('🧪 Iniciando Cross-Device Testing...');
     this.detectDevice();
     this.detectBrowser();
     this.runResponsiveTests();
@@ -36,22 +36,22 @@ class CrossDeviceTester {
       screenWidth: screen.width,
       screenHeight: screen.height,
       devicePixelRatio: window.devicePixelRatio,
-      orientation: screen.orientation ? screen.orientation.type : "unknown",
-      touchSupport: "ontouchstart" in window,
+      orientation: screen.orientation ? screen.orientation.type : 'unknown',
+      touchSupport: 'ontouchstart' in window,
       platform: navigator.platform,
       connectionType: this.getConnectionType(),
     };
 
     // Categorizar dispositivo
     if (this.deviceInfo.screenWidth < 768) {
-      this.deviceCategory = "mobile";
+      this.deviceCategory = 'mobile';
     } else if (this.deviceInfo.screenWidth < 1024) {
-      this.deviceCategory = "tablet";
+      this.deviceCategory = 'tablet';
     } else {
-      this.deviceCategory = "desktop";
+      this.deviceCategory = 'desktop';
     }
 
-    console.log("📱 Dispositivo detectado:", this.deviceCategory, this.deviceInfo);
+    console.log('📱 Dispositivo detectado:', this.deviceCategory, this.deviceInfo);
   }
 
   /**
@@ -67,19 +67,19 @@ class CrossDeviceTester {
       supportsModernFeatures: this.checkModernFeatures(),
     };
 
-    console.log("🌐 Navegador detectado:", this.browserInfo);
+    console.log('🌐 Navegador detectado:', this.browserInfo);
   }
 
   /**
    * Obtener nombre del navegador
    */
   getBrowserName(userAgent) {
-    if (userAgent.indexOf("Chrome") > -1) return "Chrome";
-    if (userAgent.indexOf("Firefox") > -1) return "Firefox";
-    if (userAgent.indexOf("Safari") > -1) return "Safari";
-    if (userAgent.indexOf("Edge") > -1) return "Edge";
-    if (userAgent.indexOf("Opera") > -1) return "Opera";
-    return "Unknown";
+    if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
+    if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
+    if (userAgent.indexOf('Safari') > -1) return 'Safari';
+    if (userAgent.indexOf('Edge') > -1) return 'Edge';
+    if (userAgent.indexOf('Opera') > -1) return 'Opera';
+    return 'Unknown';
   }
 
   /**
@@ -87,17 +87,17 @@ class CrossDeviceTester {
    */
   getBrowserVersion(userAgent) {
     const match = userAgent.match(/(chrome|firefox|safari|edge|opera)\/(\d+)/i);
-    return match ? match[2] : "Unknown";
+    return match ? match[2] : 'Unknown';
   }
 
   /**
    * Obtener motor del navegador
    */
   getBrowserEngine(userAgent) {
-    if (userAgent.indexOf("WebKit") > -1) return "WebKit";
-    if (userAgent.indexOf("Gecko") > -1) return "Gecko";
-    if (userAgent.indexOf("Trident") > -1) return "Trident";
-    return "Unknown";
+    if (userAgent.indexOf('WebKit') > -1) return 'WebKit';
+    if (userAgent.indexOf('Gecko') > -1) return 'Gecko';
+    if (userAgent.indexOf('Trident') > -1) return 'Trident';
+    return 'Unknown';
   }
 
   /**
@@ -108,9 +108,9 @@ class CrossDeviceTester {
       es6: this.supportsES6(),
       css3: this.supportsCSS3(),
       webgl: this.supportsWebGL(),
-      serviceWorker: "serviceWorker" in navigator,
-      intersectionObserver: "IntersectionObserver" in window,
-      customElements: "customElements" in window,
+      serviceWorker: 'serviceWorker' in navigator,
+      intersectionObserver: 'IntersectionObserver' in window,
+      customElements: 'customElements' in window,
       modules: this.supportsModules(),
     };
   }
@@ -119,14 +119,14 @@ class CrossDeviceTester {
    * Tests responsivos
    */
   runResponsiveTests() {
-    console.log("📐 Ejecutando tests responsivos...");
+    console.log('📐 Ejecutando tests responsivos...');
 
     const viewports = [
-      { width: 320, height: 568, name: "iPhone SE" },
-      { width: 375, height: 667, name: "iPhone 8" },
-      { width: 768, height: 1024, name: "iPad" },
-      { width: 1024, height: 768, name: "iPad Landscape" },
-      { width: 1920, height: 1080, name: "Desktop FHD" },
+      { width: 320, height: 568, name: 'iPhone SE' },
+      { width: 375, height: 667, name: 'iPhone 8' },
+      { width: 768, height: 1024, name: 'iPad' },
+      { width: 1024, height: 768, name: 'iPad Landscape' },
+      { width: 1920, height: 1080, name: 'Desktop FHD' },
     ];
 
     viewports.forEach((viewport) => {
@@ -156,9 +156,9 @@ class CrossDeviceTester {
    * Test de navegación
    */
   testNavigation() {
-    const nav = document.querySelector(".nav");
-    const navToggle = document.querySelector(".nav__toggle");
-    const navMenu = document.querySelector(".nav__menu");
+    const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav__toggle');
+    const navMenu = document.querySelector('.nav__menu');
 
     return {
       navExists: !!nav,
@@ -173,12 +173,12 @@ class CrossDeviceTester {
    * Test de enlaces de navegación
    */
   testNavigationLinks() {
-    const links = document.querySelectorAll(".nav__link");
+    const links = document.querySelectorAll('.nav__link');
     let workingLinks = 0;
 
     links.forEach((link) => {
-      const href = link.getAttribute("href");
-      if (href && href.startsWith("#")) {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
         const target = document.querySelector(href);
         if (target) workingLinks++;
       }
@@ -195,11 +195,12 @@ class CrossDeviceTester {
    * Test del toggle de tema
    */
   testThemeToggle() {
-    const themeToggle = document.getElementById("themeToggle");
+    const themeToggle = document.getElementById('themeToggle');
     return {
       exists: !!themeToggle,
-      hasIcon: !!themeToggle?.querySelector(".theme-toggle__icon"),
-      clickable: themeToggle?.style.cursor === "pointer" || themeToggle?.style.pointerEvents !== "none",
+      hasIcon: !!themeToggle?.querySelector('.theme-toggle__icon'),
+      clickable:
+        themeToggle?.style.cursor === 'pointer' || themeToggle?.style.pointerEvents !== 'none',
     };
   }
 
@@ -207,8 +208,8 @@ class CrossDeviceTester {
    * Test de tipografía
    */
   testTypography() {
-    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    const paragraphs = document.querySelectorAll("p");
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const paragraphs = document.querySelectorAll('p');
 
     return {
       headingsCount: headings.length,
@@ -222,8 +223,8 @@ class CrossDeviceTester {
    * Test de layout
    */
   testLayout() {
-    const sections = document.querySelectorAll("section");
-    const containers = document.querySelectorAll(".container");
+    const sections = document.querySelectorAll('section');
+    const containers = document.querySelectorAll('.container');
 
     return {
       sectionsCount: sections.length,
@@ -237,9 +238,9 @@ class CrossDeviceTester {
    * Test de interacciones
    */
   testInteractions() {
-    const buttons = document.querySelectorAll("button, .btn");
-    const forms = document.querySelectorAll("form");
-    const inputs = document.querySelectorAll("input, textarea");
+    const buttons = document.querySelectorAll('button, .btn');
+    const forms = document.querySelectorAll('form');
+    const inputs = document.querySelectorAll('input, textarea');
 
     return {
       buttonsCount: buttons.length,
@@ -255,10 +256,10 @@ class CrossDeviceTester {
    */
   testViewportPerformance() {
     return {
-      domElements: document.querySelectorAll("*").length,
-      imagesCount: document.querySelectorAll("img").length,
+      domElements: document.querySelectorAll('*').length,
+      imagesCount: document.querySelectorAll('img').length,
       cssFiles: document.querySelectorAll('link[rel="stylesheet"]').length,
-      jsFiles: document.querySelectorAll("script[src]").length,
+      jsFiles: document.querySelectorAll('script[src]').length,
       renderTime: performance.now(),
     };
   }
@@ -267,7 +268,7 @@ class CrossDeviceTester {
    * Tests de características
    */
   runFeatureTests() {
-    console.log("🔧 Ejecutando tests de características...");
+    console.log('🔧 Ejecutando tests de características...');
 
     this.testResults.features = {
       animations: this.testAnimations(),
@@ -284,9 +285,9 @@ class CrossDeviceTester {
   testAnimations() {
     return {
       cssAnimations: this.supportsCSSAnimations(),
-      animationController: typeof window.animationController !== "undefined",
-      intersectionObserver: "IntersectionObserver" in window,
-      scrollElements: document.querySelectorAll(".scroll-reveal").length,
+      animationController: typeof window.animationController !== 'undefined',
+      intersectionObserver: 'IntersectionObserver' in window,
+      scrollElements: document.querySelectorAll('.scroll-reveal').length,
     };
   }
 
@@ -295,11 +296,11 @@ class CrossDeviceTester {
    */
   testThemes() {
     return {
-      themeManager: typeof window.themeManager !== "undefined",
+      themeManager: typeof window.themeManager !== 'undefined',
       cssVariables: this.supportsCSSVariables(),
       themeClasses:
-        document.documentElement.classList.contains("light-theme") ||
-        document.documentElement.classList.contains("dark-theme"),
+        document.documentElement.classList.contains('light-theme') ||
+        document.documentElement.classList.contains('dark-theme'),
       localStorage: this.testLocalStorage(),
     };
   }
@@ -308,16 +309,18 @@ class CrossDeviceTester {
    * Tests de performance
    */
   runPerformanceTests() {
-    console.log("⚡ Ejecutando tests de performance...");
+    console.log('⚡ Ejecutando tests de performance...');
 
-    if (typeof performance !== "undefined") {
-      const perfData = performance.getEntriesByType("navigation")[0];
+    if (typeof performance !== 'undefined') {
+      const perfData = performance.getEntriesByType('navigation')[0];
 
       this.testResults.performance = {
         loadTime: perfData ? perfData.loadEventEnd - perfData.navigationStart : 0,
-        domContentLoaded: perfData ? perfData.domContentLoadedEventEnd - perfData.navigationStart : 0,
+        domContentLoaded: perfData
+          ? perfData.domContentLoadedEventEnd - perfData.navigationStart
+          : 0,
         firstPaint: this.getFirstPaint(),
-        resources: performance.getEntriesByType("resource").length,
+        resources: performance.getEntriesByType('resource').length,
         memoryUsage: performance.memory ? performance.memory.usedJSHeapSize : 0,
       };
     }
@@ -328,50 +331,50 @@ class CrossDeviceTester {
    */
   supportsES6() {
     try {
-      return eval("() => {}") && eval("class Test {}");
+      return eval('() => {}') && eval('class Test {}');
     } catch (e) {
       return false;
     }
   }
 
   supportsCSS3() {
-    const div = document.createElement("div");
-    return "transform" in div.style && "transition" in div.style;
+    const div = document.createElement('div');
+    return 'transform' in div.style && 'transition' in div.style;
   }
 
   supportsWebGL() {
     try {
-      const canvas = document.createElement("canvas");
-      return !!(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
+      const canvas = document.createElement('canvas');
+      return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
     } catch (e) {
       return false;
     }
   }
 
   supportsModules() {
-    const script = document.createElement("script");
-    return "noModule" in script;
+    const script = document.createElement('script');
+    return 'noModule' in script;
   }
 
   supportsCSSAnimations() {
-    const div = document.createElement("div");
-    return "animation" in div.style;
+    const div = document.createElement('div');
+    return 'animation' in div.style;
   }
 
   supportsCSSVariables() {
-    return window.CSS && CSS.supports("color", "var(--test)");
+    return window.CSS && CSS.supports('color', 'var(--test)');
   }
 
   getConnectionType() {
-    if ("connection" in navigator) {
+    if ('connection' in navigator) {
       return navigator.connection.effectiveType;
     }
-    return "unknown";
+    return 'unknown';
   }
 
   getFirstPaint() {
-    const paint = performance.getEntriesByType("paint");
-    const fp = paint.find((entry) => entry.name === "first-paint");
+    const paint = performance.getEntriesByType('paint');
+    const fp = paint.find((entry) => entry.name === 'first-paint');
     return fp ? fp.startTime : 0;
   }
 
@@ -381,7 +384,7 @@ class CrossDeviceTester {
 
   checkReadability() {
     // Simplified readability check
-    const textElements = document.querySelectorAll("p, span, div");
+    const textElements = document.querySelectorAll('p, span, div');
     let readableCount = 0;
 
     textElements.forEach((el) => {
@@ -402,7 +405,7 @@ class CrossDeviceTester {
   }
 
   checkOverflow() {
-    const elements = document.querySelectorAll("*");
+    const elements = document.querySelectorAll('*');
     let overflowCount = 0;
 
     elements.forEach((el) => {
@@ -415,12 +418,12 @@ class CrossDeviceTester {
   }
 
   checkZIndex() {
-    const elements = document.querySelectorAll("*");
+    const elements = document.querySelectorAll('*');
     const zIndexes = [];
 
     elements.forEach((el) => {
       const zIndex = getComputedStyle(el).zIndex;
-      if (zIndex !== "auto") {
+      if (zIndex !== 'auto') {
         zIndexes.push(parseInt(zIndex));
       }
     });
@@ -433,7 +436,7 @@ class CrossDeviceTester {
   }
 
   checkTouchTargets() {
-    const interactiveElements = document.querySelectorAll("button, a, input, textarea");
+    const interactiveElements = document.querySelectorAll('button, a, input, textarea');
     let goodTargets = 0;
 
     interactiveElements.forEach((el) => {
@@ -480,7 +483,7 @@ class CrossDeviceTester {
     return {
       title: !!document.title,
       metaDescription: !!document.querySelector('meta[name="description"]'),
-      headings: document.querySelectorAll("h1, h2, h3, h4, h5, h6").length,
+      headings: document.querySelectorAll('h1, h2, h3, h4, h5, h6').length,
       openGraph: !!document.querySelector('meta[property^="og:"]'),
       schema: !!document.querySelector('script[type="application/ld+json"]'),
     };
@@ -488,8 +491,8 @@ class CrossDeviceTester {
 
   testLocalStorage() {
     try {
-      localStorage.setItem("test", "test");
-      localStorage.removeItem("test");
+      localStorage.setItem('test', 'test');
+      localStorage.removeItem('test');
       return true;
     } catch (e) {
       return false;
@@ -497,25 +500,25 @@ class CrossDeviceTester {
   }
 
   hasMediaQueries() {
-    return window.matchMedia && window.matchMedia("(min-width: 768px)").matches !== undefined;
+    return window.matchMedia && window.matchMedia('(min-width: 768px)').matches !== undefined;
   }
 
   supportsFlexbox() {
-    const div = document.createElement("div");
-    return "flex" in div.style;
+    const div = document.createElement('div');
+    return 'flex' in div.style;
   }
 
   supportsGrid() {
-    const div = document.createElement("div");
-    return "grid" in div.style;
+    const div = document.createElement('div');
+    return 'grid' in div.style;
   }
 
   checkAltTexts() {
-    const images = document.querySelectorAll("img");
+    const images = document.querySelectorAll('img');
     let withAlt = 0;
 
     images.forEach((img) => {
-      if (img.alt && img.alt.trim() !== "") withAlt++;
+      if (img.alt && img.alt.trim() !== '') withAlt++;
     });
 
     return {
@@ -526,12 +529,12 @@ class CrossDeviceTester {
   }
 
   checkAriaLabels() {
-    const elements = document.querySelectorAll("[aria-label], [aria-labelledby]");
+    const elements = document.querySelectorAll('[aria-label], [aria-labelledby]');
     return elements.length;
   }
 
   checkSemanticHTML() {
-    const semantic = ["main", "nav", "header", "footer", "section", "article", "aside"];
+    const semantic = ['main', 'nav', 'header', 'footer', 'section', 'article', 'aside'];
     let count = 0;
 
     semantic.forEach((tag) => {
@@ -547,7 +550,7 @@ class CrossDeviceTester {
 
   checkColorContrast() {
     // Simplified contrast check
-    const elements = document.querySelectorAll("p, span, a, button");
+    const elements = document.querySelectorAll('p, span, a, button');
     let goodContrast = 0;
 
     elements.forEach((el) => {
@@ -580,10 +583,10 @@ class CrossDeviceTester {
       recommendations: this.getRecommendations(),
     };
 
-    console.log("\n📊 CROSS-DEVICE TEST REPORT");
-    console.log("=".repeat(50));
+    console.log('\n📊 CROSS-DEVICE TEST REPORT');
+    console.log('='.repeat(50));
     console.table(report.score);
-    console.log("\n📋 Recomendaciones:");
+    console.log('\n📋 Recomendaciones:');
     report.recommendations.forEach((rec) => console.log(`- ${rec}`));
 
     return report;
@@ -607,7 +610,8 @@ class CrossDeviceTester {
     scores.performance = this.calculatePerformanceScore();
     scores.accessibility = this.calculateAccessibilityScore();
 
-    scores.overall = (scores.responsive + scores.features + scores.performance + scores.accessibility) / 4;
+    scores.overall =
+      (scores.responsive + scores.features + scores.performance + scores.accessibility) / 4;
 
     return scores;
   }
@@ -636,11 +640,11 @@ class CrossDeviceTester {
     const recommendations = [];
 
     if (this.testResults.performance?.loadTime > 3000) {
-      recommendations.push("Optimizar tiempo de carga (>3s)");
+      recommendations.push('Optimizar tiempo de carga (>3s)');
     }
 
     if (this.testResults.features?.accessibility?.altTexts?.percentage < 100) {
-      recommendations.push("Agregar textos alternativos faltantes");
+      recommendations.push('Agregar textos alternativos faltantes');
     }
 
     return recommendations;
@@ -651,8 +655,8 @@ class CrossDeviceTester {
 window.CrossDeviceTester = CrossDeviceTester;
 
 // Auto-inicializar
-if (typeof window !== "undefined") {
-  document.addEventListener("DOMContentLoaded", () => {
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
     window.crossDeviceTester = new CrossDeviceTester();
 
     // Comando global para generar reporte

@@ -24,37 +24,42 @@ class AnimationController {
   setupScrollReveal() {
     const observerOptions = {
       root: null,
-      rootMargin: "0px 0px -100px 0px",
+      rootMargin: '0px 0px -100px 0px',
       threshold: 0.1,
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
+          entry.target.classList.add('revealed');
         }
       });
     }, observerOptions);
 
     // Observar elementos con clases de scroll reveal
     const revealElements = document.querySelectorAll(
-      [".scroll-reveal", ".scroll-reveal-left", ".scroll-reveal-right", ".scroll-reveal-scale"].join(", ")
+      [
+        '.scroll-reveal',
+        '.scroll-reveal-left',
+        '.scroll-reveal-right',
+        '.scroll-reveal-scale',
+      ].join(', ')
     );
 
     revealElements.forEach((el) => observer.observe(el));
-    this.observers.set("scrollReveal", observer);
+    this.observers.set('scrollReveal', observer);
   }
 
   /**
    * Configurar animaciones de escritura automática
    */
   setupTypingAnimation() {
-    const typewriterElements = document.querySelectorAll(".typewriter");
+    const typewriterElements = document.querySelectorAll('.typewriter');
 
     typewriterElements.forEach((element) => {
       const text = element.textContent;
-      element.textContent = "";
-      element.style.width = "0";
+      element.textContent = '';
+      element.style.width = '0';
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -77,8 +82,8 @@ class AnimationController {
    */
   startTyping(element, text) {
     let i = 0;
-    element.style.width = "auto";
-    element.textContent = "";
+    element.style.width = 'auto';
+    element.textContent = '';
 
     const timer = setInterval(() => {
       if (i < text.length) {
@@ -89,7 +94,7 @@ class AnimationController {
         this.timers.delete(timer); // Limpiar referencia cuando termina
         // Remover el cursor parpadeante después de completar
         setTimeout(() => {
-          element.style.borderRight = "none";
+          element.style.borderRight = 'none';
         }, 1000);
       }
     }, 100);
@@ -102,17 +107,17 @@ class AnimationController {
    * Configurar animaciones de barras de progreso
    */
   setupProgressBars() {
-    const progressBars = document.querySelectorAll(".progress-bar");
+    const progressBars = document.querySelectorAll('.progress-bar');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const bar = entry.target;
-            const percentage = bar.getAttribute("data-percentage") || "0";
+            const percentage = bar.getAttribute('data-percentage') || '0';
 
             setTimeout(() => {
-              bar.style.width = percentage + "%";
+              bar.style.width = percentage + '%';
             }, 300);
 
             observer.unobserve(bar);
@@ -129,11 +134,11 @@ class AnimationController {
    * Configurar animaciones escalonadas
    */
   setupStaggeredAnimations() {
-    const staggerGroups = document.querySelectorAll("[data-stagger]");
+    const staggerGroups = document.querySelectorAll('[data-stagger]');
 
     staggerGroups.forEach((group) => {
       const children = group.children;
-      const delay = parseInt(group.getAttribute("data-stagger-delay")) || 200;
+      const delay = parseInt(group.getAttribute('data-stagger-delay')) || 200;
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -141,7 +146,7 @@ class AnimationController {
             if (entry.isIntersecting) {
               Array.from(children).forEach((child, index) => {
                 setTimeout(() => {
-                  child.classList.add("animate-fade-in-up");
+                  child.classList.add('animate-fade-in-up');
                 }, index * delay);
               });
               observer.unobserve(group);
@@ -159,7 +164,7 @@ class AnimationController {
    * Configurar efecto parallax simple
    */
   setupParallax() {
-    const parallaxElements = document.querySelectorAll(".parallax");
+    const parallaxElements = document.querySelectorAll('.parallax');
 
     if (parallaxElements.length === 0) return;
 
@@ -167,7 +172,7 @@ class AnimationController {
       const scrollY = window.pageYOffset;
 
       parallaxElements.forEach((element) => {
-        const speed = parseFloat(element.getAttribute("data-speed")) || 0.5;
+        const speed = parseFloat(element.getAttribute('data-speed')) || 0.5;
         const yPos = -(scrollY * speed);
         element.style.transform = `translateY(${yPos}px)`;
       });
@@ -185,7 +190,7 @@ class AnimationController {
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   /**
@@ -210,15 +215,15 @@ class AnimationController {
    * Configurar contadores animados
    */
   setupCounters() {
-    const counters = document.querySelectorAll("[data-count]");
+    const counters = document.querySelectorAll('[data-count]');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const counter = entry.target;
-            const targetValue = parseInt(counter.getAttribute("data-count"));
-            const duration = parseInt(counter.getAttribute("data-duration")) || 2000;
+            const targetValue = parseInt(counter.getAttribute('data-count'));
+            const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
 
             this.animateCounter(counter, targetValue, duration);
             observer.unobserve(counter);
@@ -234,8 +239,8 @@ class AnimationController {
   /**
    * Agregar animación de entrada a un elemento
    */
-  addEntranceAnimation(element, animationType = "fadeInUp", delay = 0) {
-    element.style.opacity = "0";
+  addEntranceAnimation(element, animationType = 'fadeInUp', delay = 0) {
+    element.style.opacity = '0';
 
     setTimeout(() => {
       element.classList.add(`animate-${animationType}`);
@@ -246,10 +251,10 @@ class AnimationController {
    * Animar elemento con efecto de rebote
    */
   bounceElement(element) {
-    element.classList.add("animate-bounce");
+    element.classList.add('animate-bounce');
 
     setTimeout(() => {
-      element.classList.remove("animate-bounce");
+      element.classList.remove('animate-bounce');
     }, 1000);
   }
 
@@ -257,11 +262,11 @@ class AnimationController {
    * Animar carga de imagen con fade-in
    */
   animateImageLoad(img) {
-    img.style.opacity = "0";
-    img.style.transition = "opacity 300ms ease-out";
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 300ms ease-out';
 
     img.onload = () => {
-      img.style.opacity = "1";
+      img.style.opacity = '1';
     };
   }
 
@@ -269,38 +274,38 @@ class AnimationController {
    * Configurar animaciones de navegación móvil
    */
   setupMobileNavAnimation() {
-    const navToggle = document.querySelector(".nav__toggle");
-    const navMenu = document.querySelector(".nav__menu");
+    const navToggle = document.querySelector('.nav__toggle');
+    const navMenu = document.querySelector('.nav__menu');
 
     if (!navToggle || !navMenu) return;
 
-    navToggle.addEventListener("click", () => {
-      const isActive = navMenu.classList.contains("active");
+    navToggle.addEventListener('click', () => {
+      const isActive = navMenu.classList.contains('active');
 
       if (isActive) {
-        navMenu.classList.remove("active");
+        navMenu.classList.remove('active');
       } else {
-        navMenu.classList.add("active");
+        navMenu.classList.add('active');
 
         // Animar elementos del menú secuencialmente
-        const menuItems = navMenu.querySelectorAll(".nav__item");
+        const menuItems = navMenu.querySelectorAll('.nav__item');
         menuItems.forEach((item, index) => {
-          item.style.opacity = "0";
-          item.style.transform = "translateX(-20px)";
+          item.style.opacity = '0';
+          item.style.transform = 'translateX(-20px)';
 
           setTimeout(() => {
-            item.style.opacity = "1";
-            item.style.transform = "translateX(0)";
-            item.style.transition = "all 300ms ease-out";
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+            item.style.transition = 'all 300ms ease-out';
           }, index * 100);
         });
       }
     });
 
     // Cerrar menú al hacer click fuera
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove("active");
+        navMenu.classList.remove('active');
       }
     });
   }
@@ -322,7 +327,7 @@ class AnimationController {
    * Verificar soporte para motion
    */
   static supportsMotion() {
-    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   /**
@@ -340,8 +345,8 @@ class AnimationController {
 export default AnimationController;
 
 // Auto-inicializar cuando el DOM esté listo
-if (typeof window !== "undefined") {
-  document.addEventListener("DOMContentLoaded", () => {
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
     window.animationController = AnimationController.init();
   });
 }

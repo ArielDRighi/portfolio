@@ -4,13 +4,13 @@
  */
 class HeaderNavigation {
   constructor() {
-    this.mobileMenuToggle = document.getElementById("mobileMenuToggle");
-    this.navMenu = document.getElementById("navMenu");
-    this.navLinks = document.querySelectorAll(".nav__link");
-    this.header = document.querySelector(".header");
+    this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    this.navMenu = document.getElementById('navMenu');
+    this.navLinks = document.querySelectorAll('.nav__link');
+    this.header = document.querySelector('.header');
 
     this.isMenuOpen = false;
-    this.currentSection = "about";
+    this.currentSection = 'about';
 
     this.init();
   }
@@ -24,23 +24,23 @@ class HeaderNavigation {
   setupEventListeners() {
     // Mobile menu toggle
     if (this.mobileMenuToggle && this.navMenu) {
-      this.mobileMenuToggle.addEventListener("click", this.toggleMobileMenu.bind(this));
+      this.mobileMenuToggle.addEventListener('click', this.toggleMobileMenu.bind(this));
     }
 
     // Navigation links
     this.navLinks.forEach((link) => {
-      link.addEventListener("click", this.handleNavClick.bind(this));
+      link.addEventListener('click', this.handleNavClick.bind(this));
     });
 
     // Close menu on escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && this.isMenuOpen) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isMenuOpen) {
         this.closeMobileMenu();
       }
     });
 
     // Close menu on outside click
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (this.isMenuOpen && !this.header.contains(e.target)) {
         this.closeMobileMenu();
       }
@@ -50,14 +50,14 @@ class HeaderNavigation {
   setupScrollDetection() {
     let lastScrollY = window.scrollY;
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
 
       // Add/remove scrolled class for styling
       if (scrollY > 20) {
-        this.header.classList.add("scrolled");
+        this.header.classList.add('scrolled');
       } else {
-        this.header.classList.remove("scrolled");
+        this.header.classList.remove('scrolled');
       }
 
       lastScrollY = scrollY;
@@ -65,7 +65,7 @@ class HeaderNavigation {
   }
 
   setupSectionObserver() {
-    const sections = document.querySelectorAll(".section[id]");
+    const sections = document.querySelectorAll('.section[id]');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -78,7 +78,7 @@ class HeaderNavigation {
       },
       {
         threshold: 0.3,
-        rootMargin: "-100px 0px -100px 0px",
+        rootMargin: '-100px 0px -100px 0px',
       }
     );
 
@@ -95,29 +95,30 @@ class HeaderNavigation {
 
   openMobileMenu() {
     this.isMenuOpen = true;
-    this.navMenu.classList.add("active");
-    this.mobileMenuToggle.classList.add("active");
-    this.mobileMenuToggle.setAttribute("aria-expanded", "true");
+    this.navMenu.classList.add('active');
+    this.mobileMenuToggle.classList.add('active');
+    this.mobileMenuToggle.setAttribute('aria-expanded', 'true');
 
     // Prevent body scroll
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   }
 
   closeMobileMenu() {
     this.isMenuOpen = false;
-    this.navMenu.classList.remove("active");
-    this.mobileMenuToggle.classList.remove("active");
-    this.mobileMenuToggle.setAttribute("aria-expanded", "false");
+    this.navMenu.classList.remove('active');
+    this.mobileMenuToggle.classList.remove('active');
+    this.mobileMenuToggle.setAttribute('aria-expanded', 'false');
 
     // Restore body scroll
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
   }
 
   handleNavClick(e) {
     e.preventDefault();
 
     const link = e.currentTarget;
-    const targetSection = link.getAttribute("data-section") || link.getAttribute("href").substring(1);
+    const targetSection =
+      link.getAttribute('data-section') || link.getAttribute('href').substring(1);
 
     this.navigateToSection(targetSection);
 
@@ -136,7 +137,7 @@ class HeaderNavigation {
 
       window.scrollTo({
         top: targetPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
       this.setActiveNavLink(sectionId);
@@ -150,13 +151,15 @@ class HeaderNavigation {
 
     // Remove active class from all links
     this.navLinks.forEach((link) => {
-      link.classList.remove("active");
+      link.classList.remove('active');
     });
 
     // Add active class to current section link
-    const activeLink = document.querySelector(`[data-section="${sectionId}"], [href="#${sectionId}"]`);
+    const activeLink = document.querySelector(
+      `[data-section="${sectionId}"], [href="#${sectionId}"]`
+    );
     if (activeLink) {
-      activeLink.classList.add("active");
+      activeLink.classList.add('active');
     }
   }
 
@@ -172,8 +175,8 @@ class HeaderNavigation {
 }
 
 // Auto-initialize when section is loaded
-document.addEventListener("sectionLoaded", (event) => {
-  if (event.detail.section === "header") {
+document.addEventListener('sectionLoaded', (event) => {
+  if (event.detail.section === 'header') {
     window.headerNavigation = new HeaderNavigation();
   }
 });

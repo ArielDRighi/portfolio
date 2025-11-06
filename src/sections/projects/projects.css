@@ -182,7 +182,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--color-accent-transparent), var(--color-surface-transparent));
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-transparent),
+    var(--color-surface-transparent)
+  );
   backdrop-filter: blur(10px);
   padding: var(--spacing-xl);
   display: flex;
@@ -221,7 +225,7 @@
 }
 
 .project__highlights li::before {
-  content: "";
+  content: '';
   width: 6px;
   height: 6px;
   background: var(--color-accent);
@@ -257,34 +261,34 @@
 
 /* Technology Icon Mappings */
 .tech-icon--node::before {
-  content: "📗";
+  content: '📗';
 }
 .tech-icon--express::before {
-  content: "🚂";
+  content: '🚂';
 }
 .tech-icon--typescript::before {
-  content: "📘";
+  content: '📘';
 }
 .tech-icon--python::before {
-  content: "🐍";
+  content: '🐍';
 }
 .tech-icon--fastapi::before {
-  content: "⚡";
+  content: '⚡';
 }
 .tech-icon--docker::before {
-  content: "🐳";
+  content: '🐳';
 }
 .tech-icon--mongodb::before {
-  content: "🍃";
+  content: '🍃';
 }
 .tech-icon--postgresql::before {
-  content: "🐘";
+  content: '🐘';
 }
 .tech-icon--redis::before {
-  content: "🔴";
+  content: '🔴';
 }
 .tech-icon--aws::before {
-  content: "☁️";
+  content: '☁️';
 }
 
 /* Project Modal */

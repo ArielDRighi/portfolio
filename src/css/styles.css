@@ -2,23 +2,23 @@
    IMPORTS - Sistema de Temas
    =================================== */
 /* Import theme system */
-@import url("themes.css");
-@import url("responsive-optimized.css");
-@import url("animations.css");
+@import url('themes.css');
+@import url('responsive-optimized.css');
+@import url('animations.css');
 
 /* ===================================
    GOOGLE FONTS
    =================================== */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ===================================
    VARIABLES CSS ADICIONALES
    =================================== */
 :root {
   /* Tipografía específica del proyecto */
-  --font-primary: "Roboto", var(--font-family-primary);
-  --font-mono: "JetBrains Mono", var(--font-family-mono);
+  --font-primary: 'Roboto', var(--font-family-primary);
+  --font-mono: 'JetBrains Mono', var(--font-family-mono);
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
@@ -72,7 +72,9 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
 }
 
 /* ===================================
@@ -259,7 +261,9 @@ a:hover {
   font-weight: 500;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .nav__link:hover {
@@ -622,11 +626,11 @@ a:hover {
 }
 
 /* Filtros de iconos para temas */
-[data-theme="dark"] .tech-icon {
+[data-theme='dark'] .tech-icon {
   filter: brightness(0) saturate(100%) invert(100%);
 }
 
-[data-theme="light"] .tech-icon {
+[data-theme='light'] .tech-icon {
   filter: none;
 }
 
@@ -711,7 +715,7 @@ a:hover {
 }
 
 .timeline::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 0;
@@ -752,7 +756,9 @@ a:hover {
   margin-bottom: var(--spacing-3xl);
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   min-height: 120px; /* Ensure consistent minimum height */
 }
 
@@ -827,7 +833,7 @@ a:hover {
 }
 
 .timeline__content::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -848,7 +854,7 @@ a:hover {
 }
 
 .timeline__content::before {
-  content: "";
+  content: '';
   position: absolute;
   top: var(--spacing-lg);
   width: 0;
@@ -963,7 +969,7 @@ a:hover {
 }
 
 .timeline__list--achievements li::before {
-  content: "🏆";
+  content: '🏆';
   position: absolute;
   left: -var(--spacing-lg);
   top: 0;
@@ -989,7 +995,9 @@ a:hover {
   font-size: var(--font-size-sm);
   font-weight: 500;
   cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
   margin-top: var(--spacing-md);
 }
 
@@ -1098,8 +1106,8 @@ a:hover {
     grid-template-rows: auto auto;
     gap: var(--spacing-lg);
     grid-template-areas:
-      "email linkedin"
-      "github github";
+      'email linkedin'
+      'github github';
   }
 
   .contact__link:nth-child(1) {
@@ -1118,7 +1126,7 @@ a:hover {
 @media (min-width: 1024px) {
   .contact__links {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "email linkedin github";
+    grid-template-areas: 'email linkedin github';
   }
 
   .contact__link:nth-child(3) {
@@ -1145,7 +1153,7 @@ a:hover {
 }
 
 .contact__link::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -1258,7 +1266,9 @@ a:hover {
   font-size: var(--font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .form__button:hover {
@@ -1363,7 +1373,7 @@ a:hover {
 }
 
 .form__button--loading::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1839,63 +1849,63 @@ a:hover {
 }
 
 /* Estilos específicos para tema claro */
-[data-theme="light"] .modal-content {
+[data-theme='light'] .modal-content {
   background: #ffffff;
   border: 1px solid #e5e7eb;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
-[data-theme="light"] .modal-header {
+[data-theme='light'] .modal-header {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
 }
 
-[data-theme="light"] .modal-header h2,
-[data-theme="light"] .modal-header h3,
-[data-theme="light"] .modal-period {
+[data-theme='light'] .modal-header h2,
+[data-theme='light'] .modal-header h3,
+[data-theme='light'] .modal-period {
   color: white;
 }
 
-[data-theme="light"] .modal-section h4 {
+[data-theme='light'] .modal-section h4 {
   color: #1e40af;
 }
 
-[data-theme="light"] .modal-section p,
-[data-theme="light"] .modal-section li {
+[data-theme='light'] .modal-section p,
+[data-theme='light'] .modal-section li {
   color: #374151;
 }
 
-[data-theme="light"] .modal-body {
+[data-theme='light'] .modal-body {
   background: #ffffff;
 }
 
-[data-theme="light"] .modal-technologies .tech-tag {
+[data-theme='light'] .modal-technologies .tech-tag {
   background: #2563eb;
   color: white;
   border: 1px solid #1d4ed8;
 }
 
 /* Estilos específicos para tema oscuro */
-[data-theme="dark"] .modal-content {
+[data-theme='dark'] .modal-content {
   background: var(--bg-primary);
   border: 1px solid #374151;
 }
 
-[data-theme="dark"] .modal-header {
+[data-theme='dark'] .modal-header {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white;
 }
 
-[data-theme="dark"] .modal-section h4 {
+[data-theme='dark'] .modal-section h4 {
   color: var(--accent-primary);
 }
 
-[data-theme="dark"] .modal-section p,
-[data-theme="dark"] .modal-section li {
+[data-theme='dark'] .modal-section p,
+[data-theme='dark'] .modal-section li {
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .modal-technologies .tech-tag {
+[data-theme='dark'] .modal-technologies .tech-tag {
   background: #3b82f6;
   color: white;
   border: 1px solid #60a5fa;
@@ -1940,7 +1950,7 @@ a:hover {
 }
 
 .timeline__show-details::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -1967,27 +1977,27 @@ a:hover {
 }
 
 /* Tema específico para el botón */
-[data-theme="light"] .timeline__show-details {
+[data-theme='light'] .timeline__show-details {
   background: #2563eb;
   border-color: #2563eb;
   color: white;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
-[data-theme="light"] .timeline__show-details:hover {
+[data-theme='light'] .timeline__show-details:hover {
   background: #1d4ed8;
   border-color: #1d4ed8;
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-[data-theme="dark"] .timeline__show-details {
+[data-theme='dark'] .timeline__show-details {
   background: #3b82f6;
   border-color: #3b82f6;
   color: white;
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
-[data-theme="dark"] .timeline__show-details:hover {
+[data-theme='dark'] .timeline__show-details:hover {
   background: #60a5fa;
   border-color: #60a5fa;
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
@@ -2077,7 +2087,7 @@ a:hover {
 }
 
 .project-card.project-card::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;

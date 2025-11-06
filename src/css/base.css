@@ -24,7 +24,9 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal);
   overflow-x: hidden;
 }
 
@@ -135,7 +137,9 @@ select {
   justify-content: center;
   align-items: center;
   z-index: var(--z-modal);
-  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+  transition:
+    opacity var(--transition-slow),
+    visibility var(--transition-slow);
 }
 
 .loading-screen.hidden {

@@ -16,22 +16,22 @@ class ModuleLoader {
 
   setupSectionContainers() {
     // Mapear containers de las secciones
-    this.sectionContainers.set("header", document.querySelector(".header"));
-    this.sectionContainers.set("about", document.querySelector("#about"));
-    this.sectionContainers.set("experience", document.querySelector("#experience"));
-    this.sectionContainers.set("projects", document.querySelector("#projects"));
-    this.sectionContainers.set("contact", document.querySelector("#contact"));
-    this.sectionContainers.set("footer", document.querySelector(".footer"));
+    this.sectionContainers.set('header', document.querySelector('.header'));
+    this.sectionContainers.set('about', document.querySelector('#about'));
+    this.sectionContainers.set('experience', document.querySelector('#experience'));
+    this.sectionContainers.set('projects', document.querySelector('#projects'));
+    this.sectionContainers.set('contact', document.querySelector('#contact'));
+    this.sectionContainers.set('footer', document.querySelector('.footer'));
   }
 
   async loadAllSections() {
     const sections = [
-      { name: "header", path: "components/header" },
-      { name: "about", path: "sections/about" },
-      { name: "experience", path: "sections/experience" },
-      { name: "projects", path: "sections/projects" },
-      { name: "contact", path: "sections/contact" },
-      { name: "footer", path: "components/footer" },
+      { name: 'header', path: 'components/header' },
+      { name: 'about', path: 'sections/about' },
+      { name: 'experience', path: 'sections/experience' },
+      { name: 'projects', path: 'sections/projects' },
+      { name: 'contact', path: 'sections/contact' },
+      { name: 'footer', path: 'components/footer' },
     ];
 
     // Cargar secciones en paralelo para mejor rendimiento
@@ -90,8 +90,8 @@ class ModuleLoader {
         return;
       }
 
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
       link.href = path;
 
       link.onload = () => resolve();
@@ -112,7 +112,7 @@ class ModuleLoader {
         return;
       }
 
-      const script = document.createElement("script");
+      const script = document.createElement('script');
       script.src = path;
       script.async = true;
 
@@ -127,7 +127,7 @@ class ModuleLoader {
   }
 
   dispatchSectionLoaded(sectionName) {
-    const event = new CustomEvent("sectionLoaded", {
+    const event = new CustomEvent('sectionLoaded', {
       detail: { section: sectionName },
     });
     document.dispatchEvent(event);
@@ -135,7 +135,7 @@ class ModuleLoader {
 
   initializeModules() {
     // Disparar evento cuando todos los módulos estén cargados
-    const allLoaded = new CustomEvent("allSectionsLoaded", {
+    const allLoaded = new CustomEvent('allSectionsLoaded', {
       detail: {
         loadedModules: Array.from(this.loadedModules),
         totalModules: this.sectionContainers.size,
@@ -143,7 +143,7 @@ class ModuleLoader {
     });
     document.dispatchEvent(allLoaded);
 
-    console.log("🎉 Todos los módulos cargados:", this.loadedModules);
+    console.log('🎉 Todos los módulos cargados:', this.loadedModules);
   }
 
   // Método para cargar una sección específica bajo demanda
@@ -166,21 +166,23 @@ class ModuleLoader {
     return {
       loaded: Array.from(this.loadedModules),
       total: this.sectionContainers.size,
-      pending: Array.from(this.sectionContainers.keys()).filter((section) => !this.loadedModules.has(section)),
+      pending: Array.from(this.sectionContainers.keys()).filter(
+        (section) => !this.loadedModules.has(section)
+      ),
     };
   }
 }
 
 // Inicializar el loader cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   window.moduleLoader = new ModuleLoader();
 });
 
 // Eventos para debugging y coordinación entre módulos
-document.addEventListener("sectionLoaded", (event) => {
+document.addEventListener('sectionLoaded', (event) => {
   console.log(`📦 Sección cargada: ${event.detail.section}`);
 });
 
-document.addEventListener("allSectionsLoaded", (event) => {
-  console.log("🚀 Portfolio completamente cargado:", event.detail);
+document.addEventListener('allSectionsLoaded', (event) => {
+  console.log('🚀 Portfolio completamente cargado:', event.detail);
 });

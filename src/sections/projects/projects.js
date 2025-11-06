@@ -4,11 +4,11 @@
  */
 class ProjectsGrid {
   constructor() {
-    this.gridContainer = document.getElementById("projectsGrid");
-    this.projectModal = document.getElementById("projectModal");
-    this.modalClose = document.getElementById("modalClose");
-    this.modalOverlay = document.getElementById("modalOverlay");
-    this.modalBody = document.getElementById("modalBody");
+    this.gridContainer = document.getElementById('projectsGrid');
+    this.projectModal = document.getElementById('projectModal');
+    this.modalClose = document.getElementById('modalClose');
+    this.modalOverlay = document.getElementById('modalOverlay');
+    this.modalBody = document.getElementById('modalBody');
 
     this.projects = this.getEmbeddedProjects();
     this.isModalOpen = false;
@@ -30,45 +30,45 @@ class ProjectsGrid {
     return [
       {
         id: 1,
-        name: "Ecommerce Monolith Foundation",
-        type: "Monolith",
+        name: 'Ecommerce Monolith Foundation',
+        type: 'Monolith',
         description:
-          "Backend monolítico de nivel empresarial para e-commerce. Optimización extrema con 34 índices estratégicos en PostgreSQL (mejoras del 85-94%). Suite comprehensiva de 514 pruebas (74.69% cobertura). Pipeline CI/CD profesional con quality gates y escaneo de seguridad. Ingeniería documentada con ADRs y 162 story points completados. Arquitectura DDD con módulos independientes y APIs user-friendly.",
-        technologies: ["node", "typescript", "postgresql", "docker"],
-        github: "https://github.com/ArielDRighi/ecommerce-monolith-foundation",
+          'Backend monolítico de nivel empresarial para e-commerce. Optimización extrema con 34 índices estratégicos en PostgreSQL (mejoras del 85-94%). Suite comprehensiva de 514 pruebas (74.69% cobertura). Pipeline CI/CD profesional con quality gates y escaneo de seguridad. Ingeniería documentada con ADRs y 162 story points completados. Arquitectura DDD con módulos independientes y APIs user-friendly.',
+        technologies: ['node', 'typescript', 'postgresql', 'docker'],
+        github: 'https://github.com/ArielDRighi/ecommerce-monolith-foundation',
         demo: null,
-        status: "completed",
+        status: 'completed',
         featured: true,
         stats: { stars: 0, forks: 0, commits: 0 },
         highlights: [
-          "34 índices estratégicos con mejoras del 85-94%",
-          "514 tests (425 unitarias + 89 E2E) - 74.69% coverage",
-          "Pipeline CI/CD con quality gates automáticos",
-          "Architecture Decision Records (ADRs)",
-          "Principios DDD y separación de módulos",
-          "Builds multi-stage en Docker",
+          '34 índices estratégicos con mejoras del 85-94%',
+          '514 tests (425 unitarias + 89 E2E) - 74.69% coverage',
+          'Pipeline CI/CD con quality gates automáticos',
+          'Architecture Decision Records (ADRs)',
+          'Principios DDD y separación de módulos',
+          'Builds multi-stage en Docker',
         ],
       },
       {
         id: 2,
-        name: "Ecommerce Async Resilient System",
-        type: "Microservices",
+        name: 'Ecommerce Async Resilient System',
+        type: 'Microservices',
         description:
-          "Sistema asíncrono de procesamiento de órdenes para e-commerce con arquitectura event-driven. Saga Pattern con compensación automática, 4 colas especializadas (Bull + Redis). Circuit Breaker + Retry + Idempotency para resiliencia enterprise. Outbox Pattern para consistencia DB/Queue. Optimización de performance: de 5 segundos a 100 milisegundos. Testing riguroso con 1,187 tests unitarios + 262 E2E (72% coverage). 25 ADRs con análisis de trade-offs arquitectónicos.",
-        technologies: ["node", "typescript", "postgresql", "redis", "docker"],
-        github: "https://github.com/ArielDRighi/ecommerce-async-resilient-system",
+          'Sistema asíncrono de procesamiento de órdenes para e-commerce con arquitectura event-driven. Saga Pattern con compensación automática, 4 colas especializadas (Bull + Redis). Circuit Breaker + Retry + Idempotency para resiliencia enterprise. Outbox Pattern para consistencia DB/Queue. Optimización de performance: de 5 segundos a 100 milisegundos. Testing riguroso con 1,187 tests unitarios + 262 E2E (72% coverage). 25 ADRs con análisis de trade-offs arquitectónicos.',
+        technologies: ['node', 'typescript', 'postgresql', 'redis', 'docker'],
+        github: 'https://github.com/ArielDRighi/ecommerce-async-resilient-system',
         demo: null,
-        status: "completed",
+        status: 'completed',
         featured: true,
         stats: { stars: 0, forks: 0, commits: 0 },
         highlights: [
-          "Performance: 5 segundos → 100 milisegundos",
-          "Saga Pattern con compensación automática",
-          "4 colas especializadas (Bull + Redis)",
-          "Circuit Breaker + Retry + Idempotency",
-          "Outbox Pattern para consistencia",
-          "1,187 tests unitarios + 262 E2E (72% coverage)",
-          "25 ADRs con análisis arquitectónico",
+          'Performance: 5 segundos → 100 milisegundos',
+          'Saga Pattern con compensación automática',
+          '4 colas especializadas (Bull + Redis)',
+          'Circuit Breaker + Retry + Idempotency',
+          'Outbox Pattern para consistencia',
+          '1,187 tests unitarios + 262 E2E (72% coverage)',
+          '25 ADRs con análisis arquitectónico',
         ],
       },
     ];
@@ -77,11 +77,11 @@ class ProjectsGrid {
   setupEventListeners() {
     // Modal close events
     if (this.modalClose) {
-      this.modalClose.addEventListener("click", this.closeModal.bind(this));
+      this.modalClose.addEventListener('click', this.closeModal.bind(this));
     }
 
     if (this.modalOverlay) {
-      this.modalOverlay.addEventListener("click", (e) => {
+      this.modalOverlay.addEventListener('click', (e) => {
         if (e.target === this.modalOverlay) {
           this.closeModal();
         }
@@ -89,8 +89,8 @@ class ProjectsGrid {
     }
 
     // ESC key to close modal
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && this.isModalOpen) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isModalOpen) {
         this.closeModal();
       }
     });
@@ -98,14 +98,14 @@ class ProjectsGrid {
 
   async loadProjects() {
     try {
-      const response = await fetch("data/projects.json");
+      const response = await fetch('data/projects.json');
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       this.projects = await response.json();
       await this.enrichWithGitHub();
     } catch (error) {
-      console.error("Error cargando proyectos:", error);
+      console.error('Error cargando proyectos:', error);
       this.projects = this.getDefaultProjects();
     }
   }
@@ -128,7 +128,7 @@ class ProjectsGrid {
         this.projects = enrichedProjects;
       }
     } catch (error) {
-      console.warn("No se pudo enriquecer con GitHub:", error);
+      console.warn('No se pudo enriquecer con GitHub:', error);
     }
   }
 
@@ -138,27 +138,27 @@ class ProjectsGrid {
   async loadGitHubIntegration() {
     return new Promise((resolve, reject) => {
       if (window.githubIntegration) {
-        console.log("✅ GitHub integration already loaded");
+        console.log('✅ GitHub integration already loaded');
         resolve();
         return;
       }
 
-      console.log("📦 Loading js/github-integration.js...");
-      const script = document.createElement("script");
-      script.src = "js/github-integration.js";
+      console.log('📦 Loading js/github-integration.js...');
+      const script = document.createElement('script');
+      script.src = 'js/github-integration.js';
       script.onload = () => {
-        console.log("✅ GitHub integration loaded");
+        console.log('✅ GitHub integration loaded');
         resolve();
       };
       script.onerror = (error) => {
-        console.warn("⚠️ Failed to load GitHub integration:", error);
+        console.warn('⚠️ Failed to load GitHub integration:', error);
         reject(error);
       };
 
       // Agregar timeout para evitar que se cuelgue
       setTimeout(() => {
-        console.warn("⏰ GitHub integration load timeout");
-        reject(new Error("Timeout loading GitHub integration"));
+        console.warn('⏰ GitHub integration load timeout');
+        reject(new Error('Timeout loading GitHub integration'));
       }, 5000);
 
       document.head.appendChild(script);
@@ -169,112 +169,112 @@ class ProjectsGrid {
     return [
       {
         id: 1,
-        name: "API REST E-commerce",
-        type: "api",
+        name: 'API REST E-commerce',
+        type: 'api',
         description:
-          "API completa para sistema de e-commerce con autenticación JWT, pagos con Stripe y gestión avanzada de inventario. Incluye documentación Swagger y testing automatizado.",
-        technologies: ["node", "express", "mongodb", "redis"],
-        github: "https://github.com/usuario/ecommerce-api",
-        demo: "https://ecommerce-api-demo.herokuapp.com",
-        status: "completed",
+          'API completa para sistema de e-commerce con autenticación JWT, pagos con Stripe y gestión avanzada de inventario. Incluye documentación Swagger y testing automatizado.',
+        technologies: ['node', 'express', 'mongodb', 'redis'],
+        github: 'https://github.com/usuario/ecommerce-api',
+        demo: 'https://ecommerce-api-demo.herokuapp.com',
+        status: 'completed',
         featured: true,
         stats: { stars: 45, forks: 12, commits: 156 },
         highlights: [
-          "Arquitectura RESTful completa",
-          "Autenticación JWT con refresh tokens",
-          "Integración con Stripe para pagos",
-          "Sistema de cache con Redis",
-          "Documentación automática con Swagger",
+          'Arquitectura RESTful completa',
+          'Autenticación JWT con refresh tokens',
+          'Integración con Stripe para pagos',
+          'Sistema de cache con Redis',
+          'Documentación automática con Swagger',
         ],
       },
       {
         id: 2,
-        name: "Microservicios Chat",
-        type: "microservices",
+        name: 'Microservicios Chat',
+        type: 'microservices',
         description:
-          "Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets, RabbitMQ para mensajería y Docker para orquestación.",
-        technologies: ["node", "docker", "postgresql", "redis"],
-        github: "https://github.com/usuario/chat-microservices",
-        demo: "https://chat-demo.vercel.app",
-        status: "completed",
+          'Sistema de chat en tiempo real con arquitectura de microservicios usando WebSockets, RabbitMQ para mensajería y Docker para orquestación.',
+        technologies: ['node', 'docker', 'postgresql', 'redis'],
+        github: 'https://github.com/usuario/chat-microservices',
+        demo: 'https://chat-demo.vercel.app',
+        status: 'completed',
         featured: true,
         stats: { stars: 38, forks: 8, commits: 203 },
         highlights: [
-          "Arquitectura de microservicios",
-          "WebSockets para tiempo real",
-          "RabbitMQ para comunicación entre servicios",
-          "Docker Compose para desarrollo",
-          "Monitoreo con Prometheus",
+          'Arquitectura de microservicios',
+          'WebSockets para tiempo real',
+          'RabbitMQ para comunicación entre servicios',
+          'Docker Compose para desarrollo',
+          'Monitoreo con Prometheus',
         ],
       },
       {
         id: 3,
-        name: "FastAPI ML Service",
-        type: "ml",
+        name: 'FastAPI ML Service',
+        type: 'ml',
         description:
-          "Servicio de Machine Learning para predicciones usando FastAPI, TensorFlow y MLflow para gestión de modelos. Incluye pipeline CI/CD automatizado.",
-        technologies: ["python", "fastapi", "postgresql", "docker"],
-        github: "https://github.com/usuario/ml-service",
+          'Servicio de Machine Learning para predicciones usando FastAPI, TensorFlow y MLflow para gestión de modelos. Incluye pipeline CI/CD automatizado.',
+        technologies: ['python', 'fastapi', 'postgresql', 'docker'],
+        github: 'https://github.com/usuario/ml-service',
         demo: null,
-        status: "completed",
+        status: 'completed',
         featured: false,
         stats: { stars: 23, forks: 5, commits: 89 },
         highlights: [
-          "API para modelos de ML",
-          "Gestión de modelos con MLflow",
-          "Validación automática de datos",
-          "Containerización con Docker",
-          "Pipeline de entrenamiento automatizado",
+          'API para modelos de ML',
+          'Gestión de modelos con MLflow',
+          'Validación automática de datos',
+          'Containerización con Docker',
+          'Pipeline de entrenamiento automatizado',
         ],
       },
     ];
   }
 
   renderProjectCards() {
-    console.log("🎨 Starting renderProjectCards...");
-    console.log("Grid container:", this.gridContainer);
-    console.log("Projects to render:", this.projects.length);
+    console.log('🎨 Starting renderProjectCards...');
+    console.log('Grid container:', this.gridContainer);
+    console.log('Projects to render:', this.projects.length);
 
     if (!this.gridContainer) {
-      console.log("❌ No grid container found");
+      console.log('❌ No grid container found');
       return;
     }
 
     // Clear loading state
-    console.log("🧹 Clearing loading state...");
-    this.gridContainer.innerHTML = "";
+    console.log('🧹 Clearing loading state...');
+    this.gridContainer.innerHTML = '';
 
     if (this.projects.length === 0) {
-      console.log("⚠️ No projects to render");
-      this.gridContainer.innerHTML = "<p>No hay proyectos disponibles</p>";
+      console.log('⚠️ No projects to render');
+      this.gridContainer.innerHTML = '<p>No hay proyectos disponibles</p>';
       return;
     }
 
-    console.log("🔄 Creating project cards...");
+    console.log('🔄 Creating project cards...');
     this.projects.forEach((project, index) => {
       console.log(`Creating card ${index + 1}:`, project.name);
       const card = this.createProjectCard(project);
       this.gridContainer.appendChild(card);
     });
 
-    console.log("✅ All cards created");
+    console.log('✅ All cards created');
 
     // Initialize Feather Icons for the new cards
-    if (typeof feather !== "undefined") {
-      console.log("🪶 Replacing feather icons...");
+    if (typeof feather !== 'undefined') {
+      console.log('🪶 Replacing feather icons...');
       feather.replace();
     } else {
-      console.log("⚠️ Feather icons not available");
+      console.log('⚠️ Feather icons not available');
     }
   }
 
   createProjectCard(project) {
-    const card = document.createElement("div");
-    card.className = "project-card";
+    const card = document.createElement('div');
+    card.className = 'project-card';
     card.dataset.projectId = project.id;
 
-    const statusClass = project.status === "completed" ? "completed" : "in-progress";
-    const statusText = project.status === "completed" ? "Completado" : "En Progreso";
+    const statusClass = project.status === 'completed' ? 'completed' : 'in-progress';
+    const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
 
     const techGrid = this.createTechGrid(project.technologies);
     const hoverInfo = this.createHoverInfo(project);
@@ -331,9 +331,9 @@ class ProjectsGrid {
     `;
 
     // Add click event for opening modal
-    card.addEventListener("click", (e) => {
+    card.addEventListener('click', (e) => {
       // Only open modal if not clicking on action buttons
-      if (!e.target.closest(".project__action")) {
+      if (!e.target.closest('.project__action')) {
         this.openModal(project.id);
       }
     });
@@ -355,7 +355,7 @@ class ProjectsGrid {
         </div>
       `;
       })
-      .join("");
+      .join('');
   }
 
   createHoverInfo(project) {
@@ -370,10 +370,10 @@ class ProjectsGrid {
             highlights.length > 0
               ? `
             <ul class="project__highlights">
-              ${highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+              ${highlights.map((highlight) => `<li>${highlight}</li>`).join('')}
             </ul>
           `
-              : ""
+              : ''
           }
 
           <div class="project__stats">
@@ -393,34 +393,34 @@ class ProjectsGrid {
 
   getTechDisplayName(tech) {
     const names = {
-      node: "Node.js",
-      express: "Express",
-      mongodb: "MongoDB",
-      postgresql: "PostgreSQL",
-      redis: "Redis",
-      docker: "Docker",
-      aws: "AWS",
-      python: "Python",
-      fastapi: "FastAPI",
-      typescript: "TypeScript",
+      node: 'Node.js',
+      express: 'Express',
+      mongodb: 'MongoDB',
+      postgresql: 'PostgreSQL',
+      redis: 'Redis',
+      docker: 'Docker',
+      aws: 'AWS',
+      python: 'Python',
+      fastapi: 'FastAPI',
+      typescript: 'TypeScript',
     };
     return names[tech] || tech.charAt(0).toUpperCase() + tech.slice(1);
   }
 
   getTechIcon(tech) {
     const icons = {
-      node: "💚",
-      express: "🚂",
-      mongodb: "🍃",
-      postgresql: "🐘",
-      redis: "🔴",
-      docker: "🐳",
-      aws: "☁️",
-      python: "🐍",
-      fastapi: "⚡",
-      typescript: "📘",
+      node: '💚',
+      express: '🚂',
+      mongodb: '🍃',
+      postgresql: '🐘',
+      redis: '🔴',
+      docker: '🐳',
+      aws: '☁️',
+      python: '🐍',
+      fastapi: '⚡',
+      typescript: '📘',
     };
-    return icons[tech] || "⚙️";
+    return icons[tech] || '⚙️';
   }
 
   openModal(projectId) {
@@ -428,20 +428,20 @@ class ProjectsGrid {
     if (!project) return;
 
     this.modalBody.innerHTML = this.createModalContent(project);
-    this.projectModal.classList.add("active");
+    this.projectModal.classList.add('active');
     this.isModalOpen = true;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     // Initialize Feather Icons in modal
-    if (typeof feather !== "undefined") {
+    if (typeof feather !== 'undefined') {
       feather.replace();
     }
   }
 
   createModalContent(project) {
-    const statusIcon = project.status === "completed" ? "check-circle" : "clock";
-    const statusText = project.status === "completed" ? "Completado" : "En Progreso";
-    const statusClass = project.status === "completed" ? "completed" : "in-progress";
+    const statusIcon = project.status === 'completed' ? 'check-circle' : 'clock';
+    const statusText = project.status === 'completed' ? 'Completado' : 'En Progreso';
+    const statusClass = project.status === 'completed' ? 'completed' : 'in-progress';
 
     const techList = project.technologies
       .map(
@@ -451,7 +451,7 @@ class ProjectsGrid {
       </span>
     `
       )
-      .join("");
+      .join('');
 
     const highlights = project.highlights || [];
 
@@ -481,11 +481,11 @@ class ProjectsGrid {
               Características Destacadas
             </h3>
             <ul>
-              ${highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+              ${highlights.map((highlight) => `<li>${highlight}</li>`).join('')}
             </ul>
           </div>
         `
-            : ""
+            : ''
         }
 
         <div class="modal-project-technologies">
@@ -535,7 +535,7 @@ class ProjectsGrid {
               <span>Ver Demo</span>
             </a>
           `
-              : ""
+              : ''
           }
         </div>
       </div>
@@ -744,16 +744,16 @@ class ProjectsGrid {
   }
 
   closeModal() {
-    this.projectModal.classList.remove("active");
+    this.projectModal.classList.remove('active');
     this.isModalOpen = false;
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
   }
 
   updateStats() {
-    const totalProjects = document.getElementById("totalProjects");
-    const totalTechnologies = document.getElementById("totalTechnologies");
-    const totalStars = document.getElementById("totalStars");
-    const totalCommits = document.getElementById("totalCommits");
+    const totalProjects = document.getElementById('totalProjects');
+    const totalTechnologies = document.getElementById('totalTechnologies');
+    const totalStars = document.getElementById('totalStars');
+    const totalCommits = document.getElementById('totalCommits');
 
     if (totalProjects) {
       this.animateCounter(totalProjects, this.projects.length);
@@ -770,7 +770,10 @@ class ProjectsGrid {
     }
 
     if (totalCommits) {
-      const commitsCount = this.projects.reduce((sum, p) => sum + (p.stats ? p.stats.commits : 0), 0);
+      const commitsCount = this.projects.reduce(
+        (sum, p) => sum + (p.stats ? p.stats.commits : 0),
+        0
+      );
       this.animateCounter(totalCommits, commitsCount);
     }
   }
@@ -797,22 +800,22 @@ class ProjectsGrid {
 }
 
 // Auto-initialize when section is loaded
-document.addEventListener("sectionLoaded", (event) => {
-  console.log("Event sectionLoaded received:", event.detail);
-  if (event.detail.section === "projects") {
-    console.log("Initializing ProjectsGrid from sectionLoaded");
+document.addEventListener('sectionLoaded', (event) => {
+  console.log('Event sectionLoaded received:', event.detail);
+  if (event.detail.section === 'projects') {
+    console.log('Initializing ProjectsGrid from sectionLoaded');
     window.projectsGrid = new ProjectsGrid();
   }
 });
 
 // Fallback initialization for non-modular version
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded - checking for projectsGrid element");
-  const gridElement = document.getElementById("projectsGrid");
-  console.log("Grid element found:", !!gridElement);
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded - checking for projectsGrid element');
+  const gridElement = document.getElementById('projectsGrid');
+  console.log('Grid element found:', !!gridElement);
 
   if (gridElement && !window.projectsGrid) {
-    console.log("Initializing ProjectsGrid from DOMContentLoaded");
+    console.log('Initializing ProjectsGrid from DOMContentLoaded');
     window.projectsGrid = new ProjectsGrid();
   }
 });

@@ -36,8 +36,8 @@
   --color-dark-border: #374151;
 
   /* Tipografía */
-  --font-primary: "Roboto", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-primary: 'Roboto', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
   --font-size-2xs: 0.625rem;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -99,7 +99,7 @@
 }
 
 /* Tema oscuro */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-background: var(--color-dark-background);
   --color-surface: var(--color-dark-surface);
   --color-text: var(--color-dark-text);

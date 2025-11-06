@@ -199,7 +199,7 @@
 }
 
 .btn::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -298,7 +298,9 @@
   border-right: 2px solid var(--color-primary);
   white-space: nowrap;
   margin: 0 auto;
-  animation: typing var(--duration-slower) steps(40, end), blink 1s step-end infinite;
+  animation:
+    typing var(--duration-slower) steps(40, end),
+    blink 1s step-end infinite;
 }
 
 /* ==========================================================================
@@ -382,8 +384,10 @@
    Theme Transition Animations
    ========================================================================== */
 * {
-  transition: background-color var(--duration-normal) var(--ease-out),
-    border-color var(--duration-normal) var(--ease-out), color var(--duration-normal) var(--ease-out),
+  transition:
+    background-color var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
     box-shadow var(--duration-normal) var(--ease-out);
 }
 
@@ -409,7 +413,7 @@
 }
 
 .text-highlight::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -455,7 +459,7 @@
 }
 
 .nav__link::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -4px;
   left: 50%;

@@ -199,7 +199,7 @@
 }
 
 .project-icon__tooltip::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -342,7 +342,7 @@
 
 /* Brillo en hover */
 .project-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;

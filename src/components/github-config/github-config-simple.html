@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         display: flex;
@@ -263,15 +263,15 @@
     <script>
       class GitHubConfigModal {
         constructor() {
-          this.form = document.getElementById("github-form");
-          this.usernameInput = document.getElementById("username");
-          this.saveBtn = document.getElementById("save-btn");
-          this.testBtn = document.getElementById("test-btn");
-          this.closeBtn = document.getElementById("close-btn");
-          this.statusMessage = document.getElementById("status-message");
-          this.loading = document.getElementById("loading");
-          this.currentConfig = document.getElementById("current-config");
-          this.currentUsername = document.getElementById("current-username");
+          this.form = document.getElementById('github-form');
+          this.usernameInput = document.getElementById('username');
+          this.saveBtn = document.getElementById('save-btn');
+          this.testBtn = document.getElementById('test-btn');
+          this.closeBtn = document.getElementById('close-btn');
+          this.statusMessage = document.getElementById('status-message');
+          this.loading = document.getElementById('loading');
+          this.currentConfig = document.getElementById('current-config');
+          this.currentUsername = document.getElementById('current-username');
 
           this.init();
         }
@@ -282,27 +282,27 @@
         }
 
         loadCurrentConfig() {
-          const config = localStorage.getItem("github-config");
+          const config = localStorage.getItem('github-config');
           if (config) {
             try {
               const parsed = JSON.parse(config);
               if (parsed.username) {
                 this.usernameInput.value = parsed.username;
                 this.currentUsername.textContent = `Usuario: ${parsed.username}`;
-                this.currentConfig.style.display = "block";
+                this.currentConfig.style.display = 'block';
                 this.testBtn.disabled = false;
               }
             } catch (error) {
-              console.warn("Error cargando configuración:", error);
+              console.warn('Error cargando configuración:', error);
             }
           }
         }
 
         setupEventListeners() {
-          this.form.addEventListener("submit", (e) => this.handleSave(e));
-          this.testBtn.addEventListener("click", () => this.handleTest());
-          this.closeBtn.addEventListener("click", () => this.handleClose());
-          this.usernameInput.addEventListener("input", () => this.handleUsernameChange());
+          this.form.addEventListener('submit', (e) => this.handleSave(e));
+          this.testBtn.addEventListener('click', () => this.handleTest());
+          this.closeBtn.addEventListener('click', () => this.handleClose());
+          this.usernameInput.addEventListener('input', () => this.handleUsernameChange());
         }
 
         handleUsernameChange() {
@@ -316,7 +316,7 @@
 
           const username = this.usernameInput.value.trim();
           if (!username) {
-            this.showStatusMessage("Por favor ingresa un usuario", "error");
+            this.showStatusMessage('Por favor ingresa un usuario', 'error');
             return;
           }
 
@@ -327,7 +327,7 @@
             const response = await fetch(`https://api.github.com/users/${username}`);
 
             if (!response.ok) {
-              throw new Error("Usuario no encontrado en GitHub");
+              throw new Error('Usuario no encontrado en GitHub');
             }
 
             const userData = await response.json();
@@ -338,21 +338,21 @@
               savedAt: new Date().toISOString(),
             };
 
-            localStorage.setItem("github-config", JSON.stringify(config));
+            localStorage.setItem('github-config', JSON.stringify(config));
 
             // Actualizar configuración actual
             this.currentUsername.textContent = `Usuario: ${username}`;
-            this.currentConfig.style.display = "block";
+            this.currentConfig.style.display = 'block';
             this.testBtn.disabled = false;
 
-            this.showStatusMessage(`✓ Configuración guardada para ${userData.login}`, "success");
+            this.showStatusMessage(`✓ Configuración guardada para ${userData.login}`, 'success');
 
             // Notificar al portfolio principal si está disponible
             if (window.parent && window.parent.githubIntegration) {
               window.parent.githubIntegration.setUsername(username);
             }
           } catch (error) {
-            this.showStatusMessage(`❌ Error: ${error.message}`, "error");
+            this.showStatusMessage(`❌ Error: ${error.message}`, 'error');
           } finally {
             this.showLoading(false);
           }
@@ -368,16 +368,16 @@
             const response = await fetch(`https://api.github.com/users/${username}`);
 
             if (!response.ok) {
-              throw new Error("Usuario no encontrado");
+              throw new Error('Usuario no encontrado');
             }
 
             const userData = await response.json();
             this.showStatusMessage(
               `✓ Usuario válido: ${userData.login} (${userData.public_repos} repositorios públicos)`,
-              "success"
+              'success'
             );
           } catch (error) {
-            this.showStatusMessage(`❌ Error: ${error.message}`, "error");
+            this.showStatusMessage(`❌ Error: ${error.message}`, 'error');
           } finally {
             this.showLoading(false);
           }
@@ -385,7 +385,7 @@
 
         handleClose() {
           if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ action: "closeGitHubConfig" }, "*");
+            window.parent.postMessage({ action: 'closeGitHubConfig' }, '*');
           } else {
             window.close();
           }
@@ -394,22 +394,22 @@
         showStatusMessage(message, type) {
           this.statusMessage.textContent = message;
           this.statusMessage.className = `status-message ${type}`;
-          this.statusMessage.style.display = "block";
+          this.statusMessage.style.display = 'block';
         }
 
         hideStatusMessage() {
-          this.statusMessage.style.display = "none";
+          this.statusMessage.style.display = 'none';
         }
 
         showLoading(show) {
-          this.loading.classList.toggle("show", show);
+          this.loading.classList.toggle('show', show);
           this.saveBtn.disabled = show;
           this.testBtn.disabled = show || !this.usernameInput.value.trim();
         }
       }
 
       // Inicializar cuando el DOM esté listo
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener('DOMContentLoaded', () => {
         new GitHubConfigModal();
       });
     </script>

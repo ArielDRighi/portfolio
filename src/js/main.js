@@ -34,7 +34,7 @@ export const utils = {
     const targetPosition = element.offsetTop - offset;
     window.scrollTo({
       top: targetPosition,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   },
 
@@ -52,7 +52,7 @@ export const utils = {
   // Formatear fecha actual
   getCurrentTime() {
     const now = new Date();
-    return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   },
 };
 
@@ -61,10 +61,10 @@ export const utils = {
 // ===================================
 export class Navigation {
   constructor() {
-    this.navToggle = document.getElementById("navToggle");
-    this.navMenu = document.querySelector(".nav__menu");
-    this.navLinks = document.querySelectorAll(".nav__link");
-    this.header = document.querySelector(".header");
+    this.navToggle = document.getElementById('navToggle');
+    this.navMenu = document.querySelector('.nav__menu');
+    this.navLinks = document.querySelectorAll('.nav__link');
+    this.header = document.querySelector('.header');
 
     this.init();
   }
@@ -77,37 +77,37 @@ export class Navigation {
   bindEvents() {
     // Toggle menú móvil
     if (this.navToggle) {
-      this.navToggle.addEventListener("click", () => this.toggleMobileMenu());
+      this.navToggle.addEventListener('click', () => this.toggleMobileMenu());
     }
 
     // Navegación suave
     this.navLinks.forEach((link) => {
-      link.addEventListener("click", (e) => this.handleNavClick(e));
+      link.addEventListener('click', (e) => this.handleNavClick(e));
     });
 
     // Scroll para header sticky
     window.addEventListener(
-      "scroll",
+      'scroll',
       utils.debounce(() => this.handleScroll(), 100)
     );
 
     // Cerrar menú móvil al redimensionar
-    window.addEventListener("resize", () => this.closeMobileMenu());
+    window.addEventListener('resize', () => this.closeMobileMenu());
   }
 
   toggleMobileMenu() {
-    this.navMenu.classList.toggle("nav__menu--open");
-    this.navToggle.classList.toggle("nav__toggle--open");
+    this.navMenu.classList.toggle('nav__menu--open');
+    this.navToggle.classList.toggle('nav__toggle--open');
   }
 
   closeMobileMenu() {
-    this.navMenu.classList.remove("nav__menu--open");
-    this.navToggle.classList.remove("nav__toggle--open");
+    this.navMenu.classList.remove('nav__menu--open');
+    this.navToggle.classList.remove('nav__toggle--open');
   }
 
   handleNavClick(e) {
     e.preventDefault();
-    const targetId = e.target.getAttribute("href");
+    const targetId = e.target.getAttribute('href');
     const targetElement = document.querySelector(targetId);
 
     if (targetElement) {
@@ -120,8 +120,8 @@ export class Navigation {
   }
 
   updateActiveLink(activeLink) {
-    this.navLinks.forEach((link) => link.classList.remove("nav__link--active"));
-    activeLink.classList.add("nav__link--active");
+    this.navLinks.forEach((link) => link.classList.remove('nav__link--active'));
+    activeLink.classList.add('nav__link--active');
   }
 
   handleScroll() {
@@ -129,9 +129,9 @@ export class Navigation {
 
     // Efecto header sticky
     if (scrollY > 100) {
-      this.header.classList.add("header--scrolled");
+      this.header.classList.add('header--scrolled');
     } else {
-      this.header.classList.remove("header--scrolled");
+      this.header.classList.remove('header--scrolled');
     }
 
     // Actualizar navegación activa basada en scroll
@@ -139,19 +139,19 @@ export class Navigation {
   }
 
   updateActiveSection() {
-    const sections = document.querySelectorAll(".section");
+    const sections = document.querySelectorAll('.section');
     const scrollPosition = window.scrollY + CONFIG.scrollOffset + 50;
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute("id");
+      const sectionId = section.getAttribute('id');
 
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         const correspondingLink = document.querySelector(`[href="#${sectionId}"]`);
         if (correspondingLink) {
-          this.navLinks.forEach((link) => link.classList.remove("nav__link--active"));
-          correspondingLink.classList.add("nav__link--active");
+          this.navLinks.forEach((link) => link.classList.remove('nav__link--active'));
+          correspondingLink.classList.add('nav__link--active');
         }
       }
     });
@@ -175,7 +175,7 @@ export class AnimationManager {
   createObserver() {
     const options = {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      rootMargin: '0px 0px -50px 0px',
     };
 
     this.observer = new IntersectionObserver((entries) => {
@@ -198,16 +198,16 @@ export class AnimationManager {
     `);
 
     elementsToAnimate.forEach((element) => {
-      element.style.opacity = "0";
-      element.style.transform = "translateY(30px)";
-      element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       this.observer.observe(element);
     });
   }
 
   animateElement(element) {
-    element.style.opacity = "1";
-    element.style.transform = "translateY(0)";
+    element.style.opacity = '1';
+    element.style.transform = 'translateY(0)';
   }
 }
 
@@ -216,7 +216,7 @@ export class AnimationManager {
 // ===================================
 export class ContactForm {
   constructor() {
-    this.form = document.getElementById("contactForm");
+    this.form = document.getElementById('contactForm');
     this.init();
   }
 
@@ -227,13 +227,13 @@ export class ContactForm {
   }
 
   bindEvents() {
-    this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
 
     // Validación en tiempo real
-    const inputs = this.form.querySelectorAll("input, textarea");
+    const inputs = this.form.querySelectorAll('input, textarea');
     inputs.forEach((input) => {
-      input.addEventListener("blur", () => this.validateField(input));
-      input.addEventListener("input", () => this.clearFieldError(input));
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => this.clearFieldError(input));
     });
   }
 
@@ -245,7 +245,7 @@ export class ContactForm {
     }
 
     const formData = this.getFormData();
-    const submitButton = this.form.querySelector(".form__button");
+    const submitButton = this.form.querySelector('.form__button');
 
     try {
       this.setSubmitting(true, submitButton);
@@ -257,14 +257,14 @@ export class ContactForm {
       this.showSuccess();
       this.resetForm();
     } catch (error) {
-      this.showError("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+      this.showError('Hubo un error al enviar el mensaje. Inténtalo de nuevo.');
     } finally {
       this.setSubmitting(false, submitButton);
     }
   }
 
   validateForm() {
-    const inputs = this.form.querySelectorAll("input[required], textarea[required]");
+    const inputs = this.form.querySelectorAll('input[required], textarea[required]');
     let isValid = true;
 
     inputs.forEach((input) => {
@@ -280,29 +280,29 @@ export class ContactForm {
     const value = field.value.trim();
     const fieldName = field.name;
     let isValid = true;
-    let errorMessage = "";
+    let errorMessage = '';
 
     // Limpiar errores previos
     this.clearFieldError(field);
 
     // Validaciones específicas
     switch (fieldName) {
-      case "name":
+      case 'name':
         if (value.length < 2) {
-          errorMessage = "El nombre debe tener al menos 2 caracteres";
+          errorMessage = 'El nombre debe tener al menos 2 caracteres';
           isValid = false;
         }
         break;
-      case "email":
+      case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
-          errorMessage = "Ingresa un email válido";
+          errorMessage = 'Ingresa un email válido';
           isValid = false;
         }
         break;
-      case "message":
+      case 'message':
         if (value.length < 10) {
-          errorMessage = "El mensaje debe tener al menos 10 caracteres";
+          errorMessage = 'El mensaje debe tener al menos 10 caracteres';
           isValid = false;
         }
         break;
@@ -316,20 +316,20 @@ export class ContactForm {
   }
 
   showFieldError(field, message) {
-    field.classList.add("form__input--error");
+    field.classList.add('form__input--error');
 
-    let errorElement = field.parentNode.querySelector(".form__error");
+    let errorElement = field.parentNode.querySelector('.form__error');
     if (!errorElement) {
-      errorElement = document.createElement("span");
-      errorElement.className = "form__error";
+      errorElement = document.createElement('span');
+      errorElement.className = 'form__error';
       field.parentNode.appendChild(errorElement);
     }
     errorElement.textContent = message;
   }
 
   clearFieldError(field) {
-    field.classList.remove("form__input--error");
-    const errorElement = field.parentNode.querySelector(".form__error");
+    field.classList.remove('form__input--error');
+    const errorElement = field.parentNode.querySelector('.form__error');
     if (errorElement) {
       errorElement.remove();
     }
@@ -343,10 +343,10 @@ export class ContactForm {
   setSubmitting(isSubmitting, button) {
     if (isSubmitting) {
       button.disabled = true;
-      button.textContent = "Enviando...";
+      button.textContent = 'Enviando...';
     } else {
       button.disabled = false;
-      button.textContent = "Enviar Mensaje";
+      button.textContent = 'Enviar Mensaje';
     }
   }
 
@@ -354,34 +354,34 @@ export class ContactForm {
     // Simular delay de envío
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log("Datos del formulario:", data);
+        console.log('Datos del formulario:', data);
         resolve();
       }, 1500);
     });
   }
 
   showSuccess() {
-    this.showNotification("¡Mensaje enviado exitosamente!", "success");
+    this.showNotification('¡Mensaje enviado exitosamente!', 'success');
   }
 
   showError(message) {
-    this.showNotification(message, "error");
+    this.showNotification(message, 'error');
   }
 
   showNotification(message, type) {
     // Crear notificación
-    const notification = document.createElement("div");
+    const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
     notification.textContent = message;
 
     document.body.appendChild(notification);
 
     // Mostrar con animación
-    setTimeout(() => notification.classList.add("notification--show"), 100);
+    setTimeout(() => notification.classList.add('notification--show'), 100);
 
     // Ocultar después de 3 segundos
     setTimeout(() => {
-      notification.classList.remove("notification--show");
+      notification.classList.remove('notification--show');
       setTimeout(() => notification.remove(), 300);
     }, 3000);
   }
@@ -400,10 +400,10 @@ export function initializePortfolio() {
   new AnimationManager();
   new ContactForm();
 
-  console.log("Portfolio inicializado correctamente");
+  console.log('Portfolio inicializado correctamente');
 }
 
 // Auto-initialize on DOMContentLoaded
-if (typeof document !== "undefined") {
-  document.addEventListener("DOMContentLoaded", initializePortfolio);
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', initializePortfolio);
 }

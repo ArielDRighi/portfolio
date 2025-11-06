@@ -19,7 +19,7 @@
 }
 
 .project-card::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -151,13 +151,13 @@ Projects Section */ .projects {
   filter: brightness(0) saturate(100%) invert(100%);
 }
 
-[data-theme="light"] .tech-badge .tech-icon,
-[data-theme="light"] .projects .tech-badge .tech-icon {
+[data-theme='light'] .tech-badge .tech-icon,
+[data-theme='light'] .projects .tech-badge .tech-icon {
   filter: none !important;
 }
 
-[data-theme="dark"] .tech-badge .tech-icon,
-[data-theme="dark"] .projects .tech-badge .tech-icon {
+[data-theme='dark'] .tech-badge .tech-icon,
+[data-theme='dark'] .projects .tech-badge .tech-icon {
   filter: brightness(0) saturate(100%) invert(100%) !important;
 }
 

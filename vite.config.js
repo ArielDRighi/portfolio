@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "./",
+  publicDir: "public",
   build: {
     outDir: "dist",
     emptyOutDir: true,
@@ -17,5 +18,10 @@ export default defineConfig({
   },
   preview: {
     port: 4173,
+  },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
   },
 });

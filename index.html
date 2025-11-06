@@ -65,11 +65,7 @@
     />
     <link rel="manifest" href="site.webmanifest" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/themes.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="sections/projects/projects-simple.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- CSS will be imported by Vite through main.js -->
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -115,7 +111,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   </head>
   <body>
     <!-- Header con navegación -->
@@ -153,7 +149,7 @@
           <div class="about__content">
             <div class="about__image">
               <img
-                src="assets/images/profile/1MB.png"
+                src="/assets/images/profile/1MB.png"
                 alt="Foto de perfil profesional - Ariel D. Righi"
                 class="about__photo"
               />
@@ -191,7 +187,7 @@
                   <span>Ver LinkedIn</span>
                 </a>
                 <a
-                  href="assets/documents/CV_Ariel Righi_Desarrollador Backend.pdf"
+                  href="/assets/documents/CV_Ariel Righi_Desarrollador Backend.pdf"
                   download
                   class="about__action-btn about__action-btn--secondary"
                 >
@@ -199,7 +195,7 @@
                   <span>CV Español</span>
                 </a>
                 <a
-                  href="assets/documents/Resume_Ariel Righi_Backend Developer.pdf"
+                  href="/assets/documents/Resume_Ariel Righi_Backend Developer.pdf"
                   download
                   class="about__action-btn about__action-btn--secondary"
                 >
@@ -596,16 +592,7 @@
       </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/theme-manager.js"></script>
-    <script src="js/animation-controller.js"></script>
-    <script src="js/portfolio-tester.js"></script>
-    <script src="js/performance-optimizer.js"></script>
-    <script src="js/cross-device-tester.js"></script>
-    <script src="validate-production.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/experience.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="sections/projects/projects-simple.js"></script>
+    <!-- JavaScript - Vite entry point -->
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

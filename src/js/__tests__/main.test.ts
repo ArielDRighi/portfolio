@@ -205,11 +205,11 @@ describe('utils', () => {
     it('should return consistent format on multiple calls', () => {
       const time1 = utils.getCurrentTime();
       const time2 = utils.getCurrentTime();
-      
+
       // Both should be strings
       expect(typeof time1).toBe('string');
       expect(typeof time2).toBe('string');
-      
+
       // Format should be consistent (same length pattern)
       expect(time1.length).toBeGreaterThan(0);
       expect(time2.length).toBeGreaterThan(0);

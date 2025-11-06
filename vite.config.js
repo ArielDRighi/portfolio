@@ -1,14 +1,14 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: "./",
-  publicDir: "public",
+  root: './',
+  publicDir: 'public',
   build: {
-    outDir: "dist",
+    outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: "./index.html",
+        main: './index.html',
       },
     },
   },
@@ -21,7 +21,23 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": "/src",
+      '@': '/src',
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'dist/',
+        '**/*.test.ts',
+        '**/*.spec.ts',
+        '**/test/**',
+        '**/__tests__/**',
+      ],
     },
   },
 });

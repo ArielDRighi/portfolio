@@ -56,6 +56,10 @@
     width: 100%;
   }
 
+  * {
+    max-width: 100%;
+  }
+
   .container {
     width: 100%;
     max-width: 100%;
@@ -66,7 +70,10 @@
   .section,
   .about,
   .about__content,
-  .about__highlights {
+  .about__highlights,
+  .contact,
+  .contact__content,
+  .contact__links {
     max-width: 100%;
     overflow-x: hidden;
   }
@@ -309,33 +316,63 @@
    CONTACT MOBILE
    =================================== */
 @media (max-width: 768px) {
+  .contact {
+    overflow-x: hidden;
+  }
+
   .contact__content {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .contact__info {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .contact__description {
+    padding: 0 var(--spacing-xs);
+    font-size: var(--font-size-base);
+  }
+
+  .contact__links {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    gap: var(--spacing-md);
   }
 
   .contact__link {
     flex-direction: column;
     text-align: center;
-    padding: var(--spacing-lg);
-    min-height: 120px;
+    padding: var(--spacing-md);
+    min-height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
   }
 
   .contact__icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: var(--spacing-sm);
   }
 
   .contact__text {
     width: 100%;
+    padding: 0;
   }
 
   .contact__label {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
   }
 
   .contact__value {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   /* Formulario móvil */
@@ -479,6 +516,23 @@
 
   .timeline__title {
     font-size: var(--font-size-base);
+  }
+
+  /* Contact para pantallas pequeñas */
+  .contact__link {
+    padding: var(--spacing-sm);
+  }
+
+  .contact__icon {
+    font-size: var(--font-size-lg);
+  }
+
+  .contact__label {
+    font-size: var(--font-size-xs);
+  }
+
+  .contact__value {
+    font-size: 0.7rem;
   }
 }
 

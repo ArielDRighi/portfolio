@@ -323,31 +323,56 @@
   /* ===================================
      CONTACTO MÓVIL
      =================================== */
+  .contact {
+    overflow-x: hidden;
+  }
+
   .contact__content {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-sm);
+    max-width: 100%;
+  }
+
+  .contact__info {
+    padding: 0;
   }
 
   .contact__content .contact__links {
     grid-template-columns: 1fr;
     grid-template-areas: none;
     gap: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
   }
 
   .contact__link {
     flex-direction: column;
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .contact__icon {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
     margin: 0 auto var(--spacing-sm);
   }
 
   .contact__text {
     width: 100%;
     align-items: center;
+  }
+
+  .contact__label {
+    font-size: var(--font-size-sm);
+  }
+
+  .contact__value {
+    font-size: var(--font-size-xs);
+    word-break: break-word;
   }
 
   .contact__description {

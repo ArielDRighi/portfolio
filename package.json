@@ -1,0 +1,35 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio for Ariel David Righi - Backend Developer",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArielDRighi/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "backend-developer",
+    "typescript",
+    "vite"
+  ],
+  "author": "Ariel David Righi",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ArielDRighi/portfolio/issues"
+  },
+  "homepage": "https://github.com/ArielDRighi/portfolio#readme",
+  "devDependencies": {
+    "vite": "^7.2.1"
+  }
+}

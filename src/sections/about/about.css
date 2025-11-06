@@ -134,12 +134,6 @@
   transition: all var(--transition-normal);
 }
 
-.skill__category:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
-}
-
 .skill__category-icon {
   width: 48px;
   height: 48px;
@@ -155,10 +149,6 @@
 .skill__category-icon i {
   font-size: var(--font-size-xl);
   color: var(--color-text-inverse);
-}
-
-.skill__category:hover .skill__category-icon {
-  background: var(--color-accent);
 }
 
 .skill__category-title {
@@ -186,10 +176,6 @@
 
 .skill__item:last-child {
   border-bottom: none;
-}
-
-.skill__item:hover {
-  color: var(--color-primary);
 }
 
 .skill__item i {
